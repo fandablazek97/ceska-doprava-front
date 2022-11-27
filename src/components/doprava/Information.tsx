@@ -1,7 +1,9 @@
 import Heading from '@components/bricks/Heading'
 import ScrollReveal from '@components/bricks/ScrollReveal'
 import Wrapper from '@components/bricks/Wrapper'
-import { HiCalendar } from 'react-icons/hi'
+import { BsFillCalculatorFill } from 'react-icons/bs'
+import { FaQuestion } from 'react-icons/fa'
+import { BiTask } from 'react-icons/bi'
 
 type Props = {
   heading: string;
@@ -46,21 +48,21 @@ export default function Information({
         </ScrollReveal>
         <ScrollReveal as={"div"} className="grid grid-cols-1 md:grid-cols-3 gap-x-5 lg:gap-x-10 gap-y-20 mt-32" animation='slide-up' staggerChildren staggerChildrenIncrement='200' duration='200'>
           <div className='relative px-5 py-10 flex flex-col items-center shadow-lg shadow-gray-300 bg-white'>
-            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-xl'><HiCalendar></HiCalendar></span>
+            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-2xl'><FaQuestion/></span>
             <Heading level={3} size="sm" align='center'>
               {c1heading}
             </Heading>
             <p className='text-center text-sm mt-5'>{c1text}</p>
           </div>
           <div className='relative px-5 py-10 flex flex-col items-center shadow-lg shadow-gray-300 bg-white'>
-            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-xl'><HiCalendar></HiCalendar></span>
+            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-2xl'><BsFillCalculatorFill/></span>
             <Heading level={3} size="sm" align='center'>
               {c2heading}
             </Heading>
             <p className='text-center text-sm mt-5'>{c2text}</p>
           </div>
           <div className='relative px-5 py-10 flex flex-col items-center shadow-lg shadow-gray-300 bg-white'>
-            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-xl'><HiCalendar></HiCalendar></span>
+            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-2xl'><BiTask/></span>
             <Heading level={3} size="sm" align='center'>
               {c3heading}
             </Heading>

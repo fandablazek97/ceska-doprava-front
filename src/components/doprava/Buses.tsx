@@ -1,5 +1,7 @@
 import Heading from '@components/bricks/Heading'
 import Wrapper from '@components/bricks/Wrapper'
+import { FaTv } from 'react-icons/fa'
+import { GiCarSeat, GiEcology } from 'react-icons/gi'
 import { HiArrowDown } from 'react-icons/hi'
 import TextPointAndImage from './TextPointAndImage'
 
@@ -20,12 +22,12 @@ export default function VehiclePark() {
           points={[{
             heading: "Obsaditelnost",
             text: "Tento autobus má obsaditelnost 59 + 1 +1.",
-            icon: <HiArrowDown />
+            icon: <GiCarSeat />
           },
           {
             heading: "Vybavení",
             text: "Klimatizace, polohovací sedačky, bezpečnostní pásy, 2x lednice, kuchyňka, kávovar, toaleta, 2x LCD TV s USB přehrávačem, palubní audiosystém, skibox.",
-            icon: <HiArrowDown />
+            icon: <FaTv />
           },
           {
             heading: "Emisní norma",
@@ -46,17 +48,17 @@ export default function VehiclePark() {
           points={[{
             heading: "Obsaditelnost",
             text: "Tento autobus má obsaditelnost 53 + 1 +1.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <GiCarSeat />
           },
           {
             heading: "Vybavení",
             text: "Klimatizace, polohovací sedačky, bezpečnostní pásy, 2x lednice, kávovar, toaleta, 2x LCD TV s USB přehrávačem, palubní audiosystém, skibox, tažné zařízení.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <FaTv />
           },
           {
             heading: "Emisní norma",
             text: "Tento autobus splňuje emisní normu EURO V.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <GiEcology />
           }]}
         />
 
@@ -72,17 +74,17 @@ export default function VehiclePark() {
           points={[{
             heading: "Obsaditelnost",
             text: "Tento autobus má obsaditelnost 53 + 1 +1.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <GiCarSeat />
           },
           {
             heading: "Vybavení",
             text: "Klimatizace, polohovací sedačky, bezpečnostní pásy, 2x lednice, kávovar, toaleta, 2x LCD TV s USB přehrávačem, palubní audiosystém, skibox, tažné zařízení.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <FaTv />
           },
           {
             heading: "Emisní norma",
             text: "Tento autobus splňuje emisní normu EURO IV.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <GiEcology />
           }]}
         />
         <TextPointAndImage
@@ -97,17 +99,17 @@ export default function VehiclePark() {
           points={[{
             heading: "Obsaditelnost",
             text: "Tato dodávka má obsaditelnost 8 + 1.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <GiCarSeat />
           },
           {
             heading: "Vybavení",
             text: "Klimatizace, tažné zařízení.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <FaTv />
           },
           {
             heading: "Emisní norma",
             text: "Tato dodávka splňuje emisní normu EURO IV.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <GiEcology />
           }]}
         />
       </div>

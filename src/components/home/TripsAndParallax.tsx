@@ -20,11 +20,11 @@ export default function TripsAndParallax() {
           <p className="max-w-prose mb-10">
             Říká se, že zážitky vám nikdo nesebere, a v duchu tohoto hesla pro vás připravujeme jednodenní i vícedenní poznávací zájezdy a výlety za kulturou a odpočinkem. Najdete u nás také bohatou nabídku pobytových dovolených u moře. Jsme váš specialista na Čechy, Chorvatsko, Rakousko, Německo a Polsko
           </p>
-          <Link href="/zajezdy">
-            <a>
-              <Button>Zobrazit zájezdy</Button>
-            </a>
-          </Link>
+          <div>
+            <Link href="/zajezdy">
+              <Button as="a">Zobrazit zájezdy</Button>
+            </Link>
+          </div>
         </ScrollReveal>
       </Wrapper>
 

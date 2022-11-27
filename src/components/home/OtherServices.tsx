@@ -37,7 +37,7 @@ export default function OtherServices() {
               <Heading level={3} size={"lg"} color="white" className="absolute left-5 bottom-5 sm:bottom-8 sm:left-8 lg:left-12 lg:bottom-12">Autobusová<br />doprava</Heading>
             </a>
           </Link>
-          <Link href="/doprava_nakladni">
+          <Link href="/doprava_kamion">
             <a className="relative aspect-square md:aspect-[4/3] overflow-hidden isolate rounded-xl group">
               <Image
                 src={"/images/home/otherServices/kamion.jpg"}
@@ -51,7 +51,7 @@ export default function OtherServices() {
                 className="group-hover:scale-110 transition-transform origin-center duration-300"
               />
               <div className="w-full h-full absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent transition-transform duration-300 group-hover:translate-y-20 md:group-hover:translate-y-28 "></div>
-              <Heading level={3} size={"lg"} color="white" className="absolute left-5 bottom-5 sm:bottom-8 sm:left-8 lg:left-12 lg:bottom-12">Nákladní<br />doprava</Heading>
+              <Heading level={3} size={"lg"} color="white" className="absolute left-5 bottom-5 sm:bottom-8 sm:left-8 lg:left-12 lg:bottom-12">Kamionová<br />doprava</Heading>
             </a>
           </Link>
         </div>

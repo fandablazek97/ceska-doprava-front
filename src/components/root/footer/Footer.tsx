@@ -15,9 +15,10 @@ export default function Footer() {
       >
         {/* Logo + copyright + socky */}
         <div className="col-span-1 flex flex-col items-center justify-center gap-8 text-center md:items-start md:justify-start md:text-left">
-          <Heading level={3} size="base">
+          {/* <Heading level={3} size="base">
             {globalConfig.client.fullName}
-          </Heading>
+          </Heading> */}
+          <img src="/logos/logo.svg" className="h-full max-w-[150px]"></img>
           <div className="max-w-prose">
             Společnost působící v oblasti cestovního ruchu, osobní a autobusové dopravy ale i dopravy nákladní.
           </div>

@@ -15,6 +15,7 @@ import { HiArrowSmDown } from 'react-icons/hi'
 type Props = {
   prices: any;
   months: any;
+  swimming: any;
   departurePoints: DeparturePointsProps[];
   specialPrices: SpecialPricesProps[];
 }
@@ -37,7 +38,7 @@ interface DeparturePointsProps {
   }];
 }
 
-export default function chorvatsko({ prices, months, departurePoints, specialPrices }: Props) {
+export default function chorvatsko({ prices, swimming, months, departurePoints, specialPrices }: Props) {
   return (
     <>
       <Seo title="Česká doprava" description="" />
@@ -58,10 +59,15 @@ export default function chorvatsko({ prices, months, departurePoints, specialPri
         </div>
       </BasicHero>
       <Informations />
-      <ParallaxImage className="w-screen aspect-[5/3] bg-body-100" speed={-10} />
+      <ParallaxImage 
+        className="w-screen aspect-[8/3] bg-body-100" 
+        containerClass='w-screen aspect-[6/3]'
+        speed={-25} 
+        src="/images/home/chorvatsko.jpg"
+        />
       <DeparturePoints departurePoints={departurePoints} />
       <Dates months={months} />
-      <Pricing prices={prices} specialPrices={specialPrices} />
+      <Pricing prices={prices} specialPrices={specialPrices} swimming={swimming}/>
       <Form prices={prices} months={months} departurePoints={departurePoints} specialPrices={specialPrices} />
       <Questions />
       <BasicContact
@@ -74,20 +80,24 @@ export default function chorvatsko({ prices, months, departurePoints, specialPri
 
 export async function getStaticProps() {
   const pricesQuery = "?populate[jizdne][populate][0]=x"
+  const swimmingQuery = "&populate[koupani][populate][0]=X"
   const monthsQuery = "&populate[mesice][populate][0]=datumCr&populate[mesice][populate][1]=datumHr"
   const departurePointsQuery = "&populate[odjezdMista][populate][0]=mesto"
-  const speciaPricesQuery = "&populate[nastupniMista][populate][0]=mesto";
+  const specialPricesQuery = "&populate[nastupniMista][populate][0]=mesto";
+
   const res = await fetch(ipToFetch + "/api/chorvatsko"
     + pricesQuery
+    + swimmingQuery
     + monthsQuery
     + departurePointsQuery
-    + speciaPricesQuery
+    + specialPricesQuery
   )
   const dataAndMeta = await res.json()
   const data = dataAndMeta.data.attributes
   return {
     props: {
       prices: data.jizdne,
+      swimming: data.koupani,
       months: data.mesice,
       departurePoints: data.odjezdMista,
       specialPrices: data.nastupniMista

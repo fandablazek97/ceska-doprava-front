@@ -9,14 +9,15 @@ type Props = {
     zpatecni: number;
   }[],
   specialPrices: {
-    cena: string,
+    cena: string;
     mesto: {
-      nazev: string
+      nazev: string;
     }[],
   }[],
+  swimming: any;
 }
 
-export default function Pricing({ prices, specialPrices }: Props) {
+export default function Pricing({ prices, specialPrices, swimming }: Props) {
   return (
     <div className='bg-body-100'>
       <Wrapper as="section" size="base" paddedContent='sm'>
@@ -24,7 +25,6 @@ export default function Pricing({ prices, specialPrices }: Props) {
           <Heading level={2} size="xl">Cena jízdného</Heading>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-20 my-10'>
             <p>I přes neustálý růst cen PHM a dalších vstupních nákladů se snažíme pro naše cestující zachovat přátelské ceny jízdenek tak, aby cestování na Jadran zůstalo cenově dostupné pro každého z vás a zároveň abychom vám stále byli schopni nabídnout vysokou kvalitu služeb.</p>
-            {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At voluptates, vel nisi eius nihil reprehenderit, quidem temporibus iste corrupti quisquam culpa autem inventore harum?</p> */}
           </div>
         </ScrollReveal>
         <ScrollReveal staggerChildren className='flex flex-col gap-16 mt-20'>
@@ -60,22 +60,12 @@ export default function Pricing({ prices, specialPrices }: Props) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Baška</td>
-                  <td className='text-primary text-right py-2 font-medium'>1190 Kč</td>
+                {swimming.map((e: any, key: number) => (
+                  <tr key={key}>
+                  <td>{e.oblast}</td>
+                  <td className='text-primary text-right py-2 font-medium'>{e.obousmerna} Kč</td>
                 </tr>
-                <tr>
-                  <td>Crikvenica</td>
-                  <td className='text-primary text-right py-2 font-medium'>1190 Kč</td>
-                </tr>
-                <tr>
-                  <td>Biograd na Moru</td>
-                  <td className='text-primary text-right py-2 font-medium'>1390 Kč</td>
-                </tr>
-                <tr>
-                  <td>Vodice</td>
-                  <td className='text-primary text-right py-2 font-medium'>1390 Kč</td>
-                </tr>
+                ))}
               </tbody>
             </table>
           </div>

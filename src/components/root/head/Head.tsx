@@ -29,6 +29,8 @@ export default function Head() {
         href="/favicon/favicon-16x16.png"
       />
       <link rel="manifest" href="/favicon/site.webmanifest" />
+      
+      <meta name="msapplication-TileColor" content="#da532c"></meta>
 
       {/* Theme color */}
       {/* <meta name="theme-color" content="#F8FAFC" /> */}

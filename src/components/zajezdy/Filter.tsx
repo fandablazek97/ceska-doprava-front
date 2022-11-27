@@ -54,7 +54,7 @@ export default function Filter({ category = "Vse", setCategory, dateFrom = "26.0
               datePickerAlign="left"
               datePickerValueAlign="right"
               tabIndex={0}
-              inputClassName="rounded-lg w-full sm:w-[153px] h-12"
+              inputClassName="rounded-lg w-full sm:w-[153px] h-12 bg-gray-200 font-semibold"
             />
             <DatePicker
               text="Datum do"
@@ -65,7 +65,7 @@ export default function Filter({ category = "Vse", setCategory, dateFrom = "26.0
               datePickerAlign="right"
               datePickerValueAlign="right"
               tabIndex={0}
-              inputClassName="rounded-lg w-full sm:w-[153px] h-12"
+              inputClassName="rounded-lg w-full sm:w-[153px] h-12 bg-gray-200 font-semibold"
             />
           </div>
         </div>

@@ -20,7 +20,7 @@ export const mainRoutes = [
     main: false,
   },
   {
-    label: "Nákladní doprava",
+    label: "Kamionová doprava",
     path: "/doprava_kamion",
     main: false,
   },

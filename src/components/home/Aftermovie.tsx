@@ -77,10 +77,12 @@ export default function Aftermovie() {
             {/* Obsah modalu - container pro obrázek */}
             <div className="relative top-1/2 bottom-1/2 z-[200] mx-auto w-[90%] max-w-6xl -translate-y-1/2 transform">
               <div className="aspect-[16/9]">
-                <video controls className="object-cover">
-                  <source src="/videos/ceska-doprava-video.mp4" type="video/mp4" />
-                  Váš prohlížeč nepodporuje video
-                </video>
+              <iframe 
+                src="https://www.youtube.com/embed/gi7kMZ_NlnM" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                className="w-full aspect-video" 
+              ></iframe>
               </div>
             </div>
           </Transition.Child>

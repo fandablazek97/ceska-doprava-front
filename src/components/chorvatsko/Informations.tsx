@@ -2,7 +2,9 @@ import Heading from '@components/bricks/Heading'
 import ScrollReveal from '@components/bricks/ScrollReveal'
 import Wrapper from '@components/bricks/Wrapper'
 import { HiCalendar } from 'react-icons/hi'
-
+import { GrMapLocation } from 'react-icons/gr'
+import { MdAccessTime } from 'react-icons/md'
+import { BiTask } from 'react-icons/bi'
 export default function Informations() {
   return (
     <div className='bg-body-100 pb-20' id="informace">
@@ -13,7 +15,7 @@ export default function Informations() {
         </ScrollReveal>
         <ScrollReveal staggerChildren className='grid grid-cols-1 md:grid-cols-3 gap-x-5 lg:gap-x-10 gap-y-12 mt-32'>
           <div className='bg-white relative px-5  pt-10 pb-5 flex flex-col items-center shadow-2xl'>
-            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-xl'><HiCalendar></HiCalendar></span>
+            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-xl'><GrMapLocation className='[&>path]:stroke-white'/></span>
             <Heading level={3} size="sm" align='center'>
               Vyberte destinaci.
             </Heading>
@@ -22,7 +24,7 @@ export default function Informations() {
             </p>
           </div>
           <div className='bg-white relative px-5  pt-10 pb-5 flex flex-col items-center shadow-2xl'>
-            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-xl'><HiCalendar></HiCalendar></span>
+            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-xl'><MdAccessTime/></span>
             <Heading level={3} size="sm" align='center'>
               Na jak dlouho?
             </Heading>
@@ -31,7 +33,7 @@ export default function Informations() {
             </p>
           </div>
           <div className='bg-white relative px-5 pt-10 pb-5 flex flex-col items-center shadow-2xl'>
-            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-xl'><HiCalendar></HiCalendar></span>
+            <span className='w-10 h-10 flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2 bg-primary rounded-full text-white text-xl'><BiTask/></span>
             <Heading level={3} size="sm" align='center'>
               Rezervujte si místo
             </Heading>

@@ -105,18 +105,18 @@ export default function zajezd({
 }
 
 export async function getStaticProps({ params }: any) {
-  const zajezdData = (await (await fetch(ipToFetch + "/api/zajezds/" + params.zajezdId + "?populate[terminACena][fields][0]=datumOd&populate[terminACena][fields][1]=datumDo&populate[terminACena][fields][2]=cena&populate[kategorie][fields][3]=kategorie&populate[odjezdovaMista][fields][4]=mesto&populate[odjezdovaMista][fields][5]=ulice&populate[odjezdovaMista][fields][6]=cisloPopisne&populate[uvodniFoto][fields][7]=url&populate[dalsiFoto][fields][8]=url&populate[terminACena][fields][9]=pocetDni&populate[terminACena][fields][10]=pocetNoci&populate[trasy][fields][11]=oznaceniTrasy")).json()).data
-  let trasyString = ""
+  const zajezdData = (await (await fetch(ipToFetch + "/api/zajezds/" + params.zajezdId + "?populate[terminACena][fields][0]=datumOd&populate[terminACena][fields][1]=datumDo&populate[terminACena][fields][2]=cena&populate[kategorie][fields][3]=kategorie&populate[odjezdovaMista][fields][4]=mesto&populate[odjezdovaMista][fields][5]=ulice&populate[odjezdovaMista][fields][6]=cisloPopisne&populate[uvodniFoto][fields][7]=url&populate[dalsiFoto][fields][8]=url&populate[terminACena][fields][9]=pocetDni&populate[terminACena][fields][10]=pocetNoci&populate[trasy][fields][11]=oznaceni")).json()).data
+  let trasyString = "";
   zajezdData.attributes.trasy.map((e: any, i: number) => {
     if (trasyString === "") {
-      trasyString += "?filters[$or][" + i + "][oznaceni][$eq]=" + e.oznaceniTrasy
+      trasyString += "?filters[$or][" + i + "][oznaceni][$eq]=" + e.oznaceni
     }
     else {
-      trasyString += "&filters[$or][" + i + "][oznaceni][$eq]=" + e.oznaceniTrasy
+      trasyString += "&filters[$or][" + i + "][oznaceni][$eq]=" + e.oznaceni
     }
   })
   const trasyData = (await (await fetch(ipToFetch + "/api/trasas" + trasyString + "&populate=%2A")).json()).data
-
+  console.log(trasyString)
   return {
     props: {
       country: zajezdData.attributes.stat,
@@ -126,7 +126,7 @@ export async function getStaticProps({ params }: any) {
       code: zajezdData.attributes.kod,
       categories: zajezdData.attributes.kategorie,
       imageSrc: zajezdData.attributes.uvodniFoto.data.attributes.url,
-      otherImages: zajezdData.attributes.dalsiFoto.data.map((e: any) => {
+      otherImages: zajezdData.attributes.dalsiFoto.data !== null && zajezdData.attributes.dalsiFoto.data.map((e: any) => {
         return (e.attributes.url)
       }),
       dateAndPrice: zajezdData.attributes.terminACena,
@@ -139,7 +139,7 @@ export async function getStaticProps({ params }: any) {
       events: zajezdData.attributes.zabava,
       tips: zajezdData.attributes.tipy,
       comment: zajezdData.attributes.poznamka,
-      trasy: trasyData
+       trasy: trasyData 
     }
   }
 }

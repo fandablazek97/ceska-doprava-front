@@ -8,6 +8,7 @@ type Props = {
   alt?: string;
   animOnPhone?: true | false;
   loading?: "eager" | "lazy";
+  containerClass?: string
 }
 
 export default function ParallaxImage({
@@ -15,42 +16,49 @@ export default function ParallaxImage({
   speed = 3,
   src = "/images/conf.jpg",
   alt = "image alt",
-  animOnPhone = true,
-  loading = "lazy"
+  animOnPhone = false,
+  loading = "lazy",
+  containerClass = ""
 }: Props) {
   if (animOnPhone) {
     return (
-      <ParallaxProvider>
-        <Parallax speed={speed} className={`relative ${className}`}>
-          <Image
-            src={src}
-            alt={alt}
-            layout="fill"
-            objectFit="cover"
-            loading={loading}
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 100vw,
-              100vw"
-          />
-        </Parallax>
-      </ParallaxProvider>
+      <div className={`overflow-hidden ${containerClass}`}>
+        <ParallaxProvider>
+          <Parallax speed={speed} className={`relative ${className}`}>
+            <Image
+              src={src}
+              alt={alt}
+              layout="fill"
+              objectFit="cover"
+              loading={loading}
+              sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 100vw,
+                100vw"
+            />
+          </Parallax>
+        </ParallaxProvider>
+      </div>
     )
   }
   else {
     return (
-      <ParallaxProvider>
-        <Parallax speed={speed} className={`hidden md:block ${className}`}>
-          <Image
-            src={src}
-            alt={alt}
-            layout="fill"
-            objectFit="cover"
-            loading={loading}
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 100vw,
-              100vw"
-          />
-        </Parallax>
+      <>
+        <div className={`hidden md:block overflow-hidden ${containerClass}`}>
+          <ParallaxProvider>
+            <Parallax speed={speed} className={`hidden md:block ${className}`}>
+              <Image
+                src={src}
+                alt={alt}
+                layout="fill"
+                objectFit="cover"
+                loading={loading}
+                sizes="(max-width: 768px) 100vw,
+                  (max-width: 1200px) 100vw,
+                  100vw"
+              />
+            </Parallax>
+          </ParallaxProvider>
+        </div>
         <div className={`relative block md:hidden ${className}`}>
           <Image
             src={src}
@@ -63,7 +71,7 @@ export default function ParallaxImage({
               100vw"
           />
         </div>
-      </ParallaxProvider>
+      </>
     )
   }
 }

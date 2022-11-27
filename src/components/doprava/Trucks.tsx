@@ -1,6 +1,9 @@
 import Heading from '@components/bricks/Heading'
 import Wrapper from '@components/bricks/Wrapper'
+import { FaWeightHanging } from 'react-icons/fa'
+import { GiEcology } from 'react-icons/gi'
 import { HiArrowDown } from 'react-icons/hi'
+import { TbCrane } from 'react-icons/tb'
 import TextPointAndImage from './TextPointAndImage'
 
 export default function VehiclePark() {
@@ -21,17 +24,17 @@ export default function VehiclePark() {
             {
               heading: "Kapacita",
               text: "Je schopen pojmout kapacitu nákladu až 24 tun.",
-              icon: <HiArrowDown />
+              icon: <FaWeightHanging className='text-sm'/>
             },
             {
               heading: "Vybavení",
               text: "Třístranná shrnovačka a ložná délka 13,6 m.",
-              icon: <HiArrowDown />
+              icon: <TbCrane />
             },
             {
               heading: "Emisní norma",
               text: "Tento nákladní automobil splňuje emisní normu EURO VI.",
-              icon: <HiArrowDown />
+              icon: <GiEcology />
             },
           ]}
         />
@@ -48,17 +51,17 @@ export default function VehiclePark() {
           points={[{
             heading: "Kapacita",
             text: "Je schopen pojmout kapacitu nákladu až 24 tun.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <FaWeightHanging className='text-sm'/>
           },
           {
             heading: "Vybavení",
             text: "Třístranná shrnovačka a ložná délka 13,6 m. Obsahuje paletový koš.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <TbCrane />
           },
           {
             heading: "Emisní norma",
             text: "Tento nákladní automobil splňuje emisní normu EURO VI.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <GiEcology />
           }]}
         />
 
@@ -74,17 +77,17 @@ export default function VehiclePark() {
           points={[{
             heading: "Kapacita",
             text: "Je schopen pojmout kapacitu nákladu až 24 tun.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <FaWeightHanging className='text-sm'/>
           },
           {
             heading: "Vybavení",
             text: "Třístranná shrnovačka a ložná délka 13,6 m.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <TbCrane />
           },
           {
             heading: "Emisní norma",
             text: "Tento nákladní automobil splňuje emisní normu EURO EEV.",
-            icon: <HiArrowDown></HiArrowDown>
+            icon: <GiEcology />
           }]}
         />
       </div>
