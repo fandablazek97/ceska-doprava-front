@@ -1,8 +1,7 @@
 import Heading from '@components/bricks/Heading'
 import Wrapper from '@components/bricks/Wrapper'
 import { FaWeightHanging } from 'react-icons/fa'
-import { GiEcology } from 'react-icons/gi'
-import { HiArrowDown } from 'react-icons/hi'
+import { ImLeaf } from 'react-icons/im'
 import { TbCrane } from 'react-icons/tb'
 import TextPointAndImage from './TextPointAndImage'
 
@@ -34,7 +33,7 @@ export default function VehiclePark() {
             {
               heading: "Emisní norma",
               text: "Tento nákladní automobil splňuje emisní normu EURO VI.",
-              icon: <GiEcology />
+              icon: <ImLeaf />
             },
           ]}
         />
@@ -61,7 +60,7 @@ export default function VehiclePark() {
           {
             heading: "Emisní norma",
             text: "Tento nákladní automobil splňuje emisní normu EURO VI.",
-            icon: <GiEcology />
+            icon: <ImLeaf />
           }]}
         />
 
@@ -87,7 +86,7 @@ export default function VehiclePark() {
           {
             heading: "Emisní norma",
             text: "Tento nákladní automobil splňuje emisní normu EURO EEV.",
-            icon: <GiEcology />
+            icon: <ImLeaf />
           }]}
         />
       </div>
