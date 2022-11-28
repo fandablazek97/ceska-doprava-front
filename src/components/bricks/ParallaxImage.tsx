@@ -8,7 +8,8 @@ type Props = {
   alt?: string;
   animOnPhone?: true | false;
   loading?: "eager" | "lazy";
-  containerClass?: string
+  containerClass?: string;
+  priority?: true | false;
 }
 
 export default function ParallaxImage({
@@ -18,7 +19,8 @@ export default function ParallaxImage({
   alt = "image alt",
   animOnPhone = false,
   loading = "lazy",
-  containerClass = ""
+  containerClass = "",
+  priority=false
 }: Props) {
   if (animOnPhone) {
     return (
@@ -30,7 +32,8 @@ export default function ParallaxImage({
               alt={alt}
               layout="fill"
               objectFit="cover"
-              loading={loading}
+              loading={priority ? "eager" : loading}
+              priority={priority}
               sizes="(max-width: 768px) 100vw,
                 (max-width: 1200px) 100vw,
                 100vw"
@@ -51,7 +54,8 @@ export default function ParallaxImage({
                 alt={alt}
                 layout="fill"
                 objectFit="cover"
-                loading={loading}
+                loading={priority ? "eager" : loading}
+                priority={priority}
                 sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 100vw,
                   100vw"
@@ -65,7 +69,8 @@ export default function ParallaxImage({
             alt={alt}
             layout="fill"
             objectFit="cover"
-            loading={loading}
+            loading={priority ? "eager" : loading}
+            priority={priority}
             sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 100vw,
               100vw"

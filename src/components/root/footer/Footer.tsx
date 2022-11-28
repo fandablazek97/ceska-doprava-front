@@ -18,7 +18,9 @@ export default function Footer() {
           {/* <Heading level={3} size="base">
             {globalConfig.client.fullName}
           </Heading> */}
-          <img src="/logos/logo.svg" className="h-full max-w-[150px]"></img>
+          <div className="max-w-[150px] h-full">
+            <img src="/logos/logo.svg" className="h-auto w-full"></img>
+          </div>
           <div className="max-w-prose">
             Společnost působící v oblasti cestovního ruchu, osobní a autobusové dopravy ale i dopravy nákladní.
           </div>

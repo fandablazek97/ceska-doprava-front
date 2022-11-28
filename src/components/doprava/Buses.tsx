@@ -2,7 +2,7 @@ import Heading from '@components/bricks/Heading'
 import Wrapper from '@components/bricks/Wrapper'
 import { FaTv } from 'react-icons/fa'
 import { GiCarSeat, GiEcology } from 'react-icons/gi'
-import { HiArrowDown } from 'react-icons/hi'
+import { ImLeaf } from 'react-icons/im'
 import TextPointAndImage from './TextPointAndImage'
 
 export default function VehiclePark() {
@@ -32,7 +32,7 @@ export default function VehiclePark() {
           {
             heading: "Emisní norma",
             text: "Tento autobus splňuje emisní normu EURO V. ",
-            icon: <HiArrowDown />
+            icon: <ImLeaf />
           }]}
         />
 
@@ -58,7 +58,7 @@ export default function VehiclePark() {
           {
             heading: "Emisní norma",
             text: "Tento autobus splňuje emisní normu EURO V.",
-            icon: <GiEcology />
+            icon: <ImLeaf />
           }]}
         />
 
@@ -84,7 +84,7 @@ export default function VehiclePark() {
           {
             heading: "Emisní norma",
             text: "Tento autobus splňuje emisní normu EURO IV.",
-            icon: <GiEcology />
+            icon: <ImLeaf />
           }]}
         />
         <TextPointAndImage
@@ -109,7 +109,7 @@ export default function VehiclePark() {
           {
             heading: "Emisní norma",
             text: "Tato dodávka splňuje emisní normu EURO IV.",
-            icon: <GiEcology />
+            icon: <ImLeaf />
           }]}
         />
       </div>

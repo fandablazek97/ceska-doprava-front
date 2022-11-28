@@ -34,9 +34,11 @@ export default function Home({ reviews }: Props) {
 
       {/* Obrázek */}
       <ParallaxImage
-        className="w-screen aspect-[5/3]"
+        className="w-screen aspect-[7/3]"
+        containerClass='w-screen aspect-[6/3]'
         speed={-8}
         animOnPhone={false}
+        priority={true}
         src="/images/home/chorvatsko.jpg"
       />
 
