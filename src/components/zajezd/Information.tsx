@@ -39,7 +39,7 @@ export default function Information({
         <Heading level={2} size={"base"}>Doprava</Heading>
         <p className="text-sm my-6">{transport}</p>
       </div>
-      {departurePoints.length !== 0 &&
+      {departurePoints !== null && departurePoints.length !== 0 &&
       <div>
         <Heading level={2} size={"base"}>Odjezdová místa</Heading>
           {departurePoints.map((point: any, i: any) => (
