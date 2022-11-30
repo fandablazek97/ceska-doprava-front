@@ -23,14 +23,11 @@ type Props = {
   }];
   text: string;
   information?: string;
-  housing?: string;
-  catering?: string;
   transport?: string;
   programme?: string;
-  events?: string;
-  tips?: string;
   comment?: string;
   trasy: any;
+  organizer?: any;
 }
 
 
@@ -46,14 +43,11 @@ export default function zajezd({
   dateAndPrice,
   text,
   information,
-  housing,
-  catering,
   transport,
   programme,
-  events,
-  tips,
   comment,
-  trasy
+  trasy,
+  organizer
 }: Props) {
   const [lowestPrice, setLowestPrice] = useState<number>(9999999)
   useEffect(() => {
@@ -91,14 +85,11 @@ export default function zajezd({
         dateAndPrice={dateAndPrice}
         text={text}
         information={information}
-        housing={housing}
-        catering={catering}
         transport={transport}
         programme={programme}
-        events={events}
-        tips={tips}
         comment={comment}
         trasy={trasy}
+        organizer={organizer}
       />
     </>
   )
@@ -116,7 +107,7 @@ export async function getStaticProps({ params }: any) {
     }
   })
   const trasyData = (await (await fetch(ipToFetch + "/api/trasas" + trasyString + "&populate=%2A")).json()).data
-  console.log(trasyString)
+  
   return {
     props: {
       country: zajezdData.attributes.stat,
@@ -132,14 +123,11 @@ export async function getStaticProps({ params }: any) {
       dateAndPrice: zajezdData.attributes.terminACena,
       text: zajezdData.attributes.popis,
       information: zajezdData.attributes.informace,
-      housing: zajezdData.attributes.ubytovani,
-      catering: zajezdData.attributes.stravovani,
       transport: zajezdData.attributes.doprava,
       programme: zajezdData.attributes.program,
-      events: zajezdData.attributes.zabava,
-      tips: zajezdData.attributes.tipy,
       comment: zajezdData.attributes.poznamka,
-       trasy: trasyData 
+      trasy: trasyData,
+      organizer: zajezdData.attributes.poradatel 
     }
   }
 }
