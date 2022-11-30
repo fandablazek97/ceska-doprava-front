@@ -225,7 +225,7 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
         <Alert
           status="success"
           title="Úspěch!"
-          text="Vaše obědnávka byla úspěšně odeslána"
+          text="Vaši objednávku zpracováváme a potvrdíme ji do 48hodin"
         />
       }
       {formState === "refused" &&

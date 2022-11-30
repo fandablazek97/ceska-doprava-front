@@ -21,14 +21,11 @@ type Props = {
   }];
   text: string;
   information?: string;
-  housing?: string;
-  catering?: string;
   transport?: string;
   programme?: string;
-  events?: string;
-  tips?: string;
   comment?: string;
   trasy: any;
+  organizer?: any;
 }
 
 export default function ContentCreator({
@@ -38,18 +35,15 @@ export default function ContentCreator({
   dateAndPrice,
   text,
   information,
-  housing,
-  catering,
   transport,
   programme,
-  events,
-  tips,
   comment,
-  trasy
+  trasy,
+  organizer
 }: Props) {
   const [content, setContent] = useState("informace");
   let contentShown: any;
-  let allDeparturePoints: string[] = [];
+  let allDeparturePoints: string[] = [];;
 
 
   trasy !== null && trasy.map((e: any, i: number) => {
@@ -64,14 +58,11 @@ export default function ContentCreator({
       <Information
         text={text}
         information={information}
-        housing={housing}
-        catering={catering}
         transport={transport}
         programme={programme}
-        events={events}
-        tips={tips}
         comment={comment}
-        departurePoints={allDeparturePoints}
+        departurePoints={trasy}
+        organizer={organizer}
       />
   }
   else if (content === "termin") {
@@ -95,9 +86,6 @@ export default function ContentCreator({
         departurePoints={allDeparturePoints}
       />
   }
-
-
-
 
 
   return (

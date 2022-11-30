@@ -42,10 +42,10 @@ export default function Hero({ country, name, perex, price, code, location, cate
       </div>
       <Heading level={1} size={"2xl"} className="mt-12">{country} - {name}</Heading>
       <p className="text-lg text-gray-600 font-semibold mt-16 md:w-3/5">{perex}</p>
-      <div className="flex flex-col md:flex-row mt-28">
-        <div className="flex flex-row justify-between w-full md:w-fit">
-          <span className="text-primary font-bold text-xl pr-5">Od {price},-</span>
-          <span className="text-primary font-bold text-xl px-5">Kód zájezdu: {code}</span>
+      <div className="flex flex-col md:flex-row mt-28 gap-x-8">
+        <div className="flex flex-row justify-between w-full">
+          <span className="text-primary font-bold text-xl pr-5 shrink-0">Od {price},-</span>
+          <span className="text-primary font-bold text-xl px-5 shrink-0">Kód zájezdu: {code}</span>
         </div>
         <span className="text-gray-500 font-bold text-xl md:px-5 mt-5 md:mt-0">{country} / {location} / {name}</span>
       </div>

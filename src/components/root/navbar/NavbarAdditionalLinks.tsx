@@ -23,7 +23,7 @@ export default function NavbarAdditionalLinks({
         leftIcon={<HiPhone />}
         className="hidden sm:inline-flex"
       >
-        {globalConfig.client.phone}
+        {ctaMenu[0].label}
       </Button>
     </div>
   );

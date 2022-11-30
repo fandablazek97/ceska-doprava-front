@@ -4,7 +4,7 @@ export const socials = {
     ariaLabel: "odkaz na facebook",
   },
   instagram: {
-    link: "https://www.instagram.com/ceskadoprava.cz/",
+    link: "https://www.instagram.com/ceska_doprava.cz/",
     ariaLabel: "odkaz na instagram",
   },
 };

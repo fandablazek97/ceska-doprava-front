@@ -57,6 +57,8 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
     )
       .then(response => response.json())
       .then((all) => {
+        
+    console.log(categoryQuery);
         /* Pokud se to úspěšně připojilo */
         if (all.data !== undefined && all.data !== null) {
           /* Pokud zatím nejsou žádný data nebo se změnil filtr */

@@ -8,7 +8,7 @@ export default function InfoAndForm({ }: Props) {
   return (
     <Wrapper paddedContent='base' size='base' className='grid md:grid-cols-4'>
       <div className='px-2 flex flex-col'>
-        <Heading level={2} size='base' className='mb-12'>Firemní ůdaje</Heading>
+        <Heading level={2} size='base' className='mb-12'>Firemní údaje</Heading>
         <p>ČESKÁ DOPRAVA.CZ s.r.o.</p>
         <p>U Papírny 210, 340 21 Janovice nad Úhlavou</p>
         <p>IČ: 07592507</p>
