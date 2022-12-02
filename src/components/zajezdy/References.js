@@ -7,5 +7,5 @@ export const tagAndText = {
   Exkurze: "Exkurze",
   Muzikaly: "Muzikály a divadla",
   Adventni: "Adventní",
-  BADFÜSSING: "BAD FÜSSING"
+  Badfussing: "Bad Füssing"
 }
