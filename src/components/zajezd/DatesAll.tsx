@@ -18,21 +18,6 @@ export default function DatesAll({dateAndPrice}: Props){
     return new Date(a.datumOd).getTime() - new Date(b.datumOd).getTime()
   })
   
-  {/* Returns amount of days in named month */}
-  function daysInMonth (month: number) {
-    return new Date(new Date().getFullYear(), month, 0).getDate();
-  }
-
-  {/*  Counts amount of days between dateFrom and dateTo [date format yyyy-mm-dd] */}
-  function dayCounter(dateFrom: string, dateTo: string){
-    if(dateFrom.split("-")[1] !== dateTo.split("-")[1]){
-      return ((daysInMonth(parseInt(dateFrom.split("-")[1])) - parseInt(dateFrom.split("-")[2])) + parseInt(dateTo.split("-")[2]))
-    }
-    else{
-      return (parseInt(dateTo.split("-")[2]) - parseInt(dateFrom.split("-")[2]))
-    }
-  }
-
   {/* Changes date to dd.mm.yyyy format */}
   function changeDateType(date: string){
     var newDate = date.split("-")[2] + "." + date.split("-")[1] + "." + date.split("-")[0] 
@@ -76,8 +61,8 @@ export default function DatesAll({dateAndPrice}: Props){
                 /* if(entry.datumOd > new Date().toISOString().slice(0, 10)){ */
                   return(
                     <tr className="border-b-1 border-gray-200" key={key}>
-                      <td className="text-gray-500 py-3">{getDayName(entry.datumOd)} {changeDateType(entry.datumOd).slice(0, 6)}</td>
-                      <td className="text-gray-500 py-3">{getDayName(entry.datumDo)} {changeDateType(entry.datumDo)}</td>
+                      <td className="text-gray-500 py-3">{getDayName(entry.datumOd) + " " + changeDateType(entry.datumOd).slice(0, 6)}</td>
+                      <td className="text-gray-500 py-3">{entry.datumDo ? getDayName(entry.datumDo) + " " + changeDateType(entry.datumDo) : getDayName(entry.datumOd) + " " + changeDateType(entry.datumOd)}</td>
                       <td className="text-gray-500 py-3 text-center">{entry.pocetDni} / {entry.pocetNoci}</td>
                       <td className="text-gray-500 py-3 text-right">{entry.cena} Kč / osoba</td>
                     </tr>

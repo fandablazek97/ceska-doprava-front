@@ -38,8 +38,10 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
   const addItems = 3;
   const populateQuery = "?populate[0]=uvodniFoto&populate[1]=kategorie&populate[2]=terminACena"
   let categoryQuery = category === "Vse" ? "" : "&filters[kategorie][kategorie][$containsi]=" + category;
-  let dateQuery = "&filters[terminACena][datumOd][$gte]=" + dateFrom + "&filters[terminACena][datumDo][$lte]=" + dateTo;
+  let dateQuery = "&filters[$and][0][terminACena][datumOd][$gte]=" + dateFrom + "&filters[$and][1][terminACena][datumOd][$lte]=" + dateTo;
   const fieldsQuery = "&fields[0]=nazev";
+
+  console.log(dateTo)
 
   useEffect(() => {
     setHasItemsLeft(true);

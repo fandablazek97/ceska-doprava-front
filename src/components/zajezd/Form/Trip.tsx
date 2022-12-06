@@ -79,9 +79,17 @@ export default function Trip({
             entry.datumOd > new Date().toISOString().slice(0, 10) &&
             <option
               key={key}
-              value={`{"date" : "${changeDateType(entry.datumOd)} - ${changeDateType(entry.datumDo)}", "price" : "${entry.cena}"}`}
+              value={entry.datumDo ? 
+                `{"date" : "${changeDateType(entry.datumOd)} - ${changeDateType(entry.datumDo)}", "price" : "${entry.cena}"}`
+              :
+                `{"date" : "${changeDateType(entry.datumOd)}", "price" : "${entry.cena}"}`
+              }
             >
-              {changeDateType(entry.datumOd) + " - " + changeDateType(entry.datumDo)}
+              {entry.datumDo ? 
+                changeDateType(entry.datumOd) + " - " + changeDateType(entry.datumDo)
+              :
+                changeDateType(entry.datumOd)
+            }
             </option>
           ))}
         </Select>

@@ -14,7 +14,13 @@ type Props = {
   setDateTo: any;
 }
 
-export default function Filter({ category = "Vse", setCategory, dateFrom = "26.09.", setDateFrom, dateTo = "26.09.", setDateTo }: Props) {
+export default function Filter({ 
+  category = "Vse", 
+  setCategory, 
+  dateFrom = "26.09.", 
+  setDateFrom, 
+  dateTo = "26.09.", 
+  setDateTo }: Props) {
 
   return (
     <section

@@ -24,7 +24,16 @@ type Props = {
   filterDateTo: string;
 }
 
-export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categories, filterCategory, filterDateFrom, filterDateTo }: Props) {
+export default function TripMinimal({ 
+  id, 
+  name, 
+  imageSrc, 
+  dateAndPrice, 
+  categories, 
+  filterCategory, 
+  filterDateFrom, 
+  filterDateTo 
+}: Props) {
   const [changeables, setChangables] = useState<{ dateFrom: string, dateTo: string, price: number }>
     ({ dateFrom: "2023-12-31", dateTo: "2023-12-31", price: 0 })
 
@@ -38,18 +47,36 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
     dateAndPrice.map((entry, index) => {
       if ((index + 1) === dateAndPrice.length) {
         if (new Date(entry.datumOd).getTime() >= new Date(filterDateFrom).getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
-          setChangables({
-            dateFrom: changeDateType(entry.datumOd),
-            dateTo: changeDateType(entry.datumDo),
-            price: entry.cena
-          })
+          if(entry.datumDo === null){
+            setChangables({
+              dateFrom: changeDateType(entry.datumOd),
+              dateTo: "none",
+              price: entry.cena
+            })
+          }
+          else{
+            setChangables({
+              dateFrom: changeDateType(entry.datumOd),
+              dateTo: changeDateType(entry.datumDo),
+              price: entry.cena
+            })
+          }
         }
         else {
-          setChangables({
-            dateFrom: changeDateType(tempDateFrom),
-            dateTo: changeDateType(tempDateTo),
-            price: tempPrice
-          })
+          if(entry.datumDo === null){
+            setChangables({
+              dateFrom: changeDateType(tempDateFrom),
+              dateTo: "none",
+              price: entry.cena
+            })
+          }
+          else{
+            setChangables({
+              dateFrom: changeDateType(tempDateFrom),
+              dateTo: changeDateType(tempDateTo),
+              price: entry.cena
+            })
+          }
         }
       }
       else {
@@ -109,7 +136,7 @@ export default function TripMinimal({ id, name, imageSrc, dateAndPrice, categori
                 }
               })}
             </div>
-            <span className="min-w-[100px]">{changeables.dateFrom} - {changeables.dateTo}</span>
+            <span className="min-w-[100px] text-right">{changeables.dateTo === "none" ? changeables.dateFrom : changeables.dateFrom +  " - " + changeables.dateTo}</span>
           </div>
           <span className="mt-auto text-lg font-bold text-black pt-3">{name}</span>
           <span
