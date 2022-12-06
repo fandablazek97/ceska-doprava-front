@@ -63,13 +63,16 @@ export default function Passengers({
       <Heading level={3} size={"lg"}>Další cestující</Heading>
       {allOthers}
       <div className="flex flex-row gap-5 mt-10">
-        <Button
-          onClick={() => setPassengers(passengers + 1)}
-          color="grey"
-          variant="outlined"
-        >
-          Přidat cestujícího +
-        </Button>
+
+      {allOthers.length < 8 &&
+          <Button
+            onClick={() => setPassengers(passengers + 1)}
+            color="grey"
+            variant="outlined"
+          >
+            Přidat cestujícího +
+          </Button>
+        }
         {allOthers.length >= 1 &&
           <Button
             onClick={() => {

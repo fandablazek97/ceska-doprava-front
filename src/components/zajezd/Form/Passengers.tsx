@@ -37,7 +37,7 @@ export default function Passengers({ formState, passengers, setPassengers, allDa
       <Heading level={3} size={"lg"}>Další cestující</Heading>
       {allOthers}
       <div className="flex flex-row gap-5 mt-10">
-        {allOthers.length <= 6 &&
+        {allOthers.length < 8 &&
           <Button
             onClick={() => setPassengers(passengers + 1)}
             color="grey"

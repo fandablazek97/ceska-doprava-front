@@ -118,24 +118,23 @@ function FormStater({ country, code, dateAndPrice, departurePoints, allDataObjec
     doc.setFontSize(10);
 
     /* Zájezd */
-    doc.text(allDataObject.code, 57, 66);
-    doc.text(allDataObject.country, 57, 71);
-    doc.text(allDataObject.date, 57, 76);
-    doc.text(allDataObject.departurePoint, 57, 86)
+    doc.text(allDataObject.code, 60, 74);
+    doc.text(allDataObject.country, 60, 79);
+    doc.text(allDataObject.date, 60, 84);
+    doc.text(allDataObject.departurePoint, 60, 94)
 
     /* Objednatel */
-    doc.text(allDataObject.name, 40, 99);
-    doc.text(allDataObject.birth, 163, 99);
-    doc.text(allDataObject.phone, 25, 104);
-    doc.text(allDataObject.email, 117, 104);
+    doc.text(allDataObject.name, 42, 107);
+    doc.text(allDataObject.birth, 163, 107);
+    doc.text(allDataObject.phone, 28, 112);
+    doc.text(allDataObject.email, 117, 112);
 
     /*Další cestující*/
     if (allDataObject.names !== undefined) {
-      let fH: number = 121;
+      let fH: number = 124;
       for (let i = 1; i <= Object.values(allDataObject.names).length; i++) {
-
-        doc.text(allDataObject.names["names" + i], 15, fH + (5 * i));
-        doc.text(allDataObject.births["births" + i], 70, fH + (5 * i));
+        doc.text(allDataObject.names["names" + i], 18, fH + (5 * i));
+        doc.text(allDataObject.births["births" + i], 73, fH + (5 * i));
       }
     }
 

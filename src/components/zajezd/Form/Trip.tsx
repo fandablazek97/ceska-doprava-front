@@ -28,11 +28,9 @@ export default function Trip({
   allDataObject,
   requiredArray
 }: Props) {
-
   useEffect(() => {
     if (allDataObject.price === undefined) {
       allDataObject.price === "0"
-
     }
     if (allDataObject.date === undefined) {
       for (let e of dateAndPrice) {
@@ -44,7 +42,7 @@ export default function Trip({
         }
       }
     }
-  })
+  },[])
 
   function changeDateType(date: string) {
     var newDate = date.split("-")[2] + "." + date.split("-")[1] + "." + date.split("-")[0]

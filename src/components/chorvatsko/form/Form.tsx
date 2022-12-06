@@ -131,25 +131,25 @@ function FormStater({ allDataObject, requiredArray, prices, months, specialPrice
 
     /* Zájezd */
 
-    doc.text("Česká Republika", 57, 66);
-    doc.text("Chorvatsko - " + allDataObject.pointHr, 57, 71);
-    doc.text(allDataObject.zpatecni === true ? "Zpáteční" : "Jednosměrná", 57, 76);
-    doc.text(allDataObject.zpatecni === true ? "Od: " + allDataObject.dateCz + " / Do: " + allDataObject.dateHr : allDataObject.dateCz, 57, 81);
-    doc.text(allDataObject.pointCz, 57, 86);
+    doc.text("Česká Republika", 60, 65);
+    doc.text("Chorvatsko - " + allDataObject.pointHr, 60, 70);
+    doc.text(allDataObject.zpatecni === true ? "Zpáteční" : "Jednosměrná", 60, 75);
+    doc.text(allDataObject.zpatecni === true ? "Od: " + allDataObject.dateCz + " / Do: " + allDataObject.dateHr : allDataObject.dateCz, 60, 80);
+    doc.text(allDataObject.pointCz, 60, 85);
 
     /* Objednatel */
-    doc.text(allDataObject.name, 40, 99);
-    doc.text(allDataObject.birth, 160, 99);
-    doc.text(allDataObject.phone, 25, 104);
-    doc.text(allDataObject.email, 115, 104);
+    doc.text(allDataObject.name, 42, 98);
+    doc.text(allDataObject.birth, 160, 98);
+    doc.text(allDataObject.phone, 28, 103);
+    doc.text(allDataObject.email, 114, 103);
 
     /*Další cestující*/
     if (allDataObject.names !== undefined) {
-      let fH: number = 121;
+      let fH: number = 115;
       for (let i = 1; i <= Object.values(allDataObject.names).length; i++) {
 
-        doc.text(allDataObject.names["names" + i], 18, fH + (5 * i));
-        doc.text(allDataObject.births["births" + i], 67, fH + (5 * i));
+        doc.text(allDataObject.names["names" + i], 19, fH + (5 * i));
+        doc.text(allDataObject.births["births" + i], 68, fH + (5 * i));
         doc.text(allDataObject.phones["phones" + i], 105, fH + (5 * i));
         doc.text(allDataObject.points["points" + i], 150, fH + (5 * i));
       }
