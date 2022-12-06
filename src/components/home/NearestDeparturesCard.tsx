@@ -39,16 +39,32 @@ export default function NearestDeparturesCard({
     !fake && dateAndPrice!.map((entry, index) => {
       if ((index + 1) === dateAndPrice!.length) {
         if (new Date(entry.datumOd).getTime() >= new Date().getTime() && new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()) {
-          setChangables({
-            dateFrom: changeDateType(entry.datumOd),
-            dateTo: changeDateType(entry.datumDo),
-          })
+          if(entry.datumDo === null){
+            setChangables({
+              dateFrom: changeDateType(entry.datumOd),
+              dateTo: "none"
+            })
+          }
+          else{
+            setChangables({
+              dateFrom: changeDateType(entry.datumOd),
+              dateTo: changeDateType(entry.datumDo)
+            })
+          }
         }
         else {
-          setChangables({
-            dateFrom: changeDateType(tempDateFrom),
-            dateTo: changeDateType(tempDateTo),
-          })
+          if(entry.datumDo === null){
+            setChangables({
+              dateFrom: changeDateType(tempDateFrom),
+              dateTo: "none"
+            })
+          }
+          else{
+            setChangables({
+              dateFrom: changeDateType(tempDateFrom),
+              dateTo: changeDateType(tempDateTo)  
+            })
+          }
         }
       }
       else {
@@ -93,7 +109,7 @@ export default function NearestDeparturesCard({
             {!fake && country + "-" + name}
           </span>
           <span className={`block ${fake ? "w-28 h-5 bg-gray-200" : "mt-auto"}`}>
-            {!fake && changeables.dateFrom + "-" + changeables.dateTo}
+            {!fake && (changeables.dateTo === "none" ? changeables.dateFrom : changeables.dateFrom + "-" + changeables.dateTo)}
           </span>
         </div>
       </a>

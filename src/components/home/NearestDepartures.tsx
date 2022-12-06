@@ -15,7 +15,7 @@ export default function NearestDepartures() {
 
   async function getData() {
     const populateQuery = "?populate[uvodniFoto][fields][0]=url&populate[terminACena][fields][1]=datumOd&populate[terminACena][fields][2]=datumDo";
-    const filtersQuery = "&filters[kategorie][kategorie][$containsi]=LastMinute&filters[terminACena][datumOd][$gte]=" + new Date().toISOString().slice(0, 10);
+    const filtersQuery = "&filters[$and][0][terminACena][datumOd][$gte]=" + new Date().toISOString().slice(0, 10);
     const fieldsQuery = "&fields[0]=nazev&fields[1]=stat";
     const paginationQuery = "&pagination[pageSize]=4";
 

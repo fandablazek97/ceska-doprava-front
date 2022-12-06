@@ -31,7 +31,17 @@ export default function Information({
       {text && 
         <div>
           <Heading level={2} size={"base"}>Popis</Heading>
-          <div className="[&>p]:text-sm my-6">
+          <div className="
+            my-6 prose [&>*]:text-black
+            prose-headings:leading-[1.2]
+            prose-h1:text-lg xs:prose-h1:text-xl lg:prose-h1:text-2xl
+            prose-h2:text-lg xs:prose-h2:text-xl
+            prose-h3:text-base
+            prose-h4:text-sm
+            prose-h5:text-xs prose-h5:font-semibold
+            prose-h6:text-xs prose-h6:font-semibold
+            prose-p:text-sm
+          ">
             <ReactMarkdown>{text}</ReactMarkdown>
             </div>
         </div>
