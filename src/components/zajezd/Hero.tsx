@@ -62,6 +62,7 @@ export default function Hero({
           <span className="text-primary font-bold text-xl pr-5 shrink-0">Od {price},-</span>
           <span className="text-primary font-bold text-xl px-5 shrink-0">Kód zájezdu: {code}</span>
         </div>
+        <span className="text-gray-500 font-bold text-xl md:mt-5">{country} / {location}</span>
       </div>
       <div className="relative aspect-[11/12] mt-10 md:mt-0">
         <Image
