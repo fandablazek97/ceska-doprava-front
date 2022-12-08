@@ -40,6 +40,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
   let categoryQuery = category === "Vse" ? "" : "&filters[kategorie][kategorie][$containsi]=" + category;
   let dateQuery = "&filters[$and][0][terminACena][datumOd][$gte]=" + dateFrom + "&filters[$and][1][terminACena][datumOd][$lte]=" + dateTo;
   const fieldsQuery = "&fields[0]=nazev";
+  const sortQuery = "&sort[0]=dulezitost%3Adesc"
 
   console.log(dateTo)
 
@@ -56,6 +57,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
       + dateQuery
       + paginationQuery
       + fieldsQuery
+      + sortQuery
     )
       .then(response => response.json())
       .then((all) => {

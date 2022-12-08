@@ -35,7 +35,7 @@ export default function Navbar() {
       >
         <Link href="/">
           <a className="text-2xl font-bold z-[110] mr-auto outline-none focus-visible:ring-4 focus-visible:ring-primary/70 flex items-center h-full">
-            <img src="/logos/logo.svg" className="h-full max-w-[150px]"></img>
+            <img src="/logos/logo.svg" className="h-full max-w-[200px]"></img>
           </a>
         </Link>
         <NavbarMainLinks className="hidden lg:flex" />
