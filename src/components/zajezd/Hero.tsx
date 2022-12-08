@@ -40,7 +40,7 @@ export default function Hero({ country, name, perex, price, code, location, cate
           }
         })}
       </div>
-      <Heading level={1} size={"2xl"} className="mt-12">{country} - {name}</Heading>
+      <Heading level={1} size={"xl"} className="mt-12">{country} - {name}</Heading>
       <p className="text-lg text-gray-600 font-semibold mt-16 md:w-3/5">{perex}</p>
       <div className="flex flex-col md:flex-row mt-28 gap-x-8">
         <div className="flex flex-row justify-between">
