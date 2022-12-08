@@ -36,7 +36,7 @@ export default function NearestDepartures() {
   return (
     <Wrapper className="pb-28 md:pb-36">
       <Heading level={2} size="sm" className="mb-12">
-        Nejbližší odjezdy
+        Vybrané zájezdy
       </Heading>
       {data !== undefined ?
         <div className="grid grid-cols-1 gap-6 md:gap-10 xs:grid-cols-2 lg:grid-cols-4">
