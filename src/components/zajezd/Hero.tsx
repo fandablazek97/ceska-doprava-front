@@ -64,6 +64,7 @@ export default function Hero({
         </div>
         <span className="text-gray-500 font-bold text-xl md:mt-5">{country} / {location}</span>
       </div>
+      </div>
       <div className="relative aspect-[11/12] mt-10 md:mt-0">
         <Image
           src={imageSrc}
