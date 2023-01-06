@@ -4,7 +4,7 @@ import {
   HiDownload,
   HiOutlineBookOpen,
   HiOutlineCalendar,
-  HiOutlineClipboardList,
+  HiOutlineClipboardList
 } from "react-icons/hi";
 
 type Props = {
@@ -23,70 +23,78 @@ export default function Downloads({ calendar, catalog, conditions }: Props) {
 
         <div className="mt-20 grid gap-8 md:grid-cols-3">
           {/* Kalendář */}
-          <a
-            href={calendar}
-            download
-            className="flex flex-col rounded-2xl bg-white px-5 py-8 duration-300 hover:scale-105 hover:shadow-2xl"
-          >
-            <HiOutlineCalendar className="my-auto h-40 w-40 text-primary md:h-20 md:w-20 [&>path]:stroke-1" />
-            <div className="p-5 md:px-0">
-              <Heading level={4} size="sm">
-                Kalendář akcí
-              </Heading>
-              <p className="mt-5 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero.
-              </p>
-              <span className="mt-10 flex flex-row font-semibold">
-                Stáhnout zde
-                <HiDownload size={20} className="mt-1" />
-              </span>
-            </div>
-          </a>
+          {calendar &&
+            <a
+              href={calendar}
+              download
+              className="flex flex-col rounded-2xl bg-white px-5 py-8 duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              <HiOutlineCalendar className="my-auto h-40 w-40 text-primary md:h-20 md:w-20 [&>path]:stroke-1" />
+              <div className="p-5 md:px-0">
+                <Heading level={4} size="sm">
+                  Kalendář akcí
+                </Heading>
+                <p className="mt-5 text-sm text-gray-600">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                  vulputate libero.
+                </p>
+                <span className="mt-10 flex flex-row font-semibold">
+                  Stáhnout zde
+                  <HiDownload size={20} className="mt-1" />
+                </span>
+              </div>
+            </a>
+          }
 
           {/* Katalog */}
-          <a
-            href={catalog}
-            download
-            className="flex flex-col rounded-2xl bg-white px-5 py-8 duration-300 hover:scale-105 hover:shadow-2xl"
-          >
-            <HiOutlineBookOpen className="my-auto h-40 w-40 text-primary md:h-20 md:w-20 [&>path]:stroke-1" />
-            <div className="p-5 md:px-0">
-              <Heading level={4} size="sm">
-                Katalog 2022
-              </Heading>
-              <p className="mt-5 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero.
-              </p>
-              <span className="mt-10 ml-0 flex flex-row font-semibold">
-                Stáhnout zde
-                <HiDownload size={20} className="mt-1" />
-              </span>
-            </div>
-          </a>
+
+          {catalog &&
+            <a
+              href={catalog}
+              download
+              className="flex flex-col rounded-2xl bg-white px-5 py-8 duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              <HiOutlineBookOpen className="my-auto h-40 w-40 text-primary md:h-20 md:w-20 [&>path]:stroke-1" />
+              <div className="p-5 md:px-0">
+                <Heading level={4} size="sm">
+                  Katalog 2022
+                </Heading>
+                <p className="mt-5 text-sm text-gray-600">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                  vulputate libero.
+                </p>
+                <span className="mt-10 ml-0 flex flex-row font-semibold">
+                  Stáhnout zde
+                  <HiDownload size={20} className="mt-1" />
+                </span>
+              </div>
+            </a>
+          }
 
           {/* Podmínky */}
-          <a
-            href={conditions}
-            download
-            className="flex flex-col rounded-2xl bg-white px-5 py-8 duration-300 hover:scale-105 hover:shadow-2xl"
-          >
-            <HiOutlineClipboardList className="my-auto h-40 w-40 text-primary md:h-20 md:w-20 [&>path]:stroke-1" />
-            <div className="p-5 md:px-0">
-              <Heading level={4} size="sm">
-                Všeobecné obchodní podmínky
-              </Heading>
-              <p className="mt-5 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero.
-              </p>
-              <span className="mt-10 ml-0 flex flex-row font-semibold">
-                Stáhnout zde
-                <HiDownload size={20} className="mt-1" />
-              </span>
-            </div>
-          </a>
+
+          {conditions &&
+            <a
+              href={conditions}
+              download
+              className="flex flex-col rounded-2xl bg-white px-5 py-8 duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              <HiOutlineClipboardList className="my-auto h-40 w-40 text-primary md:h-20 md:w-20 [&>path]:stroke-1" />
+              <div className="p-5 md:px-0">
+                <Heading level={4} size="sm">
+                  Všeobecné obchodní podmínky
+                </Heading>
+                <p className="mt-5 text-sm text-gray-600">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                  vulputate libero.
+                </p>
+                <span className="mt-10 ml-0 flex flex-row font-semibold">
+                  Stáhnout zde
+                  <HiDownload size={20} className="mt-1" />
+                </span>
+              </div>
+            </a>
+          }
         </div>
       </Wrapper>
     </section>
