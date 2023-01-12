@@ -64,13 +64,13 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
       "&pagination[start]=" + currentAmount + "&pagination[limit]=" + addXItems;
     await fetch(
       ipToFetch +
-        "/api/zajezds" +
-        populateQuery +
-        categoryQuery +
-        dateQuery +
-        paginationQuery +
-        fieldsQuery +
-        sortQuery
+      "/api/zajezds" +
+      populateQuery +
+      categoryQuery +
+      dateQuery +
+      paginationQuery +
+      fieldsQuery +
+      sortQuery
     )
       .then((response) => response.json())
       .then((all) => {
@@ -83,7 +83,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
               data = [];
               setRefresh(!refresh);
             } else {
-            /* Pokud se našli data */
+              /* Pokud se našli data */
               data = all.data;
               setRefresh(!refresh);
               /* Pokud je stažených dat míň než bylo požádáno -> skryje tlačítko */
@@ -92,7 +92,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
               }
             }
           } else {
-          /* Pokud už existujou nějaký data */
+            /* Pokud už existujou nějaký data */
             data.push(...all.data);
             setRefresh(!refresh);
 
@@ -102,7 +102,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
             }
           }
         } else {
-        /* Špatný připojení/požadavek */
+          /* Špatný připojení/požadavek */
           data = [];
           setRefresh(!refresh);
         }

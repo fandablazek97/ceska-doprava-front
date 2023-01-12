@@ -1,15 +1,23 @@
-import Wrapper from "@components/bricks/Wrapper";
 import { useState } from "react";
+import Cookies from 'universal-cookie';
+
 
 import ContentCreator from "./ContentCreator";
 import Filter from "./Filter";
 
+import Wrapper from "@components/bricks/Wrapper";
+
 export default function ContentAndFilter() {
-  const [category, setCategory] = useState<string>("Vse");
-  const [dateFrom, setDateFrom] = useState<string>(
+  const cookies = new Cookies();
+  const [category, setCategory] = useState<string>(cookies.get("category") ? cookies.get("category") : "Vse");
+  const [dateFrom, setDateFrom] = useState<string>(cookies.get("dateFrom") ? cookies.get("dateFrom") :
     new Date().toISOString().slice(0, 10)
   );
-  const [dateTo, setDateTo] = useState<string>("2032-12-31");
+  const [dateTo, setDateTo] = useState<string>(cookies.get("dateTo") ? cookies.get("dateTo") : "2032-12-31");
+
+  cookies.set("category", category);
+  cookies.set("dateFrom", dateFrom);
+  cookies.set("dateTo", dateTo);
 
   return (
     <Wrapper as={"section"} size="lg">
