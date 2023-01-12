@@ -101,7 +101,7 @@ export default function Footer() {
             <li>
               <Link href="/zajezdy/#keStazeni">
                 <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
-                  Katalog 2023
+                  Aktuální katalog
                 </a>
               </Link>
             </li>
