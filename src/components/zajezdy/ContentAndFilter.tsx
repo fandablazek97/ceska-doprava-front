@@ -19,6 +19,8 @@ export default function ContentAndFilter() {
   cookies.set("dateFrom", dateFrom);
   cookies.set("dateTo", dateTo);
 
+  console.log("dateFrom")
+
   return (
     <Wrapper as={"section"} size="lg">
       <Filter
