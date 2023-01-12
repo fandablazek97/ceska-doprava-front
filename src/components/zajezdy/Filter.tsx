@@ -2,7 +2,6 @@ import Wrapper from "@components/bricks/Wrapper";
 import DatePicker from "@components/forms/DatePicker";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
-import Cookies from 'universal-cookie';
 import { tagAndText } from "./References";
 
 type Props = {
@@ -17,12 +16,11 @@ type Props = {
 export default function Filter({
   category = "Vse",
   setCategory,
-  dateFrom = "26.09.",
+  dateFrom,
   setDateFrom,
-  dateTo = "26.09.",
+  dateTo,
   setDateTo,
 }: Props) {
-  const cookies = new Cookies();
   return (
     <section id="filter" className="border-mute relative mb-5 border-y">
       <Wrapper
@@ -54,7 +52,9 @@ export default function Filter({
           >
             <DatePicker
               text="Datum od"
-              startDay="today"
+              startDay={parseInt(dateFrom!.slice(-2))}
+              startMonth={parseInt(dateFrom!.slice(5, 7)) - 1}
+              startYear={parseInt(dateFrom!.slice(0, 4))}
               setFunction={setDateFrom}
               datePickerAlign="left"
               datePickerValueAlign="left"
@@ -63,9 +63,9 @@ export default function Filter({
             />
             <DatePicker
               text="Datum do"
-              startDay={31}
-              startMonth={11}
-              startYear={new Date().getFullYear() + 1}
+              startDay={parseInt(dateTo!.slice(-2))}
+              startMonth={parseInt(dateTo!.slice(5, 7)) - 1}
+              startYear={parseInt(dateTo!.slice(0, 4))}
               setFunction={setDateTo}
               datePickerAlign="right"
               datePickerValueAlign="left"
