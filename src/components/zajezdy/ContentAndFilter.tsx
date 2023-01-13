@@ -13,7 +13,7 @@ export default function ContentAndFilter() {
   const [dateFrom, setDateFrom] = useState<string>(cookies.get("dateFrom") ? cookies.get("dateFrom") :
     new Date().toISOString().slice(0, 10)
   );
-  const [dateTo, setDateTo] = useState<string>(cookies.get("dateTo") ? cookies.get("dateTo") : "2032-12-31");
+  const [dateTo, setDateTo] = useState<string>(cookies.get("dateTo") ? cookies.get("dateTo") : "2023-12-31");
 
   cookies.set("category", category);
   cookies.set("dateFrom", dateFrom);
