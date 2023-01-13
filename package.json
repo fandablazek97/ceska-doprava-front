@@ -38,7 +38,8 @@
     "react-swipeable": "^7.0.0",
     "react-toastify": "^9.0.8",
     "react-visibility-sensor": "^5.1.1",
-    "swiper": "^8.4.2"
+    "swiper": "^8.4.2",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.2",

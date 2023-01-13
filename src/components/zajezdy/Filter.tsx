@@ -16,9 +16,9 @@ type Props = {
 export default function Filter({
   category = "Vse",
   setCategory,
-  dateFrom = "26.09.",
+  dateFrom,
   setDateFrom,
-  dateTo = "26.09.",
+  dateTo,
   setDateTo,
 }: Props) {
   return (
@@ -39,9 +39,8 @@ export default function Filter({
                 tabIndex={0}
                 key={key}
                 className={`mx-1 flex h-10 w-fit cursor-pointer items-center justify-center whitespace-nowrap rounded-lg px-3 text-sm font-semibold md:text-base xl:px-5
-                    ${
-                      elem[0] === category ? "bg-gray-200" : "hover:bg-gray-100"
-                    }`}
+                    ${elem[0] === category ? "bg-gray-200" : "hover:bg-gray-100"
+                  }`}
                 onClick={() => setCategory(elem[0])}
               >
                 {elem[1]}
@@ -53,7 +52,9 @@ export default function Filter({
           >
             <DatePicker
               text="Datum od"
-              startDay="today"
+              startDay={parseInt(dateFrom!.slice(-2))}
+              startMonth={parseInt(dateFrom!.slice(5, 7)) - 1}
+              startYear={parseInt(dateFrom!.slice(0, 4))}
               setFunction={setDateFrom}
               datePickerAlign="left"
               datePickerValueAlign="left"
@@ -62,9 +63,9 @@ export default function Filter({
             />
             <DatePicker
               text="Datum do"
-              startDay={31}
-              startMonth={11}
-              startYear={new Date().getFullYear() + 1}
+              startDay={parseInt(dateTo!.slice(-2))}
+              startMonth={parseInt(dateTo!.slice(5, 7)) - 1}
+              startYear={parseInt(dateTo!.slice(0, 4))}
               setFunction={setDateTo}
               datePickerAlign="right"
               datePickerValueAlign="left"

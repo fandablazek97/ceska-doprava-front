@@ -57,7 +57,7 @@ export default function Downloads({ calendar, catalog, conditions }: Props) {
               <HiOutlineBookOpen className="my-auto h-40 w-40 text-primary md:h-20 md:w-20 [&>path]:stroke-1" />
               <div className="p-5 md:px-0">
                 <Heading level={4} size="sm">
-                  Katalog 2022
+                  Aktuální katalog
                 </Heading>
                 <p className="mt-5 text-sm text-gray-600">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
