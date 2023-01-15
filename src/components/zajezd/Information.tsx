@@ -74,25 +74,55 @@ export default function Information({
           <Heading level={2} size={"base"}>
             Odjezdová místa
           </Heading>
-          {departurePoints.map((point: any, key: any) => (
-            <div className="mt-5 flex flex-col gap-y-3" key={key}>
-              <Heading level={3} size={"sm"}>
-                {point.attributes.nazev} trasa
-              </Heading>
-              {point.attributes.mesta.map((city: any, i: number) =>
-                i + 1 === point.attributes.mesta.length
-                  ? city.nazevMesta
-                  : city.nazevMesta + ", "
-              )}
-              {point.attributes.obrazek.data !== null && (
-                <div className="relative aspect-square max-h-[400px] w-full overflow-hidden rounded-md">
+          {departurePoints.map((e: any, key: number) => (
+            <div>
+              <table className="w-full max-w-2xl">
+                <thead>
+                  <tr>
+                    <td>
+                      <Heading level={4} size="xs" className="mb-5 mt-7">
+                        Nástupní místo
+                      </Heading>
+                    </td>
+                    <td>
+                      <Heading
+                        level={4}
+                        size="xs"
+                        align="right"
+                        className="mb-5 mt-7 min-w-[125px]"
+                      >
+                        Příplatek
+                      </Heading>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody className="divide-y-2">
+                  {e.attributes.mesta.map((en: any, key: number) => (
+                    <tr key={key}>
+                      <td>
+                        {en.mesto.map((mesto: any, key: number) =>
+                          key !== en.mesto.length - 1
+                            ? mesto.mesto + ", "
+                            : mesto.mesto
+                        )}
+                      </td>
+                      <td className="py-2 text-right font-medium text-primary">
+                        {en.cena === 0 ? "Zdarma" : en.cena}
+                        {en.cena !== 0 && " Kč / osoba"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {e.attributes.obrazek.data !== null && (
+                <div className="relative mt-5 aspect-square max-h-[400px] w-full overflow-hidden rounded-md">
                   <Image
-                    src={point.attributes.obrazek.data.attributes.url}
+                    src={e.attributes.obrazek.data.attributes.url}
                     layout="fill"
                     objectFit="contain"
                     sizes="(max-width: 768px) 50vw,
-                        (max-width: 1200px) 50vw,
-                        50vw"
+                    (max-width: 1200px) 50vw,
+                    50vw"
                   />
                 </div>
               )}
@@ -100,7 +130,6 @@ export default function Information({
           ))}
         </div>
       )}
-
       {programme && (
         <div>
           <Heading level={2} size={"base"}>

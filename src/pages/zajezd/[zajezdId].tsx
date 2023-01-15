@@ -113,7 +113,7 @@ export async function getStaticProps({ params }: any) {
   });
   const trasyData = (
     await (
-      await fetch(ipToFetch + "/api/trasas" + trasyString + "&populate=%2A")
+      await fetch(ipToFetch + "/api/trasas" + trasyString + "&populate[obrazek][fields][0]=url&populate[mesta][fields][1]=cena&populate[mesta][populate]=mesto")
     ).json()
   ).data;
 
@@ -145,7 +145,7 @@ export async function getStaticProps({ params }: any) {
 
 export async function getStaticPaths() {
   const data = (
-    await (await fetch(ipToFetch + "/api/zajezds?fields[0]=id")).json()
+    await (await fetch(ipToFetch + "/api/zajezds?fields[0]=id&sort[0]=id&pagination[page]=1&pagination[pageSize]=100")).json()
   ).data;
 
   const paths = Object.entries(data).map((zajezd: any) => {

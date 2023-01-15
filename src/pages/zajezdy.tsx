@@ -67,12 +67,23 @@ export async function getStaticProps() {
     "/api/informace?populate[katalog][fields][0]=url&populate[kalendar][fields][1]=url&populate[podminky][fields][2]=url"
   );
   const dataAndMeta = await res.json();
-  const data = dataAndMeta.data.attributes;
-  return {
-    props: {
-      calendar: data.kalendar.data ? data.kalendar.data.attributes.url : null,
-      catalog: data.katalog.data ? data.katalog.data.attributes.url : null,
-      conditions: data.podminky.data ? data.podminky.data.attributes.url : null
-    },
-  };
+  const data = dataAndMeta.data ? dataAndMeta.data.attributes : null;
+  if(data){
+    return {
+      props: {
+        calendar: data.kalendar.data ? data.kalendar.data.attributes.url : null,
+        catalog: data.katalog.data ? data.katalog.data.attributes.url : null,
+        conditions: data.podminky.data ? data.podminky.data.attributes.url : null
+      },
+    };
+  }
+  else {
+    return {
+      props: {
+        calendar: null,
+        catalog: null,
+        conditions: null
+      },
+    };
+  }
 }

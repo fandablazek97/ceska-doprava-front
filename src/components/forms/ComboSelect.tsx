@@ -15,6 +15,7 @@ type Props = {
   formState?: "waiting" | "verifying" | "refused" | "accepted";
   setFunction?: any;
   rare?: string | boolean;
+  specialFunction?: any;
 };
 
 export default function ComboSelect({
@@ -30,6 +31,7 @@ export default function ComboSelect({
   formState,
   setFunction,
   rare = false,
+  specialFunction,
 }: Props) {
   const [inValidation, setInValidation] = useState<
     undefined | "waiting" | "verifying" | "refused" | "accepted"
@@ -82,8 +84,10 @@ export default function ComboSelect({
   useEffect(() => {
     if (oneOfMany === false) {
       allDataObject[name] = selected;
+      if(specialFunction) specialFunction(selected);
     } else {
       allDataObject[oneOfMany][name] = selected;
+      if(specialFunction) specialFunction(selected);
     }
   }, [selected]);
 
