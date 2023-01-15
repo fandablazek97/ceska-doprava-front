@@ -17,6 +17,7 @@ type Props = {
   departurePoints: string[];
   allDataObject: any;
   requiredArray: any;
+  setPriceByCity: any;
 };
 
 export default function Trip({
@@ -27,6 +28,7 @@ export default function Trip({
   departurePoints,
   allDataObject,
   requiredArray,
+  setPriceByCity,
 }: Props) {
   useEffect(() => {
     if (allDataObject.price === undefined) {
@@ -113,6 +115,8 @@ export default function Trip({
         allDataObject={allDataObject}
         formState={formState}
         values={departurePoints}
+        specialFunction={setPriceByCity}
+
       />
       <Textarea
         className="mt-10"

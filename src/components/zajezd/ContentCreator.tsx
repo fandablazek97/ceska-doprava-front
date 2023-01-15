@@ -47,15 +47,6 @@ export default function ContentCreator({
   let contentShown: any;
   let allDeparturePoints: string[] = [];
 
-  trasy !== null &&
-    trasy.map((e: any, i: number) => {
-      e.attributes.mesta.map(
-        (en: any) =>
-          !allDeparturePoints.includes(en.nazevMesta) &&
-          allDeparturePoints.push(en.nazevMesta)
-      );
-    });
-
   if (content === "informace") {
     contentShown = (
       <Information
@@ -78,7 +69,7 @@ export default function ContentCreator({
         code={code}
         country={country}
         dateAndPrice={dateAndPrice}
-        departurePoints={allDeparturePoints}
+        trasy={trasy}
       />
     );
   }

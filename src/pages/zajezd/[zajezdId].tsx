@@ -113,7 +113,7 @@ export async function getStaticProps({ params }: any) {
   });
   const trasyData = (
     await (
-      await fetch(ipToFetch + "/api/trasas" + trasyString + "&populate=%2A")
+      await fetch(ipToFetch + "/api/trasas" + trasyString + "&populate[obrazek][fields][0]=url&populate[mesta][fields][1]=cena&populate[mesta][populate]=mesto")
     ).json()
   ).data;
 

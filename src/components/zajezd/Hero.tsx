@@ -43,7 +43,7 @@ export default function Hero({
       as={"header"}
     >
       <div className="flex flex-col items-start">
-        <Link href="/zajezdy">
+        <Link href="/zajezdy" scroll={false}>
           <a className="group flex flex-row items-center gap-2 font-semibold text-gray-600">
             <HiArrowLeft className="transition-transform duration-150 group-hover:-translate-x-3" />
             <span className="ml-1">Zpět</span>

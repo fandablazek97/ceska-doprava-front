@@ -24,26 +24,28 @@ type FormProps = {
       cena: number;
     }
   ];
-  departurePoints: string[];
+  trasy: any;
 };
 
 export default function Form({
   country,
   code,
   dateAndPrice,
-  departurePoints,
+  trasy,
 }: FormProps) {
   let allDataObject: any = {};
   let requiredArray: any = [];
+  let allDeparturePoints: string[] = [];
 
   return (
     <FormStater
       country={country}
       code={code}
       dateAndPrice={dateAndPrice}
-      departurePoints={departurePoints}
+      trasy={trasy}
       allDataObject={allDataObject}
       requiredArray={requiredArray}
+      allDeparturePoints={allDeparturePoints}
     />
   );
 }
@@ -58,27 +60,43 @@ type FormStaterProps = {
       cena: number;
     }
   ];
-  departurePoints: string[];
+  trasy: any;
   allDataObject: any;
   requiredArray: any;
+  allDeparturePoints: string[];
 };
 
 function FormStater({
   country,
   code,
   dateAndPrice,
-  departurePoints,
+  trasy,
   allDataObject,
   requiredArray,
+  allDeparturePoints
 }: FormStaterProps) {
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
   const [passengers, setPassengers] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
+  const [cityPrice, setCityPrice] = useState<number>(0);
+  const [calculatedPrice, setCalculatedPrice] = useState<number>(0);
 
   useEffect(() => {
     allDataObject.country = country;
+
+    allDeparturePoints = trasy !== null &&
+    trasy.map((e: any, i: number) => {
+      e.attributes.mesta.map(
+        (en: any) => {
+        en.mesto.map((env:any) => {
+          !allDeparturePoints.includes(env.mesto) &&
+          allDeparturePoints.push(env.mesto)
+          })
+        });
+    });
+
     if (price === undefined) {
       let tempPrice = 0;
       let tempDateFrom = "2025-12-12";
@@ -93,6 +111,10 @@ function FormStater({
       setPrice(tempPrice);
     }
   }, []);
+
+  useEffect(() => {
+    setCalculatedPrice((price + cityPrice) * (1 + passengers));
+  },[price, cityPrice, passengers])
 
   function verifying(e: any) {
     setFormState("verifying");
@@ -187,6 +209,19 @@ function FormStater({
       );
   }
 
+  function setPriceByCity(city: string){
+    trasy.map((e: any) => (
+     e.attributes.mesta.map((en:any) => (
+        en.mesto.map((env:any) => {
+          if(env.mesto === city){
+            setCityPrice(en.cena);
+          }
+        })
+      ))
+    ))
+  }
+
+
   return (
     <Wrapper size="base" as={"section"} className="mb-16">
       <div className="mt-12">
@@ -204,9 +239,10 @@ function FormStater({
         />
         <Trip
           setPrice={setPrice}
+          setPriceByCity={setPriceByCity}
           code={code}
           dateAndPrice={dateAndPrice}
-          departurePoints={departurePoints}
+          departurePoints={allDeparturePoints}
           allDataObject={allDataObject}
           requiredArray={requiredArray}
           formState={formState}
@@ -221,7 +257,7 @@ function FormStater({
         <div className="mt-10 flex flex-col">
           <span className="text-lg font-semibold text-rich">Celková cena:</span>
           <span className="text-3xl font-bold text-rich">
-            {numberWithSpaces(price * (1 + passengers))}
+            {numberWithSpaces(calculatedPrice)}
             {" Kč"}
           </span>
         </div>

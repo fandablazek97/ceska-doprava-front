@@ -52,7 +52,7 @@ export default function Select({
               if (children[i] !== false && allDataObject.date === undefined) {
                 allDataObject.date = JSON.parse(children[i].props.value).date;
                 allDataObject.price = JSON.parse(children[i].props.value).price;
-                setFunction(allDataObject.price);
+                setFunction(parseInt(allDataObject.price));
               }
             });
           }
@@ -130,7 +130,7 @@ export default function Select({
             if (rare === "dateAndPrice") {
               allDataObject.date = JSON.parse(e.target.value).date;
               allDataObject.price = JSON.parse(e.target.value).price;
-              setFunction(allDataObject.price);
+              setFunction(parseInt(allDataObject.price));
             }
           }
         }}
