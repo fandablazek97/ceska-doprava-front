@@ -18,5 +18,5 @@ export const globalConfig = {
 };
 
 export const ipToFetch =
-  "http://localhost:1337";
-  //"https://ceska-doprava-strapi-production.up.railway.app";
+  //"http://localhost:1337";
+  "https://ceska-doprava-strapi-production.up.railway.app";
