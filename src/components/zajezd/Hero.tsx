@@ -83,7 +83,7 @@ export default function Hero({
           </span>
         </div>
       </div>
-      <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-2xl md:mt-0">
+      <div className="relative mt-10 aspect-[4/3] bg-gray-200 overflow-hidden rounded-2xl md:mt-0">
         <Image
           src={imageSrc}
           alt={imageAlt}

@@ -82,6 +82,10 @@ export default function ComboSelect({
   });
 
   useEffect(() => {
+    setSelected(values[0]);
+  }, [values[0]])
+
+  useEffect(() => {
     if (oneOfMany === false) {
       allDataObject[name] = selected;
       if(specialFunction) specialFunction(selected);

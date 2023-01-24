@@ -94,7 +94,7 @@ export default function TripMinimal({
   return (
     <Link href={`/zajezd/${id}`}>
       <a className="group relative flex flex-col rounded-lg transition-transform duration-300 hover:scale-95">
-        <div className="relative isolate aspect-[16/10] w-full overflow-hidden rounded-2xl">
+        <div className="relative isolate aspect-[16/10] w-full overflow-hidden rounded-2xl bg-gray-200">
           <Image
             src={imageSrc}
             alt={name}
@@ -137,7 +137,16 @@ export default function TripMinimal({
               })}
             </div>
             <span className="block min-w-[100px] text-right font-medium">
-              {dateTo === "none" ? dateFrom : dateFrom + " - " + dateTo}
+              {dateTo === "none" 
+                ? 
+                  dateFrom
+                : 
+                  dateFrom === dateTo 
+                  ?
+                    dateFrom
+                  :
+                    dateFrom + " - " + dateTo
+              }
             </span>
           </div>
 

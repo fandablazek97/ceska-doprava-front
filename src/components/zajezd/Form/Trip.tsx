@@ -18,6 +18,7 @@ type Props = {
   allDataObject: any;
   requiredArray: any;
   setPriceByCity: any;
+  cityPrice: any;
 };
 
 export default function Trip({
@@ -29,6 +30,7 @@ export default function Trip({
   allDataObject,
   requiredArray,
   setPriceByCity,
+  cityPrice
 }: Props) {
   useEffect(() => {
     if (allDataObject.price === undefined) {
@@ -118,6 +120,11 @@ export default function Trip({
         specialFunction={setPriceByCity}
 
       />
+      {cityPrice !== 0 &&
+        <p className="mt-3 text-warning">
+          Vybrané místo je za příplatek: {cityPrice} Kč
+        </p>
+      }
       <Textarea
         className="mt-10"
         name="comment"
