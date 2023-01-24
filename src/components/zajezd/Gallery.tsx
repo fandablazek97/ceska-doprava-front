@@ -137,13 +137,13 @@ export default function Gallery({ images }: Props) {
             <span
               key={index}
               onClick={() => setImageIndex(index)}
-              className=" relative aspect-[4/3] cursor-pointer select-none duration-200 hover:scale-105 hover:shadow-md"
+              className=" relative aspect-[4/3] cursor-pointer overflow-hidden rounded-md bg-gray-200 select-none duration-200 hover:scale-105 hover:shadow-md"
             >
               <Image
                 src={imageSrc}
                 alt="#"
                 layout="fill"
-                className="rounded-md object-cover"
+                className="object-cover"
                 sizes="(max-width: 768px) 50vw,
                 (max-width: 1200px) 33vw,
                 33vw"

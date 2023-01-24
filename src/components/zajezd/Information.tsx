@@ -29,8 +29,7 @@ export default function Information({
           <Heading level={2} size={"base"}>
             Popis
           </Heading>
-          <div
-            className="
+          <div className="
             prose my-6 prose-headings:leading-[1.2]
             prose-h1:text-lg
             prose-h2:text-lg prose-h3:text-base prose-h4:text-sm
@@ -39,9 +38,7 @@ export default function Information({
             prose-h6:font-semibold
             prose-p:text-sm xs:prose-h1:text-xl
             xs:prose-h2:text-xl lg:prose-h1:text-2xl
-            [&>*]:text-black
-          "
-          >
+          ">
             <ReactMarkdown>{text}</ReactMarkdown>
           </div>
         </div>
@@ -52,7 +49,16 @@ export default function Information({
           <Heading level={2} size={"base"}>
             Důležité informace
           </Heading>
-          <div className="my-6 [&>p]:text-sm">
+          <div className="
+            prose my-6 prose-headings:leading-[1.2]
+            prose-h1:text-lg
+            prose-h2:text-lg prose-h3:text-base prose-h4:text-sm
+            prose-h5:text-xs prose-h5:font-semibold
+            prose-h6:text-xs
+            prose-h6:font-semibold
+            prose-p:text-sm xs:prose-h1:text-xl
+            xs:prose-h2:text-xl lg:prose-h1:text-2xl
+          ">
             <ReactMarkdown>{information}</ReactMarkdown>
           </div>
         </div>
@@ -63,7 +69,16 @@ export default function Information({
           <Heading level={2} size={"base"}>
             Doprava
           </Heading>
-          <div className="my-6 [&>p]:text-sm">
+          <div className="
+            prose my-6 prose-headings:leading-[1.2]
+            prose-h1:text-lg
+            prose-h2:text-lg prose-h3:text-base prose-h4:text-sm
+            prose-h5:text-xs prose-h5:font-semibold
+            prose-h6:text-xs
+            prose-h6:font-semibold
+            prose-p:text-sm xs:prose-h1:text-xl
+            xs:prose-h2:text-xl lg:prose-h1:text-2xl
+          ">
             <ReactMarkdown>{transport}</ReactMarkdown>
           </div>
         </div>
@@ -75,7 +90,7 @@ export default function Information({
             Odjezdová místa
           </Heading>
           {departurePoints.map((e: any, key: number) => (
-            <div>
+            <div key={key}>
               <table className="w-full max-w-2xl">
                 <thead>
                   <tr>
@@ -135,7 +150,16 @@ export default function Information({
           <Heading level={2} size={"base"}>
             Program
           </Heading>
-          <div className="my-6 [&>p]:text-sm">
+          <div className="
+            prose my-6 prose-headings:leading-[1.2]
+            prose-h1:text-lg
+            prose-h2:text-lg prose-h3:text-base prose-h4:text-sm
+            prose-h5:text-xs prose-h5:font-semibold
+            prose-h6:text-xs
+            prose-h6:font-semibold
+            prose-p:text-sm xs:prose-h1:text-xl
+            xs:prose-h2:text-xl lg:prose-h1:text-2xl
+          ">
             <ReactMarkdown>{programme}</ReactMarkdown>
           </div>
         </div>
@@ -146,7 +170,16 @@ export default function Information({
           <Heading level={2} size={"base"}>
             Poznámka k zájezdu
           </Heading>
-          <div className="my-6 [&>p]:text-sm">
+          <div className="
+            prose my-6 prose-headings:leading-[1.2]
+            prose-h1:text-lg
+            prose-h2:text-lg prose-h3:text-base prose-h4:text-sm
+            prose-h5:text-xs prose-h5:font-semibold
+            prose-h6:text-xs
+            prose-h6:font-semibold
+            prose-p:text-sm xs:prose-h1:text-xl
+            xs:prose-h2:text-xl lg:prose-h1:text-2xl
+          ">
             <ReactMarkdown>{comment}</ReactMarkdown>
           </div>
         </div>

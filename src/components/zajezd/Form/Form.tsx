@@ -176,6 +176,12 @@ function FormStater({
       }
     }
 
+    doc.text((passengers + 1).toString(), 45, 182);
+    doc.text(price.toString() + ",-" , 77, 182);
+
+    doc.text((passengers + 1).toString(), 45, 187);
+    doc.text(cityPrice.toString() + ",-", 77, 187);
+
     doc.output("dataurlnewwindow");
     setFormState("accepted");
     //sendEmail(doc.output('datauristring'))
@@ -246,6 +252,7 @@ function FormStater({
           allDataObject={allDataObject}
           requiredArray={requiredArray}
           formState={formState}
+          cityPrice={cityPrice}
         />
         <Passengers
           passengers={passengers}
