@@ -1,4 +1,3 @@
-import ParallaxImage from "@components/bricks/ParallaxImage";
 import Seo from "@components/root/seo/Seo";
 import ContentCreator from "@components/zajezd/ContentCreator";
 import Hero from "@components/zajezd/Hero";
@@ -62,7 +61,7 @@ export default function zajezd({
 
   return (
     <>
-      <Seo title="Česká doprava" description="" />
+      <Seo title={`${name} | Česká Doprava`} description={perex} />
       <Hero
         country={country}
         location={location}
@@ -97,9 +96,9 @@ export async function getStaticProps({ params }: any) {
     await (
       await fetch(
         ipToFetch +
-          "/api/zajezds/" +
-          params.zajezdId +
-          "?populate[terminACena][fields][0]=datumOd&populate[terminACena][fields][1]=datumDo&populate[terminACena][fields][2]=cena&populate[kategorie][fields][3]=kategorie&populate[odjezdovaMista][fields][4]=mesto&populate[odjezdovaMista][fields][5]=ulice&populate[odjezdovaMista][fields][6]=cisloPopisne&populate[uvodniFoto][fields][7]=url&populate[dalsiFoto][fields][8]=url&populate[terminACena][fields][9]=pocetDni&populate[terminACena][fields][10]=pocetNoci&populate[trasy][fields][11]=oznaceni"
+        "/api/zajezds/" +
+        params.zajezdId +
+        "?populate[terminACena][fields][0]=datumOd&populate[terminACena][fields][1]=datumDo&populate[terminACena][fields][2]=cena&populate[kategorie][fields][3]=kategorie&populate[odjezdovaMista][fields][4]=mesto&populate[odjezdovaMista][fields][5]=ulice&populate[odjezdovaMista][fields][6]=cisloPopisne&populate[uvodniFoto][fields][7]=url&populate[dalsiFoto][fields][8]=url&populate[terminACena][fields][9]=pocetDni&populate[terminACena][fields][10]=pocetNoci&populate[trasy][fields][11]=oznaceni"
       )
     ).json()
   ).data;

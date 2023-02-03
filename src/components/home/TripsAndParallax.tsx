@@ -5,6 +5,10 @@ import Wrapper from "@components/bricks/Wrapper";
 import Image from "next/image";
 import Link from "next/link";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
+// import Parallax from "@components/bricks/Parallax";
+
+// ToDo:
+// - Nainstalovat framer-motion a předělat parallax na náš komponent z nové verze frameworku (Tahle verze fakt stojí za prd!)
 
 type JustParallaxProps = {
   className?: string;
