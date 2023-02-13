@@ -48,7 +48,7 @@ export default function Passengers({
       </Heading>
       {allOthers}
       <div className="mt-10 flex flex-row flex-wrap gap-3">
-        {allOthers.length < 8 && (
+        {allOthers.length < 7 && (
           <Button
             onClick={() => setPassengers(passengers + 1)}
             color="dark"

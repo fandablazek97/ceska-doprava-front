@@ -33,8 +33,8 @@ export const mainRoutes = [
 
 export const ctaMenu = [
   {
-    label: "+420 721 174 928",
-    link: "tel:+420721174 928",
+    label: "+420 702 009 956",
+    link: "tel:+420702009956",
   },
   {
     label: "ceskadoprava@email.cz",

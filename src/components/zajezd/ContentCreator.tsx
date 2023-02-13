@@ -9,6 +9,7 @@ import Information from "./Information";
 
 type Props = {
   code: string;
+  name: string;
   country: string;
   imageSrc: string;
   otherImages?: any;
@@ -32,6 +33,7 @@ type Props = {
 
 export default function ContentCreator({
   code,
+  name,
   country,
   otherImages,
   dateAndPrice,
@@ -67,6 +69,7 @@ export default function ContentCreator({
     contentShown = (
       <Form
         code={code}
+        name={name}
         country={country}
         dateAndPrice={dateAndPrice}
         trasy={trasy}

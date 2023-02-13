@@ -75,6 +75,7 @@ export default function zajezd({
       />
       <ContentCreator
         code={code}
+        name={name}
         country={country}
         imageSrc={imageSrc}
         otherImages={otherImages}
