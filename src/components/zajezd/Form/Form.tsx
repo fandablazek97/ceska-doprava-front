@@ -17,6 +17,7 @@ import { zajezd64 } from "public/images/pdfs/zajezd64";
 type FormProps = {
   country: string;
   code: string;
+  name: string;
   dateAndPrice: [
     {
       datumOd: string;
@@ -30,6 +31,7 @@ type FormProps = {
 export default function Form({
   country,
   code,
+  name,
   dateAndPrice,
   trasy,
 }: FormProps) {
@@ -41,6 +43,7 @@ export default function Form({
     <FormStater
       country={country}
       code={code}
+      name={name}
       dateAndPrice={dateAndPrice}
       trasy={trasy}
       allDataObject={allDataObject}
@@ -53,6 +56,7 @@ export default function Form({
 type FormStaterProps = {
   country: string;
   code: string;
+  name: string;
   dateAndPrice: [
     {
       datumOd: string;
@@ -69,6 +73,7 @@ type FormStaterProps = {
 function FormStater({
   country,
   code,
+  name,
   dateAndPrice,
   trasy,
   allDataObject,
@@ -145,6 +150,7 @@ function FormStater({
     if (tempState === "refused") {
       setFormState("refused");
     } else {
+      console.log(allDataObject);
       createPdf();
     }
   }
@@ -156,31 +162,43 @@ function FormStater({
     doc.setFontSize(10);
 
     /* Zájezd */
-    doc.text(allDataObject.code, 60, 74);
+    doc.text(allDataObject.code + " " + name, 60, 74);
     doc.text(allDataObject.country, 60, 79);
     doc.text(allDataObject.date, 60, 84);
     doc.text(allDataObject.departurePoint, 60, 94);
 
     /* Objednatel */
     doc.text(allDataObject.name, 42, 107);
-    doc.text(allDataObject.birth, 163, 107);
     doc.text(allDataObject.phone, 28, 112);
     doc.text(allDataObject.email, 117, 112);
+    
+    doc.text(allDataObject.name, 18, 129);
+    doc.text(allDataObject.birth, 73, 129);
+    
 
     /*Další cestující*/
     if (allDataObject.names !== undefined) {
-      let fH: number = 124;
+      let fH: number = 129;
       for (let i = 1; i <= Object.values(allDataObject.names).length; i++) {
         doc.text(allDataObject.names["names" + i], 18, fH + 5 * i);
         doc.text(allDataObject.births["births" + i], 73, fH + 5 * i);
       }
     }
 
+
+    /* Ceny a podobné */
     doc.text((passengers + 1).toString(), 45, 182);
     doc.text(price.toString() + ",-" , 77, 182);
+    doc.text((price * (passengers + 1)).toString() + ",-", 173,182);
 
     doc.text((passengers + 1).toString(), 45, 187);
     doc.text(cityPrice.toString() + ",-", 77, 187);
+    doc.text((cityPrice * (passengers + 1)).toString() + ",-", 173,187);
+
+    
+    doc.text(((cityPrice + price ) * (passengers + 1)).toString() + ",-", 45, 202);
+
+
 
     doc.output("dataurlnewwindow");
     setFormState("accepted");
