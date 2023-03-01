@@ -25,14 +25,14 @@ export default function Filter({
     <section id="filter" className="border-mute relative mb-5 border-y">
       <Wrapper
         size="lg"
-        className={`flex min-h-[75px] !w-full flex-row justify-between py-5 xl:py-16`}
+        className={`flex min-h-[75px] !w-full flex-row justify-between py-5 xl:py-10`}
       >
         <div
-          className={`grid w-full grid-cols-1 justify-between`}
+          className={`grid w-fit grid-cols-1 justify-between mx-auto`}
         >
           <ScrollContainer
             component={"ul"}
-            className={`my-auto flex flex-row pb-5 xl:mr-16 xl:pt-5`}
+            className={`my-auto flex flex-row`}
           >
             {Object.entries(tagAndText).map((elem: any, key: number) => (
               <li
