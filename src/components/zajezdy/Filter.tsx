@@ -28,7 +28,7 @@ export default function Filter({
         className={`flex min-h-[75px] !w-full flex-row justify-between py-5 xl:py-16`}
       >
         <div
-          className={`grid w-full grid-cols-1 justify-between xl:flex xl:flex-row`}
+          className={`grid w-full grid-cols-1 justify-between`}
         >
           <ScrollContainer
             component={"ul"}
@@ -59,7 +59,7 @@ export default function Filter({
               datePickerAlign="left"
               datePickerValueAlign="left"
               tabIndex={0}
-              inputClassName="rounded-lg w-full sm:w-[153px] h-12 bg-gray-200 font-semibold"
+              inputClassName="hidden rounded-lg w-full sm:w-[153px] h-12 bg-gray-200 font-semibold"
             />
             <DatePicker
               text="Datum do"
@@ -70,7 +70,7 @@ export default function Filter({
               datePickerAlign="right"
               datePickerValueAlign="left"
               tabIndex={0}
-              inputClassName="rounded-lg w-full sm:w-[153px] h-12 bg-gray-200 font-semibold"
+              inputClassName="hidden rounded-lg w-full sm:w-[153px] h-12 bg-gray-200 font-semibold"
             />
           </div>
         </div>

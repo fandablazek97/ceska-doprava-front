@@ -34,8 +34,8 @@ let data: Trip[] = [];
 export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
   const [refresh, setRefresh] = useState<boolean>(false);
   const [hasItemsLeft, setHasItemsLeft] = useState<boolean>(true);
-  const itemsAtStart = 6;
-  const addItems = 3;
+  const itemsAtStart = 12;
+  const addItems = 9;
   const populateQuery =
     "?populate[0]=uvodniFoto&populate[1]=kategorie&populate[2]=terminACena";
   let categoryQuery =

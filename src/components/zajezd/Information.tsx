@@ -133,6 +133,7 @@ export default function Information({
                 <div className="relative mt-5 aspect-square max-h-[400px] w-full overflow-hidden rounded-md">
                   <Image
                     src={e.attributes.obrazek.data.attributes.url}
+                    alt={""}
                     layout="fill"
                     objectFit="contain"
                     sizes="(max-width: 768px) 50vw,
