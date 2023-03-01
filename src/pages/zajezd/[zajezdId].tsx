@@ -31,7 +31,7 @@ type Props = {
   organizer?: any;
 };
 
-export default function zajezd({
+export default function Zajezd({
   country,
   location,
   name,

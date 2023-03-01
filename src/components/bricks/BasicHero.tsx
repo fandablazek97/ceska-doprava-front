@@ -33,15 +33,17 @@ export default function BasicHero({
         imagePosition === "left" ? "md:flex-row-reverse" : "md:flex-row"
       }`}
     >
-      <div className="mt-20 flex items-center justify-center md:mt-0 md:w-1/2">
+      <div className={`mt-20 flex items-center justify-center md:mt-0 ${imageSrc && "md:w-1/2"}`}>
         <div className="flex flex-col space-y-10">
-          <Heading level={1} size={"xl"} className="max-w-md text-left">
+          <Heading level={1} size={"xl"} className={`text-left ${imageSrc && "max-w-md"}`}>
             {heading}
           </Heading>
-          <p className="max-w-prose">{text}</p>
+          <p className={`${imageSrc && "max-w-md"}`}>{text}</p>
           {children}
         </div>
       </div>
+      {
+        imageSrc && 
       <div className="relative aspect-square md:w-1/2">
         <Image
           src={imageSrc}
@@ -55,6 +57,7 @@ export default function BasicHero({
               ${imageSizeLg}`}
         />
       </div>
+      }
     </Wrapper>
   );
 }

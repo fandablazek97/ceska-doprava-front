@@ -21,7 +21,6 @@ export default function NearestDeparturesCard({
   tripId,
   imageSrc = "",
   imageAlt = "",
-  country = "",
   name = "",
   dateAndPrice,
   className = "",
@@ -31,8 +30,6 @@ export default function NearestDeparturesCard({
     dateFrom: string;
     dateTo: string;
   }>({ dateFrom: "2023-12-31", dateTo: "2023-12-31" });
-
-  let counterForTags = 0;
 
   useEffect(() => {
     let tempDateFrom = "2023-12-31";
@@ -123,7 +120,7 @@ export default function NearestDeparturesCard({
                 : "text-lg font-semibold leading-6 text-rich"
             }`}
           >
-            {!fake && country + "-" + name}
+            {!fake && name}
           </span>
           <span
             className={`block ${fake ? "h-5 w-28 bg-gray-200" : "mt-auto"}`}

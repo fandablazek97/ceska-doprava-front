@@ -22,13 +22,11 @@ export default function zajezdy({ calendar, catalog, conditions }: Props) {
       <BasicHero
         heading="Cestovní agentura"
         text={
-          "Říká se, že zážitky vám nikdo nesebere. Proto pro vás již 4. sezónu připravujeme výlety za poznáním, kulturou, sportem i odpočinkem. Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás."
+          "Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás."
+          /* "Říká se, že zážitky vám nikdo nesebere. Proto pro vás již 4. sezónu připravujeme výlety za poznáním, kulturou, sportem i odpočinkem. Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás." */
         }
-        imageSrc="/images/zajezdy/hero.png"
-        imageAlt="Obrázek"
-        imagePosition="right"
       >
-        <div className="flex flex-col gap-5 sm:flex-row md:flex-col lg:flex-row">
+        {/* <div className="flex flex-col gap-5 sm:flex-row md:flex-col lg:flex-row">
           <Button
             as="a"
             href="#filter"
@@ -45,7 +43,7 @@ export default function zajezdy({ calendar, catalog, conditions }: Props) {
           >
             Informace ke stažení
           </Button>
-        </div>
+        </div> */}
       </BasicHero>
 
       {/* Zobrazovač zájezdů + Filtr + veškerá logika*/}

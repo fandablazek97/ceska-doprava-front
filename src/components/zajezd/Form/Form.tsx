@@ -151,7 +151,7 @@ function FormStater({
       setFormState("refused");
     } else {
       console.log(allDataObject);
-      createPdf();
+      sendEmail(null);
     }
   }
 

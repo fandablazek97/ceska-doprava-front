@@ -2,9 +2,7 @@ import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Form from "@components/kontakt/Form";
 
-type Props = {};
-
-export default function InfoAndForm({}: Props) {
+export default function InfoAndForm() {
   return (
     <Wrapper paddedContent="base" size="base" className="grid md:grid-cols-4">
       <div className="flex flex-col px-2">
