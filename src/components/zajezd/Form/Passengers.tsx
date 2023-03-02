@@ -113,6 +113,7 @@ function AddOthers({
         name={`births${id}`}
         yearStart={1900}
         yearEnd={new Date().getFullYear()}
+        yearOrder="desc"
         label="Datum narození"
         oneOfMany={"births"}
         datePickerAlign="left"

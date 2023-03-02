@@ -18,6 +18,7 @@ type DatePickerProps = {
   allDataObject?: any;
   yearStart?: number;
   yearEnd?: number;
+  yearOrder?: "asc" | "desc";
   isRequired?: boolean;
   requiredArray?: any;
   formState?: "waiting" | "verifying" | "refused" | "accepted";
@@ -55,6 +56,7 @@ export default function DatePicker({
   allDataObject,
   yearStart = new Date().getFullYear() - 5,
   yearEnd = new Date().getFullYear() + 5,
+  yearOrder = "asc",
   isRequired = false,
   requiredArray,
   formState,
@@ -262,6 +264,7 @@ export default function DatePicker({
         year={year}
         yearStart={yearStart}
         yearEnd={yearEnd}
+        yearOrder={yearOrder}
       />
     );
   }
@@ -372,21 +375,37 @@ type ShowYearsProps = {
   setYear: any;
   yearStart: number;
   yearEnd: number;
+  yearOrder: "asc" | "desc";
 };
 
-function ShowYears({ year, setYear, yearStart, yearEnd }: ShowYearsProps) {
+function ShowYears({ year, setYear, yearStart, yearEnd, yearOrder }: ShowYearsProps) {
   let yearValues: any = [];
-  for (let i = yearStart; i <= yearEnd; i++) {
-    yearValues.push(
-      <span
-        key={i}
-        className="cursor-pointer rounded-md text-center hover:bg-gray-200"
-        onClick={() => setYear(i)}
-      >
-        {i}
-      </span>
-    );
-  }
+  if(yearOrder === "asc"){
+    for (let i = yearStart; i <= yearEnd; i++) {
+      yearValues.push(
+        <span
+          key={i}
+          className="cursor-pointer rounded-md text-center hover:bg-gray-200"
+          onClick={() => setYear(i)}
+        >
+          {i}
+        </span>
+      );
+    }
+} else{
+  for (let i = yearEnd; i >= yearStart; i--) {
+  yearValues.push(
+    <span
+      key={i}
+      className="cursor-pointer rounded-md text-center hover:bg-gray-200"
+      onClick={() => setYear(i)}
+    >
+      {i}
+    </span>
+  );
+}
+
+}
   return <div className="grid grid-cols-3 gap-3">{yearValues}</div>;
 }
 

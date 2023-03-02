@@ -217,9 +217,28 @@ function FormStater({
         "template_fy1kysa",
         {
           name: allDataObject.name,
+          narozeni: allDataObject.birth,
           phone: allDataObject.phone,
           email: allDataObject.email,
-          createdPdf: doc,
+          kod: allDataObject.code,
+          termin: allDataObject.date,
+          misto: allDataObject.departurePoint,
+          komentar: allDataObject.comment,
+          jm1: allDataObject.names && allDataObject.names.name1 && allDataObject.names.name1,
+          jm2: allDataObject.names && allDataObject.names.name2 && allDataObject.names.name2,
+          jm3: allDataObject.names && allDataObject.names.name3 && allDataObject.names.name3,
+          jm4: allDataObject.names && allDataObject.names.name4 && allDataObject.names.name4,
+          jm5: allDataObject.names && allDataObject.names.name5 && allDataObject.names.name5,
+          jm6: allDataObject.names && allDataObject.names.name6 && allDataObject.names.name6,
+          jm7: allDataObject.names && allDataObject.names.name7 && allDataObject.names.name7,
+          nar1: allDataObject.births && allDataObject.births.birth1 && allDataObject.births.birth1,
+          nar2: allDataObject.births && allDataObject.births.birth2 && allDataObject.births.birth2,
+          nar3: allDataObject.births && allDataObject.births.birth3 && allDataObject.births.birth3,
+          nar4: allDataObject.births && allDataObject.births.birth4 && allDataObject.births.birth4,
+          nar5: allDataObject.births && allDataObject.births.birth5 && allDataObject.births.birth5,
+          nar6: allDataObject.births && allDataObject.births.birth6 && allDataObject.births.birth6,
+          nar7: allDataObject.births && allDataObject.births.birth7 && allDataObject.births.birth7
+
         },
         process.env.PUBLIC_KEY!
       )

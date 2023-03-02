@@ -35,6 +35,7 @@ export default function Customer({
           label="Datum narození"
           yearStart={1900}
           yearEnd={new Date().getFullYear()}
+          yearOrder="desc"
           datePickerAlign="left"
           defaultTextAlign="left"
           datePickerValueAlign="left"
