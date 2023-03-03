@@ -131,7 +131,7 @@ function FormStater({
     if (tempState === "refused") {
       setFormState("refused");
     } else {
-      createPdf();
+      sendEmail(null);
     }
   }
 
@@ -182,17 +182,53 @@ function FormStater({
   }
 
   function sendEmail(doc: any) {
+    console.log(allDataObject)
     emailjs
       .send(
-        process.env.SERVICE_ID!,
-        "template_fy1kysa",
+        "service_5ijykst",
+        "template_hjkuvbf",
         {
           name: allDataObject.name,
           phone: allDataObject.phone,
+          narozeni: allDataObject.birth,
           email: allDataObject.email,
-          createdPdf: doc,
+          komentar: allDataObject.comment,
+          zpatecni: allDataObject.zpatecni ? "ANO" : "NE",
+          mistoCr: allDataObject.pointCz && allDataObject.pointCz,
+          mistoChor: allDataObject.zpatecni && allDataObject.pointHr,
+          datumCr: allDataObject.dateCz && allDataObject.dateCz,
+          datumChor: allDataObject.dateHr && allDataObject.dateHr,
+          jm1: allDataObject.names && allDataObject.names.names1 && allDataObject.names.names1,
+          jm2: allDataObject.names && allDataObject.names.names2 && allDataObject.names.names2,
+          jm3: allDataObject.names && allDataObject.names.names3 && allDataObject.names.names3,
+          jm4: allDataObject.names && allDataObject.names.names4 && allDataObject.names.names4,
+          jm5: allDataObject.names && allDataObject.names.names5 && allDataObject.names.names5,
+          jm6: allDataObject.names && allDataObject.names.names6 && allDataObject.names.names6,
+          jm7: allDataObject.names && allDataObject.names.names7 && allDataObject.names.names7,
+          nar1: allDataObject.births && allDataObject.births.births1 && allDataObject.births.births1,
+          nar2: allDataObject.births && allDataObject.births.births2 && allDataObject.births.births2,
+          nar3: allDataObject.births && allDataObject.births.births3 && allDataObject.births.births3,
+          nar4: allDataObject.births && allDataObject.births.births4 && allDataObject.births.births4,
+          nar5: allDataObject.births && allDataObject.births.births5 && allDataObject.births.births5,
+          nar6: allDataObject.births && allDataObject.births.births6 && allDataObject.births.births6,
+          nar7: allDataObject.births && allDataObject.births.births7 && allDataObject.births.births7,
+          mist1: allDataObject.points && allDataObject.points.points1 && allDataObject.points.points1,
+          mist2: allDataObject.points && allDataObject.points.points2 && allDataObject.points.points2,
+          mist3: allDataObject.points && allDataObject.points.points3 && allDataObject.points.points3,
+          mist4: allDataObject.points && allDataObject.points.points4 && allDataObject.points.points4,
+          mist5: allDataObject.points && allDataObject.points.points5 && allDataObject.points.points5,
+          mist6: allDataObject.points && allDataObject.points.points6 && allDataObject.points.points6,
+          mist7: allDataObject.points && allDataObject.points.points7 && allDataObject.points.points7,
+          tel1: allDataObject.phones && allDataObject.phones.phones1 && allDataObject.phones.phones1,
+          tel2: allDataObject.phones && allDataObject.phones.phones2 && allDataObject.phones.phones2,
+          tel3: allDataObject.phones && allDataObject.phones.phones3 && allDataObject.phones.phones3,
+          tel4: allDataObject.phones && allDataObject.phones.phones4 && allDataObject.phones.phones4,
+          tel5: allDataObject.phones && allDataObject.phones.phones5 && allDataObject.phones.phones5,
+          tel6: allDataObject.phones && allDataObject.phones.phones6 && allDataObject.phones.phones6,
+          tel7: allDataObject.phones && allDataObject.phones.phones7 && allDataObject.phones.phones7,
+          
         },
-        process.env.PUBLIC_KEY!
+        "user_2tNsUaIQSULo6wFXKZVCs"
       )
       .then(
         () => {

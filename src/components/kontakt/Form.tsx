@@ -7,6 +7,7 @@ import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
 import Input from "@components/forms/Input";
 import Textarea from "@components/forms/Textarea";
+import Alert from "@components/bricks/Alert";
 
 export default function Form() {
   let allDataObject: any = {};
@@ -31,7 +32,6 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
     if (formState === "refused") {
       window.alert("Zapoměl jsi vyplnit některé z povinných polí");
     } else if (formState === "accepted") {
-      sendMail();
     }
   }, [formState]);
 
@@ -70,7 +70,7 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
       if (tempState === "refused") {
         setFormState("refused");
       } else {
-        setFormState("accepted");
+        sendMail();
       }
     }, 150);
   }
@@ -78,7 +78,7 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
   function sendMail() {
     emailjs
       .send(
-        process.env.SERVICE_ID!,
+        "service_5ijykst",
         "template_y1d19nf",
         {
           name: allDataObject.name,
@@ -86,14 +86,15 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
           email: allDataObject.email,
           question: allDataObject.question,
         },
-        process.env.PUBLIC_KEY!
+        "user_2tNsUaIQSULo6wFXKZVCs"
       )
       .then(
         (result) => {
-          window.alert("Email úspěšně odeslán");
+          setFormState("accepted");
         },
         (error) => {
-          window.alert("Email se někde zasekl");
+          setFormState("refused");
+          window.alert("Vyskytla se chyba na straně emailového serveru, prosím zkuste později.");
         }
       );
   }
@@ -156,11 +157,25 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
             name="gdpr"
             formState={formState}
           />
-          <Button className="my-8 w-fit" onClick={(e: any) => verifying(e)}>
+          <Button className="my-8 w-fit"  isLoading={formState === "verifying" ? true : false} onClick={(e: any) => verifying(e)}>
             Odeslat
           </Button>
         </div>
       </form>
+      {formState === "accepted" && (
+        <Alert
+          status="success"
+          title="Úspěch!"
+          text="Vaši objednávku zpracováváme a potvrdíme ji do 48hodin"
+        />
+      )}
+      {formState === "refused" && (
+        <Alert
+          status="error"
+          title="Chyba!"
+          text="Zapoměli jste vypnit některá pole"
+        />
+      )}
     </Wrapper>
   );
 }

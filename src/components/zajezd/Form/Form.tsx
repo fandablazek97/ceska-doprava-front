@@ -150,7 +150,6 @@ function FormStater({
     if (tempState === "refused") {
       setFormState("refused");
     } else {
-      console.log(allDataObject);
       sendEmail(null);
     }
   }
@@ -213,7 +212,7 @@ function FormStater({
   function sendEmail(doc: any) {
     emailjs
       .send(
-        process.env.SERVICE_ID!,
+        "service_5ijykst",
         "template_fy1kysa",
         {
           name: allDataObject.name,
@@ -238,9 +237,8 @@ function FormStater({
           nar5: allDataObject.births && allDataObject.births.births5 && allDataObject.births.births5,
           nar6: allDataObject.births && allDataObject.births.births6 && allDataObject.births.births6,
           nar7: allDataObject.births && allDataObject.births.births7 && allDataObject.births.births7
-
         },
-        process.env.PUBLIC_KEY!
+        "user_2tNsUaIQSULo6wFXKZVCs"
       )
       .then(
         () => {
