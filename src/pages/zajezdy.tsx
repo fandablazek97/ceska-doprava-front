@@ -1,10 +1,10 @@
 import BasicHero from "@components/bricks/BasicHero";
-import Button from "@components/bricks/Button";
 import Seo from "@components/root/seo/Seo";
 import ContentAndFilter from "@components/zajezdy/ContentAndFilter";
 import Downloads from "@components/zajezdy/Downloads";
 import { ipToFetch } from "@configs/globalConfig";
-import { HiArrowSmDown } from "react-icons/hi";
+// import Button from "@components/bricks/Button";
+// import { HiArrowSmDown } from "react-icons/hi";
 
 type Props = {
   calendar: string;
@@ -66,7 +66,7 @@ export async function getStaticProps() {
   );
   const dataAndMeta = await res.json();
   const data = dataAndMeta.data ? dataAndMeta.data.attributes : null;
-  if(data){
+  if (data) {
     return {
       props: {
         calendar: data.kalendar.data ? data.kalendar.data.attributes.url : null,
