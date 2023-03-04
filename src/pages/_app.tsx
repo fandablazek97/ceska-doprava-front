@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
+import { Analytics } from '@vercel/analytics/react';
 
 // Fonts
 import "@fontsource/bebas-neue";
@@ -49,6 +50,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         draggable
         pauseOnHover
       />
+      
+      <Analytics />
     </AppLayout>
   );
 }
