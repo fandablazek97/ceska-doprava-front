@@ -32,6 +32,7 @@ type DateAndPrice = {
 let data: Trip[] = [];
 
 export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
+  const [state, setState] = useState<"initial" | "loading" | "success" | "error" | "nodata">("initial");
   const [refresh, setRefresh] = useState<boolean>(false);
   const [hasItemsLeft, setHasItemsLeft] = useState<boolean>(true);
   const itemsAtStart = 12;
@@ -51,6 +52,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
   const sortQuery = "&sort[0]=dulezitost%3Adesc&sort[1]=id";
 
   useEffect(() => {
+    setState("loading");
     setHasItemsLeft(true);
     getData(0, itemsAtStart, true);
   }, [category, dateFrom, dateTo]);
@@ -82,10 +84,12 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
             if (all.data.length === 0) {
               data = [];
               setRefresh(!refresh);
+              setState("nodata");
             } else {
               /* Pokud se našli data */
               data = all.data;
               setRefresh(!refresh);
+              setState("success")
               /* Pokud je stažených dat míň než bylo požádáno -> skryje tlačítko */
               if (all.data.length < currentAmount + addXItems) {
                 setHasItemsLeft(false);
@@ -95,6 +99,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
             /* Pokud už existujou nějaký data */
             data.push(...all.data);
             setRefresh(!refresh);
+            setState("success")
 
             /* Pokud je dat míň než bylo požádáno -> skryje tlačítko */
             if (data.length < currentAmount + addXItems) {
@@ -105,11 +110,31 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
           /* Špatný připojení/požadavek */
           data = [];
           setRefresh(!refresh);
+          setState("error")
         }
       });
   }
+  if(state ==="initial" || state === "loading"){
+    return (
+      <Wrapper paddedContent="lg" className="flex justify-center">
+        <Heading level={3} size={"base"}>
+          Vydržte prosím, vyhledáváme pro Vás zájezdy.
+        </Heading>
+      </Wrapper>
+    );
+  }
 
-  if (data.length === 0) {
+  else if(state === "error"){
+    return (
+      <Wrapper paddedContent="lg" className="flex justify-center">
+        <Heading level={3} size={"base"}>
+          Při vyhledání zájezdů se vyskytla chyba. Prosím zkuste to znovu později.
+        </Heading>
+      </Wrapper>
+    );
+  }
+
+  else if (state === "nodata") {
     return (
       <Wrapper paddedContent="lg" className="flex justify-center">
         <Heading level={3} size={"base"}>
@@ -117,7 +142,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
         </Heading>
       </Wrapper>
     );
-  } else {
+  } else if(state === "success"){
     return (
       <Wrapper id="zajezdy" size="lg" paddedContent="sm">
         <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:gap-x-16 2xl:gap-y-20">
@@ -135,7 +160,7 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
             />
           ))}
         </div>
-        {hasItemsLeft && (
+        {hasItemsLeft && state === "success" && (
           <Button
             className="mx-auto mt-24 !flex w-fit"
             onClick={() => getData(data.length, addItems, false)}
