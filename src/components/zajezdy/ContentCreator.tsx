@@ -114,16 +114,35 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
         }
       });
   }
-  if(state ==="initial" || state === "loading"){
+  if(state ==="success"){
     return (
-      <Wrapper paddedContent="lg" className="flex justify-center">
-        <Heading level={3} size={"base"}>
-          Vydržte prosím, vyhledáváme pro Vás zájezdy.
-        </Heading>
-      </Wrapper>
+       <Wrapper id="zajezdy" size="lg" paddedContent="sm">
+       <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:gap-x-16 2xl:gap-y-20">
+         {data.map((trip: any, key: number) => (
+           <TripMinimal
+             key={key}
+             id={trip.id}
+             name={trip.attributes.nazev}
+             imageSrc={trip.attributes.uvodniFoto.data.attributes.url}
+             categories={trip.attributes.kategorie}
+             dateAndPrice={trip.attributes.terminACena}
+             filterCategory={category}
+             filterDateFrom={dateFrom}
+             filterDateTo={dateTo}
+           />
+         ))}
+       </div>
+       {hasItemsLeft && state === "success" && (
+         <Button
+           className="mx-auto mt-24 !flex w-fit"
+           onClick={() => getData(data.length, addItems, false)}
+         >
+           Načíst další
+         </Button>
+       )}
+     </Wrapper>
     );
   }
-
   else if(state === "error"){
     return (
       <Wrapper paddedContent="lg" className="flex justify-center">
@@ -133,7 +152,6 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
       </Wrapper>
     );
   }
-
   else if (state === "nodata") {
     return (
       <Wrapper paddedContent="lg" className="flex justify-center">
@@ -142,32 +160,12 @@ export default function ContentCreator({ category, dateFrom, dateTo }: Props) {
         </Heading>
       </Wrapper>
     );
-  } else if(state === "success"){
+  } else {
     return (
-      <Wrapper id="zajezdy" size="lg" paddedContent="sm">
-        <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:gap-x-16 2xl:gap-y-20">
-          {data.map((trip: any, key: number) => (
-            <TripMinimal
-              key={key}
-              id={trip.id}
-              name={trip.attributes.nazev}
-              imageSrc={trip.attributes.uvodniFoto.data.attributes.url}
-              categories={trip.attributes.kategorie}
-              dateAndPrice={trip.attributes.terminACena}
-              filterCategory={category}
-              filterDateFrom={dateFrom}
-              filterDateTo={dateTo}
-            />
-          ))}
-        </div>
-        {hasItemsLeft && state === "success" && (
-          <Button
-            className="mx-auto mt-24 !flex w-fit"
-            onClick={() => getData(data.length, addItems, false)}
-          >
-            Načíst další
-          </Button>
-        )}
+      <Wrapper paddedContent="lg" className="flex justify-center">
+        <Heading level={3} size={"base"}>
+          Vydržte prosím, vyhledáváme pro Vás zájezdy.
+        </Heading>
       </Wrapper>
     );
   }
