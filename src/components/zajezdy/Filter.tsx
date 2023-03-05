@@ -1,5 +1,6 @@
 import Wrapper from "@components/bricks/Wrapper";
 import DatePicker from "@components/forms/DatePicker";
+import Link from "next/link";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { tagAndText } from "./References";
@@ -32,7 +33,8 @@ export default function Filter({
                     ${elem[0] === category ? "bg-gray-200" : "hover:bg-gray-100"
                   }`}
               >
-                <a href={"/zajezdy/" + elem[0].toLowerCase()}>{elem[1]}</a>
+
+                <Link href={`/zajezdy/${elem[0].toLowerCase()}`}>{elem[1]}</Link>
               </li>
             ))}
           </ScrollContainer>
