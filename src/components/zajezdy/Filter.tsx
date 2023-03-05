@@ -6,20 +6,10 @@ import { tagAndText } from "./References";
 
 type Props = {
   category?: string;
-  setCategory: any;
-  dateFrom?: string;
-  setDateFrom: any;
-  dateTo?: string;
-  setDateTo: any;
 };
 
 export default function Filter({
   category = "Vse",
-  setCategory,
-  dateFrom,
-  setDateFrom,
-  dateTo,
-  setDateTo,
 }: Props) {
   return (
     <section id="filter" className="border-mute relative mb-5 border-y">
@@ -41,38 +31,11 @@ export default function Filter({
                 className={`mx-1 flex h-10 w-fit cursor-pointer items-center justify-center whitespace-nowrap rounded-lg px-3 text-sm font-semibold md:text-base xl:px-5
                     ${elem[0] === category ? "bg-gray-200" : "hover:bg-gray-100"
                   }`}
-                onClick={() => setCategory(elem[0])}
               >
-                {elem[1]}
+                <a href={"/zajezdy/" + elem[0].toLowerCase()}>{elem[1]}</a>
               </li>
             ))}
           </ScrollContainer>
-          <div
-            className={`grid grid-cols-2 justify-center gap-5 sm:flex sm:justify-end xl:my-auto`}
-          >
-            <DatePicker
-              text="Datum od"
-              startDay={parseInt(dateFrom!.slice(-2))}
-              startMonth={parseInt(dateFrom!.slice(5, 7)) - 1}
-              startYear={parseInt(dateFrom!.slice(0, 4))}
-              setFunction={setDateFrom}
-              datePickerAlign="left"
-              datePickerValueAlign="left"
-              tabIndex={0}
-              inputClassName="hidden rounded-lg w-full sm:w-[153px] h-12 bg-gray-200 font-semibold"
-            />
-            <DatePicker
-              text="Datum do"
-              startDay={parseInt(dateTo!.slice(-2))}
-              startMonth={parseInt(dateTo!.slice(5, 7)) - 1}
-              startYear={parseInt(dateTo!.slice(0, 4))}
-              setFunction={setDateTo}
-              datePickerAlign="right"
-              datePickerValueAlign="left"
-              tabIndex={0}
-              inputClassName="hidden rounded-lg w-full sm:w-[153px] h-12 bg-gray-200 font-semibold"
-            />
-          </div>
         </div>
       </Wrapper>
     </section>
