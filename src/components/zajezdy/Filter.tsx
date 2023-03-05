@@ -34,7 +34,7 @@ export default function Filter({
                   }`}
               >
 
-                <Link href={`/zajezdy/${elem[0].toLowerCase()}`}>{elem[1]}</Link>
+                <Link href={`/zajezdy/${elem[0].toLowerCase()}`}><a>{elem[1]}</a></Link>
               </li>
             ))}
           </ScrollContainer>
