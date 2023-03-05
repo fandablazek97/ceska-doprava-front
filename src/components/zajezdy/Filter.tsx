@@ -6,12 +6,15 @@ import "react-indiana-drag-scroll/dist/style.css";
 import { tagAndText } from "./References";
 
 type Props = {
-  category?: string;
+  category: string;
 };
 
 export default function Filter({
-  category = "Vse",
+  category
 }: Props) {
+  function hardPass(href: string){
+    window.location.href = "/zajezdy/" + href;
+  }
   return (
     <section id="filter" className="border-mute relative mb-5 border-y">
       <Wrapper
@@ -29,12 +32,12 @@ export default function Filter({
               <li
                 tabIndex={0}
                 key={key}
+                onClick={() => hardPass(elem[0])}
                 className={`mx-1 flex h-10 w-fit cursor-pointer items-center justify-center whitespace-nowrap rounded-lg px-3 text-sm font-semibold md:text-base xl:px-5
                     ${elem[0] === category ? "bg-gray-200" : "hover:bg-gray-100"
                   }`}
               >
-
-                <Link href={`/zajezdy/${elem[0].toLowerCase()}`}><a>{elem[1]}</a></Link>
+                {elem[1]}
               </li>
             ))}
           </ScrollContainer>
