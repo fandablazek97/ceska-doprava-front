@@ -63,7 +63,7 @@ export async function getStaticProps({params}: any) {
       fieldsQuery +
       sortQuery +
       paginationQuery +
-      categoryQuery 
+      categoryQuery
   );
 
   const zajezdDataAndMeta = await zajezdRes.json();
