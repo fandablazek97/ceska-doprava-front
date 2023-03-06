@@ -9,9 +9,10 @@ type Props = {
   catalog: string;
   conditions: string;
   zajezdData: any;
+  category: string;
 };
 
-export default function Exkurze({ calendar, catalog, conditions, zajezdData }: Props) {
+export default function Exkurze({ calendar, catalog, conditions, zajezdData, category }: Props) {
   return (
     <>
       <Seo
@@ -27,7 +28,7 @@ export default function Exkurze({ calendar, catalog, conditions, zajezdData }: P
       </BasicHero>
 
       {/* Zobrazovač zájezdů + Filtr + veškerá logika*/}
-      <ContentAndFilter category="vse" zajezdData={zajezdData}/>
+      <ContentAndFilter category={category} zajezdData={zajezdData}/>
 
       {/* Kalendář, Katalog, Podmínky -> ke stažení */}
       <Downloads
@@ -62,7 +63,7 @@ export async function getStaticProps({params}: any) {
       fieldsQuery +
       sortQuery +
       paginationQuery +
-      categoryQuery 
+      categoryQuery
   );
 
   const zajezdDataAndMeta = await zajezdRes.json();
@@ -82,7 +83,8 @@ export async function getStaticProps({params}: any) {
       calendar: infoData.kalendar ? infoData.kalendar.data ? infoData.kalendar.data.attributes.url : null : null,
       catalog: infoData.katalog ? infoData.katalog.data ? infoData.katalog.data.attributes.url : null : null,
       conditions: infoData.katalog ? infoData.podminky.data ? infoData.podminky.data.attributes.url : null : null,
-      zajezdData: zajezdData ? zajezdData : null
+      zajezdData: zajezdData ? zajezdData : null,
+      category: params.kategorie
     },
   };
 }
