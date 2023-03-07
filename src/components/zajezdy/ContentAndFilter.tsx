@@ -2,17 +2,10 @@ import Link from "next/link";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { tagAndText } from "./References";
-import { useEffect, useState } from "react";
-
-
+import { useState } from "react";
 import Wrapper from "@components/bricks/Wrapper";
 import TripMinimal from "./TripMinimal";
 import Button from "@components/bricks/Button";
-
-
-let zajezdy:any[] = [];
-let itemsLeft:boolean = true;
-
 
 export default function ContentAndFilter({category, zajezdData} : {category: string, zajezdData:any}) {
   const addItems = 9;
@@ -46,9 +39,8 @@ export default function ContentAndFilter({category, zajezdData} : {category: str
                     ${elem[0] === category ? "bg-gray-200" : "hover:bg-gray-100"
                   }`}
               >
-                <Link href={`${elem[0]}`}><a>
+                <Link href={`${elem[0]}#filter`}><a>
                 {elem[1]}</a></Link>
-
               </li>
             ))}
           </ScrollContainer>
@@ -75,7 +67,7 @@ export default function ContentAndFilter({category, zajezdData} : {category: str
            />
          ))}
        </div>
-       {itemsLeft && (
+       {zajezdData.length > showedItems && (
          <Button
            className="mx-auto mt-24 !flex w-fit"
            onClick={() => setShowedItems(showedItems + addItems)}
