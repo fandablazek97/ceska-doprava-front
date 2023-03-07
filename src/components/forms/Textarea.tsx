@@ -66,7 +66,7 @@ export default function Textarea({
         }
       }
     }
-  });
+  },[]);
 
   useEffect(() => {
     setInValidation(formState);

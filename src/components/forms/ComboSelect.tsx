@@ -79,7 +79,7 @@ export default function ComboSelect({
         }
       }
     }
-  });
+  },[]);
 
   useEffect(() => {
     setSelected(values[0]);

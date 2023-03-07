@@ -1,4 +1,5 @@
 import Heading from "@components/bricks/Heading";
+import Checkbox from "@components/forms/Checkbox";
 import DatePicker from "@components/forms/DatePicker";
 import Input from "@components/forms/Input";
 
@@ -61,6 +62,14 @@ export default function Customer({
           requiredArray={requiredArray}
           allDataObject={allDataObject}
           formState={formState}
+        />
+        <Checkbox
+          allDataObject={allDataObject}
+          requiredArray={requiredArray}
+          label="Objednatel zároveň cestuje"
+          name="cestuje"
+          formState={formState}
+          className="pt-10"
         />
       </div>
     </div>
