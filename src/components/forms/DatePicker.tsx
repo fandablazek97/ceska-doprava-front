@@ -93,7 +93,12 @@ export default function DatePicker({
     if (oneOfMany === false) {
       if (allDataObject !== undefined) {
         if (allDataObject[name] === undefined) {
-          allDataObject[name] = "";
+          if(day && month && year){
+            allDataObject[name] = day + "." + month + "." + year;
+          }
+          else{
+            allDataObject[name] = "";
+          }
         }
       }
       if (isRequired && requiredArray !== undefined) {
@@ -107,7 +112,12 @@ export default function DatePicker({
           allDataObject[oneOfMany] = {};
         } else {
           if (allDataObject[oneOfMany][name] === undefined)
+          if(day && month && year){
+            allDataObject[oneOfMany][name] = day + "." + month + "." + year;
+          }
+          else{
             allDataObject[oneOfMany][name] = "";
+          }
         }
       }
       if (isRequired && requiredArray !== undefined) {
@@ -121,7 +131,7 @@ export default function DatePicker({
         }
       }
     }
-  });
+  },[]);
 
   useEffect(() => {
     if (activated) {
@@ -129,24 +139,11 @@ export default function DatePicker({
     } else {
       document.removeEventListener("mousedown", closeDatePicker);
     }
-    if (allDataObject !== undefined) {
-      if (oneOfMany === false) {
-        if (day !== undefined && month !== undefined && year !== undefined) {
-          allDataObject[name] = day + "." + months[month] + " " + year;
-        } else {
-          allDataObject[name] = "";
-        }
-      } else {
-        if (day !== undefined && month !== undefined && year !== undefined) {
-          allDataObject[oneOfMany][name] =
-            day + "." + months[month] + " " + year;
-        } else {
-          allDataObject[oneOfMany][name] = "";
-        }
-      }
-    }
+  }, [activated]);
+  
+  useEffect(() => {
     setInValidation(formState);
-  }, [activated, formState]);
+  },[formState])
 
   function closeDatePicker(e: any) {
     if (
@@ -508,11 +505,9 @@ function ShowDays({
             setFunction(year + "-" + monthWithZero + "-" + dayWithZero);
           if (allDataObject !== undefined) {
             if (oneOfMany === false) {
-              allDataObject[name] =
-                year + "-" + monthWithZero + "-" + dayWithZero;
+              allDataObject[name] = dayWithZero + "." + monthWithZero + "." + year
             } else if (typeof oneOfMany === "string") {
-              allDataObject[oneOfMany][name] =
-                year + "-" + monthWithZero + "-" + dayWithZero;
+              allDataObject[oneOfMany][name] = dayWithZero + "." + monthWithZero + "." + year
             }
           }
         }}

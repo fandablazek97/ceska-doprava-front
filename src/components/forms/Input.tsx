@@ -66,7 +66,7 @@ export default function Input({
         }
       }
     }
-  });
+  },[]);
 
   useEffect(() => {
     setInValidation(formState);

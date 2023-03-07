@@ -38,7 +38,7 @@ export default function Checkbox({
     if (oneOfMany === false) {
       if (allDataObject[name] === undefined) {
         if (defaultValue === "__false") {
-          allDataObject[name] = "";
+          allDataObject[name] = false;
         } else {
           allDataObject[name] = defaultValue;
         }
