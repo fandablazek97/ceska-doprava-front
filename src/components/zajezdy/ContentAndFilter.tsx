@@ -53,7 +53,7 @@ export default function ContentAndFilter({category, zajezdData} : {category: str
     <Wrapper id="zajezdy" size="lg" paddedContent="sm">
        <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:gap-x-16 2xl:gap-y-20">
          {zajezdData.map((trip: any, key: number) => (
-          key <= showedItems &&
+          key < showedItems &&
           <TripMinimal
              key={trip.id}
              id={trip.id}
