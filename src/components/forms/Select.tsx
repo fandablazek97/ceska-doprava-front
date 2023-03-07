@@ -82,7 +82,7 @@ export default function Select({
         }
       }
     }
-  });
+  },[]);
 
   useEffect(() => {
     setInValidation(formState);

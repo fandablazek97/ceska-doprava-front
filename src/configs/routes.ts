@@ -6,7 +6,7 @@ export const mainRoutes = [
   },
   {
     label: "Zájezdy",
-    path: "/zajezdy",
+    path: "/zajezdy/vse",
     main: true,
   },
   {

@@ -43,12 +43,10 @@ export default function Hero({
       as={"header"}
     >
       <div className="flex flex-col items-start">
-        <Link href="/zajezdy#filter">
-          <a className="group flex flex-row items-center gap-2 font-semibold text-gray-600">
+          <button className="group flex flex-row items-center gap-2 font-semibold text-gray-600" onClick={() => {window.history.back();return false;}}>
             <HiArrowLeft className="transition-transform duration-150 group-hover:-translate-x-3" />
             <span className="ml-1">Zpět</span>
-          </a>
-        </Link>
+          </button>
         <div className="mt-8 flex flex-row flex-wrap gap-2 md:gap-3">
           {categories.map((categories, key) => {
             if (key <= 2) {

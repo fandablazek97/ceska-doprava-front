@@ -19,7 +19,7 @@ export default function Questions() {
                 isDefaultOpen
                 title="Mohu si rezervovat konkrétní místo v autobusu?"
               >
-                Ano, cena místenky je 300 kč.
+                Ano, cena místenky je 200 kč.
               </Accordion>
               <Accordion title="Kolik zavazadel si mohu vzít do autobusu?">
                 Každý cestující má v ceně jízdného zahrnutou přepravu 1

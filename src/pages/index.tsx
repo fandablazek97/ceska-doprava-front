@@ -10,10 +10,11 @@ import Seo from "@components/root/seo/Seo";
 import { ipToFetch } from "@configs/globalConfig";
 
 type Props = {
+  trips: any;
   reviews: any;
 };
 
-export default function Home({ reviews }: Props) {
+export default function Home({ trips,reviews }: Props) {
   return (
     <>
       <Seo
@@ -24,7 +25,7 @@ export default function Home({ reviews }: Props) {
       <Hero />
 
       {/* Nejbližší odjezdy */}
-      <NearestDepartures />
+      <NearestDepartures data={trips}/>
 
       {/* Aftermovie */}
       <Aftermovie />
@@ -55,15 +56,37 @@ export default function Home({ reviews }: Props) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(
+  const populateQuery =
+    "?populate[uvodniFoto][fields][0]=url&populate[terminACena][fields][1]=datumOd&populate[terminACena][fields][2]=datumDo";
+  const filtersQuery =
+    "&filters[vybrany]=true&filters[terminACena][datumOd][$gte]=" +
+    new Date().toISOString().slice(0, 10);
+  const fieldsQuery = "&fields[0]=nazev&fields[1]=stat";
+  const paginationQuery = "&pagination[pageSize]=4";
+  const tripsRes =
+  await fetch(
+    ipToFetch +
+      "/api/zajezds" +
+      populateQuery +
+      filtersQuery +
+      fieldsQuery +
+      paginationQuery
+  )
+  const tripsDataAndMeta = await tripsRes.json();
+  const tripsData = tripsDataAndMeta.data;
+
+  const reviewsRes = await fetch(
     ipToFetch +
       "/api/recenzes?populate[fotka][fields][0]=url&pagination[pageSize]=4"
   );
-  const dataAndMeta = await res.json();
-  const data = dataAndMeta.data;
+  const reviewsDataAndMeta = await reviewsRes.json();
+  const reviewsRata = reviewsDataAndMeta.data;
+
+
   return {
     props: {
-      reviews: data,
+      trips: tripsData,
+      reviews: reviewsRata
     },
   };
 }
