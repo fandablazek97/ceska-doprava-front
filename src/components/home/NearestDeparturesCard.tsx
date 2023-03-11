@@ -8,7 +8,7 @@ type Props = {
   imageAlt?: string;
   country?: string;
   name?: string;
-  dateAndPrice: DateAndPrice[];
+  dateAndPrice?: DateAndPrice[];
   className?: string;
   fake?: boolean;
 };
@@ -38,7 +38,7 @@ export default function NearestDeparturesCard({
     let tempDateFrom = "2023-12-31";
     let tempDateTo = "2023-12-31";
 
-    !fake &&
+    !fake && dateAndPrice &&
       dateAndPrice.map((entry, index) => {
         if (index + 1 === dateAndPrice!.length) {
           if (

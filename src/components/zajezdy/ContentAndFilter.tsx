@@ -62,8 +62,6 @@ export default function ContentAndFilter({category, zajezdData} : {category: str
              categories={trip.attributes.kategorie}
              dateAndPrice={trip.attributes.terminACena}
              filterCategory={category}
-             filterDateFrom={changeDateType(new Date().toISOString().slice(0, 10))}
-             filterDateTo={"24.12.2099"}
            />
          ))}
        </div>
