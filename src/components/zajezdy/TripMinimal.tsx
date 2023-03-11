@@ -34,16 +34,15 @@ export default function TripMinimal({
   let dateTo: string = "2024-12-31";
   let price: number = 0;
   let counterForTags = 0;
-  let tempDateFrom = "2023-12-31";
-  let tempDateTo = "2023-12-31";
   let tempPrice = 0;
+  let today = new Date().toISOString().slice(0, 10)
 
   dateAndPrice.map((entry, index) => {
     if (index + 1 === dateAndPrice.length) {
       if (
         new Date(entry.datumOd).getTime() >=
-          new Date().getTime() &&
-        new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()
+          new Date(today).getTime() &&
+        new Date(entry.datumOd).getTime() < new Date(dateFrom).getTime()
       ) {
         if (entry.datumDo === null) {
           dateFrom = changeDateType(entry.datumOd);
@@ -56,23 +55,23 @@ export default function TripMinimal({
         }
       } else {
         if (entry.datumDo === null) {
-          dateFrom = changeDateType(tempDateFrom);
+          dateFrom = changeDateType(dateFrom);
           dateTo = "none";
           price = entry.cena;
         } else {
-          dateFrom = changeDateType(tempDateFrom);
-          dateTo = changeDateType(tempDateTo);
+          dateFrom = changeDateType(dateFrom);
+          dateTo = changeDateType(dateTo);
           price = entry.cena;
         }
       }
     } else {
       if (
         new Date(entry.datumOd).getTime() >=
-          new Date().getTime() &&
-        new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()
+          new Date(today).getTime() &&
+        new Date(entry.datumOd).getTime() < new Date(dateFrom).getTime()
       ) {
-        tempDateFrom = entry.datumOd;
-        tempDateTo = entry.datumDo;
+        dateFrom = entry.datumOd;
+        dateTo = entry.datumDo;
         tempPrice = entry.cena;
       }
     }
