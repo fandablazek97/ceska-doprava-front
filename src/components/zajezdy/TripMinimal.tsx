@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
+import { useEffect, useState } from "react";
 
 type Categories = {
   kategorie: string;
@@ -19,8 +20,6 @@ type Props = {
   dateAndPrice: DateAndPrice[];
   categories: Categories[];
   filterCategory: string;
-  filterDateFrom: string;
-  filterDateTo: string;
 };
 
 export default function TripMinimal({
@@ -30,8 +29,6 @@ export default function TripMinimal({
   dateAndPrice,
   categories,
   filterCategory,
-  filterDateFrom,
-  filterDateTo,
 }: Props) {
   let dateFrom: string = "2024-12-31";
   let dateTo: string = "2024-12-31";
@@ -45,7 +42,7 @@ export default function TripMinimal({
     if (index + 1 === dateAndPrice.length) {
       if (
         new Date(entry.datumOd).getTime() >=
-          new Date(filterDateFrom).getTime() &&
+          new Date().getTime() &&
         new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()
       ) {
         if (entry.datumDo === null) {
@@ -71,7 +68,7 @@ export default function TripMinimal({
     } else {
       if (
         new Date(entry.datumOd).getTime() >=
-          new Date(filterDateFrom).getTime() &&
+          new Date().getTime() &&
         new Date(entry.datumOd).getTime() < new Date(tempDateFrom).getTime()
       ) {
         tempDateFrom = entry.datumOd;
@@ -79,7 +76,7 @@ export default function TripMinimal({
         tempPrice = entry.cena;
       }
     }
-  });
+  },[]);
 
   function changeDateType(date: string) {
     var newDate = date.split("-")[2] + "." + date.split("-")[1] + ".";
