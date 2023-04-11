@@ -31,7 +31,7 @@ export default function TripMinimal({
   filterCategory,
 }: Props) {
   let dateFrom: string = "2024-12-31";
-  let dateTo: string = "2024-12-31";
+  let dateTo: string | null = "2024-12-31";
   let price: number = 0;
   let counterForTags = 0;
   let tempPrice = 0;
@@ -60,7 +60,7 @@ export default function TripMinimal({
           price = entry.cena;
         } else {
           dateFrom = changeDateType(dateFrom);
-          dateTo = changeDateType(dateTo);
+          if(dateTo) dateTo = changeDateType(dateTo);
           price = entry.cena;
         }
       }
@@ -70,8 +70,13 @@ export default function TripMinimal({
           new Date(today).getTime() &&
         new Date(entry.datumOd).getTime() < new Date(dateFrom).getTime()
       ) {
+        if(entry.datumOd === entry.datumDo){
+          dateTo = null;
+        }
+        else{
+          dateTo = entry.datumDo;
+        }
         dateFrom = entry.datumOd;
-        dateTo = entry.datumDo;
         tempPrice = entry.cena;
       }
     }
@@ -133,7 +138,7 @@ export default function TripMinimal({
               })}
             </div>
             <span className="block min-w-[100px] text-right font-medium">
-              {dateTo === "none" 
+              {(dateTo === "none" || !dateTo)
                 ? 
                   dateFrom
                 : 
