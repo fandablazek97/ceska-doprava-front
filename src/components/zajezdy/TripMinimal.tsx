@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
-import { useEffect, useState } from "react";
 
 type Categories = {
   kategorie: string;
@@ -35,7 +34,7 @@ export default function TripMinimal({
   let price: number = 0;
   let counterForTags = 0;
   let tempPrice = 0;
-  let today = new Date().toISOString().slice(0, 10)
+  let today = new Date().toISOString().slice(0, 10);
 
   dateAndPrice.map((entry, index) => {
     if (index + 1 === dateAndPrice.length) {
@@ -80,7 +79,7 @@ export default function TripMinimal({
         tempPrice = entry.cena;
       }
     }
-  },[]);
+  });
 
   function changeDateType(date: string) {
     var newDate = date.split("-")[2] + "." + date.split("-")[1] + ".";
@@ -138,11 +137,7 @@ export default function TripMinimal({
               })}
             </div>
             <span className="block min-w-[100px] text-right font-medium">
-              {(dateTo === "none" || !dateTo)
-                ? 
-                  dateFrom
-                : 
-                  dateFrom === dateTo 
+              {(dateTo === "none" || !dateTo || dateFrom === dateTo)
                   ?
                     dateFrom
                   :
