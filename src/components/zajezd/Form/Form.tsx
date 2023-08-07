@@ -92,15 +92,15 @@ function FormStater({
     allDataObject.country = country;
 
     allDeparturePoints = trasy !== null &&
-    trasy.map((e: any, i: number) => {
-      e.attributes.mesta.map(
-        (en: any) => {
-        en.mesto.map((env:any) => {
-          !allDeparturePoints.includes(env.mesto) &&
-          allDeparturePoints.push(env.mesto)
-          })
-        });
-    });
+      trasy.map((e: any, i: number) => {
+        e.attributes.mesta.map(
+          (en: any) => {
+            en.mesto.map((env: any) => {
+              !allDeparturePoints.includes(env.mesto) &&
+                allDeparturePoints.push(env.mesto)
+            })
+          });
+      });
 
     if (price === undefined) {
       let tempPrice = 0;
@@ -119,7 +119,7 @@ function FormStater({
 
   useEffect(() => {
     setCalculatedPrice((price + cityPrice) * (1 + passengers));
-  },[price, cityPrice, passengers])
+  }, [price, cityPrice, passengers])
 
   function verifying(e: any) {
     setFormState("verifying");
@@ -170,10 +170,10 @@ function FormStater({
     doc.text(allDataObject.name, 42, 107);
     doc.text(allDataObject.phone, 28, 112);
     doc.text(allDataObject.email, 117, 112);
-    
+
     doc.text(allDataObject.name, 18, 129);
     doc.text(allDataObject.birth, 73, 129);
-    
+
 
     /*Další cestující*/
     if (allDataObject.names !== undefined) {
@@ -187,15 +187,15 @@ function FormStater({
 
     /* Ceny a podobné */
     doc.text((passengers + 1).toString(), 45, 182);
-    doc.text(price.toString() + ",-" , 77, 182);
-    doc.text((price * (passengers + 1)).toString() + ",-", 173,182);
+    doc.text(price.toString() + ",-", 77, 182);
+    doc.text((price * (passengers + 1)).toString() + ",-", 173, 182);
 
     doc.text((passengers + 1).toString(), 45, 187);
     doc.text(cityPrice.toString() + ",-", 77, 187);
-    doc.text((cityPrice * (passengers + 1)).toString() + ",-", 173,187);
+    doc.text((cityPrice * (passengers + 1)).toString() + ",-", 173, 187);
 
-    
-    doc.text(((cityPrice + price ) * (passengers + 1)).toString() + ",-", 45, 202);
+
+    doc.text(((cityPrice + price) * (passengers + 1)).toString() + ",-", 45, 202);
 
 
 
@@ -251,11 +251,11 @@ function FormStater({
       );
   }
 
-  function setPriceByCity(city: string){
+  function setPriceByCity(city: string) {
     trasy.map((e: any) => (
-     e.attributes.mesta.map((en:any) => (
-        en.mesto.map((env:any) => {
-          if(env.mesto === city){
+      e.attributes.mesta.map((en: any) => (
+        en.mesto.map((env: any) => {
+          if (env.mesto === city) {
             setCityPrice(en.cena);
           }
         })
@@ -332,7 +332,7 @@ function FormStater({
         <Alert
           status="success"
           title="Úspěch!"
-          text="Vaši objednávku zpracováváme a potvrdíme ji do 48hodin"
+          text="Děkujeme za vaši objednávku. Data zpracováváme a potvrdíme do 2 pracovních dnů."
         />
       )}
       {formState === "refused" && (

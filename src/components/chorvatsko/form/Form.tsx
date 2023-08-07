@@ -227,7 +227,7 @@ function FormStater({
           tel5: allDataObject.phones && allDataObject.phones.phones5 && allDataObject.phones.phones5,
           tel6: allDataObject.phones && allDataObject.phones.phones6 && allDataObject.phones.phones6,
           tel7: allDataObject.phones && allDataObject.phones.phones7 && allDataObject.phones.phones7,
-          
+
         },
         "user_2tNsUaIQSULo6wFXKZVCs"
       )
@@ -301,7 +301,7 @@ function FormStater({
         <Alert
           status="success"
           title="Úspěch!"
-          text="Vaši objednávku zpracováváme a potvrdíme ji do 48hodin"
+          text="Děkujeme za vaši objednávku. Data zpracováváme a potvrdíme do 2 pracovních dnů."
         />
       )}
       {formState === "refused" && (
