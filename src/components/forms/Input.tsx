@@ -66,7 +66,7 @@ export default function Input({
         }
       }
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     setInValidation(formState);
@@ -99,11 +99,10 @@ export default function Input({
         text-base font-normal text-rich transition 
         placeholder:text-rich placeholder:opacity-60 ${className}
         focus:z-1 focus:relative focus:border-primary focus:bg-transparent
-        focus:!outline-none focus:ring-2 focus:ring-primary ${
-          isDisabled
+        focus:!outline-none focus:ring-2 focus:ring-primary ${isDisabled
             ? "pointer-events-none cursor-not-allowed opacity-60"
             : "cursor-text opacity-100"
-        }`}
+          }`}
         disabled={isDisabled}
         required={isRequired}
         readOnly={isReadOnly}

@@ -1,13 +1,13 @@
 import emailjs from "@emailjs/browser";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
+import Alert from "@components/bricks/Alert";
 import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
 import Input from "@components/forms/Input";
 import Textarea from "@components/forms/Textarea";
-import Alert from "@components/bricks/Alert";
 
 export default function Form() {
   let allDataObject: any = {};
@@ -27,13 +27,6 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
-
-  useEffect(() => {
-    if (formState === "refused") {
-      window.alert("Zapoměl jsi vyplnit některé z povinných polí");
-    } else if (formState === "accepted") {
-    }
-  }, [formState]);
 
   function verifying(e: any) {
     e.preventDefault();
@@ -157,7 +150,7 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
             name="gdpr"
             formState={formState}
           />
-          <Button className="my-8 w-fit"  isLoading={formState === "verifying" ? true : false} onClick={(e: any) => verifying(e)}>
+          <Button className="my-8 w-fit" isLoading={formState === "verifying" ? true : false} onClick={(e: any) => verifying(e)}>
             Odeslat
           </Button>
         </div>

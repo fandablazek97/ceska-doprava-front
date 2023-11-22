@@ -90,19 +90,18 @@ export default function Trip({
                   value={
                     entry.datumDo
                       ? `{"date" : "${changeDateType(
-                          entry.datumOd
-                        )} - ${changeDateType(entry.datumDo)}", "price" : "${
-                          entry.cena
-                        }"}`
+                        entry.datumOd
+                      )} - ${changeDateType(entry.datumDo)}", "price" : "${entry.cena
+                      }"}`
                       : `{"date" : "${changeDateType(
-                          entry.datumOd
-                        )}", "price" : "${entry.cena}"}`
+                        entry.datumOd
+                      )}", "price" : "${entry.cena}"}`
                   }
                 >
                   {entry.datumDo
                     ? changeDateType(entry.datumOd) +
-                      " - " +
-                      changeDateType(entry.datumDo)
+                    " - " +
+                    changeDateType(entry.datumDo)
                     : changeDateType(entry.datumOd)}
                 </option>
               )

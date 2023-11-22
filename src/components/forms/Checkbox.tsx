@@ -84,10 +84,9 @@ export default function Checkbox({
           checked:bg-primary checked:hover:bg-primary
           checked:focus:border-body
           checked:focus:bg-primary
-          ${
-            isDisabled
-              ? "pointer-events-none cursor-not-allowed opacity-60"
-              : "cursor-pointer opacity-100"
+          ${isDisabled
+            ? "pointer-events-none cursor-not-allowed opacity-60"
+            : "cursor-pointer opacity-100"
           }`}
         disabled={isDisabled}
         required={isRequired}
@@ -112,14 +111,14 @@ export default function Checkbox({
         {inValidation === "refused" &&
           isRequired &&
           oneOfMany === false &&
-          (allDataObject[name] === "" || allDataObject[name] === "false") && (
+          (allDataObject[name] === "" || allDataObject[name] === "false" || (name === "gdpr" && allDataObject[name] === false)) && (
             <span className="ml-1 text-primary">Toto pole je povinné!</span>
           )}
         {inValidation === "refused" &&
           isRequired &&
           typeof oneOfMany === "string" &&
           (allDataObject[oneOfMany][name] === "" ||
-            allDataObject[oneOfMany][name] === "false") && (
+            allDataObject[oneOfMany][name] === "false" || (name === "gdpr" && allDataObject[name] === false)) && (
             <span className="ml-1 text-primary">Toto pole je povinné!</span>
           )}
       </label>

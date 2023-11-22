@@ -1,8 +1,8 @@
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Image from "next/image";
-import Link from "next/link";
 import { HiArrowLeft } from "react-icons/hi";
+import { changeDateType } from "./DatesAll";
 
 type Category = {
   kategorie: string;
@@ -13,6 +13,7 @@ type Props = {
   name: string;
   perex: string;
   price?: number;
+  date?: string | false;
   code: string;
   location: string;
   categories: Category[];
@@ -25,6 +26,7 @@ export default function Hero({
   name,
   perex,
   price,
+  date,
   code,
   location,
   categories,
@@ -43,10 +45,10 @@ export default function Hero({
       as={"header"}
     >
       <div className="flex flex-col items-start">
-          <button className="group flex flex-row items-center gap-2 font-semibold text-gray-600" onClick={() => {window.history.back();return false;}}>
-            <HiArrowLeft className="transition-transform duration-150 group-hover:-translate-x-3" />
-            <span className="ml-1">Zpět</span>
-          </button>
+        <button className="group flex flex-row items-center gap-2 font-semibold text-gray-600" onClick={() => { window.history.back(); return false; }}>
+          <HiArrowLeft className="transition-transform duration-150 group-hover:-translate-x-3" />
+          <span className="ml-1">Zpět</span>
+        </button>
         <div className="mt-8 flex flex-row flex-wrap gap-2 md:gap-3">
           {categories.map((categories, key) => {
             if (key <= 2) {
@@ -73,6 +75,11 @@ export default function Hero({
               ? priceWithSpaces + " Kč"
               : "Od " + priceWithSpaces + " Kč"}
           </span>
+          {date &&
+            <span className="shrink-0 text-lg text-gray-500">
+              Datum zájezdu: {changeDateType(date)}
+            </span>
+          }
           <span className="shrink-0 text-lg text-gray-500">
             Kód zájezdu: {code}
           </span>

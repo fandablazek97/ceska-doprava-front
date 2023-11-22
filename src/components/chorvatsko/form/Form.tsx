@@ -182,7 +182,6 @@ function FormStater({
   }
 
   function sendEmail(doc: any) {
-    console.log(allDataObject)
     emailjs
       .send(
         "service_5ijykst",

@@ -17,6 +17,7 @@ type AlertOptions = {
   isDismissable?: boolean;
   isVisible?: boolean;
   className?: string;
+  onClose?: () => void;
   [x: string]: any;
 };
 
@@ -44,21 +45,22 @@ export default function Alert({
   isDismissable = true,
   isVisible = true,
   className = "",
+  onClose,
   ...rest
 }: AlertOptions) {
   const [isShown, setIsShown] = useState(isVisible);
 
   function hideAlert() {
+    onClose && onClose();
     setIsShown(false);
   }
 
   return isShown ? (
     <Tag
-      className={`flex w-full items-start justify-between gap-5 rounded-lg py-6 px-5 ${
-        variant === "filled"
-          ? filledStatusClasses[status]
-          : tintedStatusClasses[status]
-      } ${className}`}
+      className={`flex w-full items-start justify-between gap-5 rounded-lg py-6 px-5 ${variant === "filled"
+        ? filledStatusClasses[status]
+        : tintedStatusClasses[status]
+        } ${className}`}
       {...rest}
     >
       <div className="mr-auto flex flex-col items-start justify-start gap-5 sm:flex-row">
