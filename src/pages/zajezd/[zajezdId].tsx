@@ -68,6 +68,7 @@ export default function Zajezd({
         name={name}
         perex={perex}
         price={lowestPrice}
+        date={dateAndPrice.length === 1 && dateAndPrice[0].datumOd}
         code={code}
         categories={categories}
         imageSrc={imageSrc}

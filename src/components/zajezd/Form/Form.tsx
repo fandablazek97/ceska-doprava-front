@@ -340,6 +340,7 @@ function FormStater({
           status="error"
           title="Chyba!"
           text="Zapoměli jste vypnit některá pole"
+          onClose={() => setFormState("waiting")}
         />
       )}
     </Wrapper>

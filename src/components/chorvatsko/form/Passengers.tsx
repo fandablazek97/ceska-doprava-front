@@ -62,7 +62,7 @@ export default function Passengers({
   return (
     <div className="mt-16 flex flex-col">
       <Heading level={3} size={"base"} className="lg:!text-3xl">
-        Další cestující
+        Cestující
       </Heading>
       {allOthers}
       <div className="mt-10 flex flex-row gap-5">

@@ -1,7 +1,7 @@
 import Heading from "@components/bricks/Heading";
-import Checkbox from "@components/forms/Checkbox";
 import DatePicker from "@components/forms/DatePicker";
 import Input from "@components/forms/Input";
+import YesOrNo from "@components/forms/YesOrNo";
 
 type Props = {
   formState: "waiting" | "verifying" | "refused" | "accepted";
@@ -63,15 +63,15 @@ export default function Customer({
           allDataObject={allDataObject}
           formState={formState}
         />
-        <Checkbox
-          allDataObject={allDataObject}
-          requiredArray={requiredArray}
-          label="Objednatel zároveň cestuje"
-          name="cestuje"
-          formState={formState}
-          className="pt-10"
-        />
       </div>
+      <YesOrNo
+        allDataObject={allDataObject}
+        requiredArray={requiredArray}
+        label="- Objednatel zároveň cestuje"
+        name="cestuje"
+        formState={formState}
+        isRequired
+      />
     </div>
   );
 }

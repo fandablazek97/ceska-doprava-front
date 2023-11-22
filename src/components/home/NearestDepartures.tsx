@@ -2,13 +2,13 @@ import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import NearestDeparturesCard from "./NearestDeparturesCard";
 
-export default function NearestDepartures({data} : {data:any}) {
+export default function NearestDepartures({ data }: { data: any }) {
   return (
     <Wrapper className="pb-28 md:pb-36">
       <Heading level={2} size="sm" className="mb-12">
         Vybrané zájezdy
       </Heading>
-      {data !== undefined ? (
+      {data ? (
         <div className="grid grid-cols-1 gap-6 xs:grid-cols-2 md:gap-10 lg:grid-cols-4">
           {data.map((trip: any) => (
             <NearestDeparturesCard
