@@ -11,6 +11,7 @@ type Props = {
   zajezdData: any;
   category: string;
 };
+//force update
 
 export default function Exkurze({ calendar, catalog, conditions, zajezdData, category }: Props) {
   return (
