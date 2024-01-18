@@ -124,8 +124,11 @@ export default function Trip({
           Vybrané místo je za příplatek: {cityPrice} Kč
         </p>
       }
+      <p className="mt-12 text-sm font-medium">
+        Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel.
+      </p>
       <Textarea
-        className="mt-10"
+        className="mt-5"
         name="comment"
         label="Vaše poznámka"
         allDataObject={allDataObject}
