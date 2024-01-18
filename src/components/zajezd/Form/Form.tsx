@@ -221,6 +221,7 @@ function FormStater({
           phone: allDataObject.phone,
           email: allDataObject.email,
           cestuje: allDataObject.cestuje ? "Ano" : "Ne",
+          mistenka: allDataObject.mistanka ? "Ano" : "Ne",
           kod: allDataObject.code,
           termin: allDataObject.date,
           misto: allDataObject.departurePoint,
