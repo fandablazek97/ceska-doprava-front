@@ -133,12 +133,15 @@ export default function Trip({
       <Checkbox
         allDataObject={allDataObject}
         requiredArray={requiredArray}
-        label="Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel."
+        label="CHCI MÍSTENKY"
         name="mistenka"
         formState={formState}
-        parentClassName="mt-10"
+        parentClassName="mt-10 font-semibold"
         onChange={(value) => setSeats(value)}
       />
+      <p className="mt-3 text-sm font-medium">
+        Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel.
+      </p>
       <Textarea
         className="mt-5"
         name="comment"
