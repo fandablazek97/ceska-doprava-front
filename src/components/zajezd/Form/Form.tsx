@@ -83,6 +83,7 @@ function FormStater({
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
+  const [seats, setSeats] = useState<number>(0);
   const [passengers, setPassengers] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
   const [cityPrice, setCityPrice] = useState<number>(0);
@@ -118,8 +119,8 @@ function FormStater({
   }, []);
 
   useEffect(() => {
-    setCalculatedPrice((price + cityPrice) * (1 + passengers));
-  }, [price, cityPrice, passengers])
+    setCalculatedPrice((price + cityPrice) * passengers + (passengers * 200));
+  }, [price, cityPrice, passengers, seats])
 
   function verifying(e: any) {
     setFormState("verifying");
@@ -275,6 +276,8 @@ function FormStater({
           týkající se zájezdu naleznete zde nad formulářem
         </p>
         <Customer
+          passengers={passengers}
+          setPassengers={setPassengers}
           allDataObject={allDataObject}
           requiredArray={requiredArray}
           formState={formState}
