@@ -86,7 +86,6 @@ export default function Trip({
         label="Zpáteční cesta?"
         name="zpatecni"
         formState={formState}
-        className="pt-10"
         otherState={setZpatecni}
       />
       <div className="mt-3 mb-7 grid  grid-cols-1 gap-10 md:grid-cols-2">

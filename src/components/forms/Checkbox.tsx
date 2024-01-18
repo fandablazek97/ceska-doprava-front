@@ -14,6 +14,8 @@ type Props = {
   position?: number;
   formState?: "waiting" | "verifying" | "refused" | "accepted";
   otherState?: any;
+  parentClassName?: string;
+  onChange?: (value: boolean) => void;
 };
 
 export default function Checkbox({
@@ -29,6 +31,8 @@ export default function Checkbox({
   oneOfMany = false,
   formState,
   otherState = undefined,
+  parentClassName = "",
+  onChange
 }: Props) {
   const [inValidation, setInValidation] = useState<
     undefined | "waiting" | "verifying" | "refused" | "accepted"
@@ -74,7 +78,7 @@ export default function Checkbox({
   }, [formState]);
 
   return (
-    <div className={`flex w-full`}>
+    <div className={`flex w-full ${parentClassName}`}>
       <input
         type="checkbox"
         id={name}
@@ -87,7 +91,7 @@ export default function Checkbox({
           ${isDisabled
             ? "pointer-events-none cursor-not-allowed opacity-60"
             : "cursor-pointer opacity-100"
-          }`}
+          } ${className}`}
         disabled={isDisabled}
         required={isRequired}
         readOnly={isReadOnly}
@@ -103,6 +107,7 @@ export default function Checkbox({
             }
             allDataObject[oneOfMany][name] = e.target.checked;
           }
+          onChange && onChange(e.target.checked);
         }}
       />
       <label className="cursor-pointer" htmlFor={name}>

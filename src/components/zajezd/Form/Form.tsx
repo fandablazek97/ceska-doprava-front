@@ -83,7 +83,7 @@ function FormStater({
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
-  const [seats, setSeats] = useState<number>(0);
+  const [seats, setSeats] = useState(false);
   const [passengers, setPassengers] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
   const [cityPrice, setCityPrice] = useState<number>(0);
@@ -119,7 +119,7 @@ function FormStater({
   }, []);
 
   useEffect(() => {
-    setCalculatedPrice((price + cityPrice) * passengers + (passengers * 200));
+    setCalculatedPrice((price + cityPrice) * passengers + (seats ? passengers * 200 : 0));
   }, [price, cityPrice, passengers, seats])
 
   function verifying(e: any) {
@@ -292,6 +292,8 @@ function FormStater({
           requiredArray={requiredArray}
           formState={formState}
           cityPrice={cityPrice}
+          seats={seats}
+          setSeats={setSeats}
         />
         <Passengers
           passengers={passengers}

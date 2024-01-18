@@ -1,4 +1,5 @@
 import Heading from "@components/bricks/Heading";
+import Checkbox from "@components/forms/Checkbox";
 import ComboSelect from "@components/forms/ComboSelect";
 import Input from "@components/forms/Input";
 import Select from "@components/forms/Select";
@@ -19,6 +20,8 @@ type Props = {
   requiredArray: any;
   setPriceByCity: any;
   cityPrice: any;
+  seats: boolean;
+  setSeats: (value: boolean) => void;
 };
 
 export default function Trip({
@@ -30,7 +33,9 @@ export default function Trip({
   allDataObject,
   requiredArray,
   setPriceByCity,
-  cityPrice
+  cityPrice,
+  seats,
+  setSeats,
 }: Props) {
   useEffect(() => {
     if (allDataObject.price === undefined) {
@@ -124,9 +129,16 @@ export default function Trip({
           Vybrané místo je za příplatek: {cityPrice} Kč
         </p>
       }
-      <p className="mt-12 text-sm font-medium">
-        Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel.
-      </p>
+
+      <Checkbox
+        allDataObject={allDataObject}
+        requiredArray={requiredArray}
+        label="Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel."
+        name="mistenka"
+        formState={formState}
+        parentClassName="mt-10"
+        onChange={(value) => setSeats(value)}
+      />
       <Textarea
         className="mt-5"
         name="comment"
