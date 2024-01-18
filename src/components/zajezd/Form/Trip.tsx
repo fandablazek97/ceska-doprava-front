@@ -133,10 +133,10 @@ export default function Trip({
       <Checkbox
         allDataObject={allDataObject}
         requiredArray={requiredArray}
-        label="CHCI MÍSTENKY"
+        label="Chci místenky"
         name="mistenka"
         formState={formState}
-        parentClassName="mt-10 font-semibold"
+        parentClassName="mt-10 font-semibold text-black"
         onChange={(value) => setSeats(value)}
       />
       <p className="mt-3 text-sm font-medium">
