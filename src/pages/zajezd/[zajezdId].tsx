@@ -146,7 +146,7 @@ export async function getStaticProps({ params }: any) {
 
 export async function getStaticPaths() {
   const data = (
-    await (await fetch(ipToFetch + "/api/zajezds?fields[0]=id&sort[0]=id&pagination[page]=1&pagination[pageSize]=100")).json()
+    await (await fetch(ipToFetch + "/api/zajezds?fields[0]=id&sort[0]=id&pagination[page]=1&pagination[pageSize]=1000")).json()
   ).data;
 
   const paths = Object.entries(data).map((zajezd: any) => {
