@@ -198,6 +198,7 @@ function FormStater({
           mistoChor: allDataObject.zpatecni && allDataObject.pointHr,
           datumCr: allDataObject.dateCz && allDataObject.dateCz,
           datumChor: allDataObject.dateHr && allDataObject.dateHr,
+          mistenka: allDataObject.mistenka ? "Ano" : "Ne",
           jm1: allDataObject.names && allDataObject.names.names1 && allDataObject.names.names1,
           jm2: allDataObject.names && allDataObject.names.names2 && allDataObject.names.names2,
           jm3: allDataObject.names && allDataObject.names.names3 && allDataObject.names.names3,
