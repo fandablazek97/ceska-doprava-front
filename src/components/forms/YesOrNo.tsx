@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 type Props = {
     name: string;
     label: string | React.ReactNode;
+    passengers?: number;
+    setPassengers?: any;
     isDisabled?: boolean;
     isRequired?: boolean;
     isReadOnly?: boolean;
@@ -19,6 +21,8 @@ type Props = {
 export default function YesOrNo({
     name,
     label,
+    passengers,
+    setPassengers,
     isRequired = false,
     defaultValue = "",
     allDataObject,
@@ -30,7 +34,7 @@ export default function YesOrNo({
     const [inValidation, setInValidation] = useState<
         undefined | "waiting" | "verifying" | "refused" | "accepted"
     >("waiting");
-    const [checkState, setCheckState] = useState<boolean | string>("");
+    const [checkState, setCheckState] = useState<boolean | string>(defaultValue);
 
     useEffect(() => {
         if (oneOfMany === false) {
@@ -68,6 +72,11 @@ export default function YesOrNo({
     }, [formState]);
 
     function setForm(value: boolean) {
+        if (value === checkState) return;
+        if (passengers !== undefined && setPassengers) {
+            if (value) setPassengers(passengers + 1);
+            else if (!value && checkState) setPassengers(passengers - 1);
+        }
         setCheckState(value);
         if (oneOfMany === false) {
             if (otherState !== undefined) {

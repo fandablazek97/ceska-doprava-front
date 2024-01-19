@@ -4,12 +4,16 @@ import Input from "@components/forms/Input";
 import YesOrNo from "@components/forms/YesOrNo";
 
 type Props = {
+  passengers: number
+  setPassengers: any;
   formState: "waiting" | "verifying" | "refused" | "accepted";
   allDataObject: object;
   requiredArray: string[] | object[];
 };
 
 export default function Customer({
+  passengers,
+  setPassengers,
   formState,
   allDataObject,
   requiredArray,
@@ -65,6 +69,8 @@ export default function Customer({
         />
       </div>
       <YesOrNo
+        passengers={passengers}
+        setPassengers={setPassengers}
         allDataObject={allDataObject}
         requiredArray={requiredArray}
         label="- Objednatel zároveň cestuje"

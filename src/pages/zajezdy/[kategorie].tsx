@@ -2,6 +2,7 @@ import BasicHero from "@components/bricks/BasicHero";
 import Seo from "@components/root/seo/Seo";
 import ContentAndFilter from "@components/zajezdy/ContentAndFilter";
 import Downloads from "@components/zajezdy/Downloads";
+import { tagAndText } from "@components/zajezdy/References";
 import { ipToFetch } from "@configs/globalConfig";
 
 type Props = {
@@ -29,7 +30,7 @@ export default function Exkurze({ calendar, catalog, conditions, zajezdData, cat
       </BasicHero>
 
       {/* Zobrazovač zájezdů + Filtr + veškerá logika*/}
-      <ContentAndFilter category={category} zajezdData={zajezdData}/>
+      <ContentAndFilter category={category} zajezdData={zajezdData} />
 
       {/* Kalendář, Katalog, Podmínky -> ke stažení */}
       <Downloads
@@ -41,7 +42,7 @@ export default function Exkurze({ calendar, catalog, conditions, zajezdData, cat
   );
 }
 
-export async function getStaticProps({params}: any) {
+export async function getStaticProps({ params }: any) {
 
   /* ZAJEZD */
   const populateQuery =
@@ -58,20 +59,20 @@ export async function getStaticProps({params}: any) {
 
   const zajezdRes = await fetch(
     ipToFetch +
-      "/api/zajezds" +
-      populateQuery +
-      dateQuery +
-      fieldsQuery +
-      sortQuery +
-      paginationQuery +
-      categoryQuery
+    "/api/zajezds" +
+    populateQuery +
+    dateQuery +
+    fieldsQuery +
+    sortQuery +
+    paginationQuery +
+    categoryQuery
   );
 
   const zajezdDataAndMeta = await zajezdRes.json();
   const zajezdData = zajezdDataAndMeta.data ? zajezdDataAndMeta.data : null;
 
 
-/* INFO */
+  /* INFO */
   const infoRes = await fetch(
     ipToFetch +
     "/api/informace?populate[katalog][fields][0]=url&populate[kalendar][fields][1]=url&populate[podminky][fields][2]=url"
@@ -91,9 +92,7 @@ export async function getStaticProps({params}: any) {
 }
 
 export async function getStaticPaths() {
-  const allCategories = ["vse", "novinky", "jednodenni", "chorvatsko", "lyzovani", "exkurze", "muzikaly", "adventni", "badfussing"]
-
-  const paths = allCategories.map((category: any) => {
+  const paths = ["vse", ...Object.keys(tagAndText)].map((category: any) => {
     return {
       params: { kategorie: category },
     };

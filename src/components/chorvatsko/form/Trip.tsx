@@ -86,7 +86,6 @@ export default function Trip({
         label="Zpáteční cesta?"
         name="zpatecni"
         formState={formState}
-        className="pt-10"
         otherState={setZpatecni}
       />
       <div className="mt-3 mb-7 grid  grid-cols-1 gap-10 md:grid-cols-2">
@@ -144,6 +143,17 @@ export default function Trip({
           </Select>
         )}
       </div>
+      <Checkbox
+        allDataObject={allDataObject}
+        requiredArray={requiredArray}
+        label="Chci místenky"
+        name="mistenka"
+        formState={formState}
+        parentClassName="mt-10 font-semibold text-black"
+      />
+      <p className="mt-3 text-sm font-medium">
+        Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel.
+      </p>
       <Textarea
         className="mt-10"
         name="comment"
