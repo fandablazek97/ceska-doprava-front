@@ -100,7 +100,7 @@ function FormStater({
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
-  const [passengers, setPassengers] = useState<number>(0);
+  const [passengers, setPassengers] = useState<number>(1);
 
   function verifying() {
     setFormState("verifying");
@@ -191,7 +191,6 @@ function FormStater({
           phone: allDataObject.phone,
           narozeni: allDataObject.birth,
           email: allDataObject.email,
-          cestuje: allDataObject.cestuje ? "Ano" : "Ne",
           komentar: allDataObject.comment,
           zpatecni: allDataObject.zpatecni ? "Ano" : "Ne",
           mistoCr: allDataObject.pointCz && allDataObject.pointCz,
@@ -206,6 +205,7 @@ function FormStater({
           jm5: allDataObject.names && allDataObject.names.names5 && allDataObject.names.names5,
           jm6: allDataObject.names && allDataObject.names.names6 && allDataObject.names.names6,
           jm7: allDataObject.names && allDataObject.names.names7 && allDataObject.names.names7,
+          jm8: allDataObject.names && allDataObject.names.names8 && allDataObject.names.names8,
           nar1: allDataObject.births && allDataObject.births.births1 && allDataObject.births.births1,
           nar2: allDataObject.births && allDataObject.births.births2 && allDataObject.births.births2,
           nar3: allDataObject.births && allDataObject.births.births3 && allDataObject.births.births3,
@@ -213,6 +213,7 @@ function FormStater({
           nar5: allDataObject.births && allDataObject.births.births5 && allDataObject.births.births5,
           nar6: allDataObject.births && allDataObject.births.births6 && allDataObject.births.births6,
           nar7: allDataObject.births && allDataObject.births.births7 && allDataObject.births.births7,
+          nar8: allDataObject.births && allDataObject.births.births8 && allDataObject.births.births8,
           mist1: allDataObject.points && allDataObject.points.points1 && allDataObject.points.points1,
           mist2: allDataObject.points && allDataObject.points.points2 && allDataObject.points.points2,
           mist3: allDataObject.points && allDataObject.points.points3 && allDataObject.points.points3,
@@ -220,6 +221,7 @@ function FormStater({
           mist5: allDataObject.points && allDataObject.points.points5 && allDataObject.points.points5,
           mist6: allDataObject.points && allDataObject.points.points6 && allDataObject.points.points6,
           mist7: allDataObject.points && allDataObject.points.points7 && allDataObject.points.points7,
+          mist8: allDataObject.points && allDataObject.points.points8 && allDataObject.points.points8,
           tel1: allDataObject.phones && allDataObject.phones.phones1 && allDataObject.phones.phones1,
           tel2: allDataObject.phones && allDataObject.phones.phones2 && allDataObject.phones.phones2,
           tel3: allDataObject.phones && allDataObject.phones.phones3 && allDataObject.phones.phones3,
@@ -227,6 +229,7 @@ function FormStater({
           tel5: allDataObject.phones && allDataObject.phones.phones5 && allDataObject.phones.phones5,
           tel6: allDataObject.phones && allDataObject.phones.phones6 && allDataObject.phones.phones6,
           tel7: allDataObject.phones && allDataObject.phones.phones7 && allDataObject.phones.phones7,
+          tel8: allDataObject.phones && allDataObject.phones.phones8 && allDataObject.phones.phones8,
 
         },
         "user_2tNsUaIQSULo6wFXKZVCs"

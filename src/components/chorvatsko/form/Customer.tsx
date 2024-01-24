@@ -1,7 +1,6 @@
 import Heading from "@components/bricks/Heading";
 import DatePicker from "@components/forms/DatePicker";
 import Input from "@components/forms/Input";
-import YesOrNo from "@components/forms/YesOrNo";
 
 type Props = {
   formState: "waiting" | "verifying" | "refused" | "accepted";
@@ -17,7 +16,7 @@ export default function Customer({
   return (
     <div className="mt-16">
       <Heading level={3} size={"base"} className="lg:!text-3xl">
-        Objednatel
+        Fakturační údaje
       </Heading>
       <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
         <Input
@@ -64,14 +63,6 @@ export default function Customer({
           formState={formState}
         />
       </div>
-      <YesOrNo
-        allDataObject={allDataObject}
-        requiredArray={requiredArray}
-        label="- Objednatel zároveň cestuje"
-        name="cestuje"
-        formState={formState}
-        isRequired
-      />
     </div>
   );
 }
