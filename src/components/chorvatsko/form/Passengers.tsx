@@ -1,3 +1,4 @@
+import Alert from "@components/bricks/Alert";
 import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
 import ComboSelect from "@components/forms/ComboSelect";
@@ -61,9 +62,10 @@ export default function Passengers({
 
   return (
     <div className="mt-16 flex flex-col">
-      <Heading level={3} size={"base"} className="lg:!text-3xl">
+      <Heading level={3} size={"base"} className="lg:!text-3xl mb-3">
         Seznam cestujících
       </Heading>
+      <Alert isDismissable={false} status="info" title="Informace" text="Seznam cestující musí obsahovat všechny cestující. Pokud objednávající také cestuje, jeho ůdaje musí být znovu vyplněny." />
       {allOthers}
       <div className="mt-10 flex flex-row gap-5">
         {allOthers.length < 8 && (
