@@ -84,7 +84,7 @@ function FormStater({
     "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
   const [seats, setSeats] = useState(false);
-  const [passengers, setPassengers] = useState<number>(0);
+  const [passengers, setPassengers] = useState<number>(1);
   const [price, setPrice] = useState<number>(0);
   const [cityPrice, setCityPrice] = useState<number>(0);
   const [calculatedPrice, setCalculatedPrice] = useState<number>(0);
@@ -220,7 +220,6 @@ function FormStater({
           narozeni: allDataObject.birth,
           phone: allDataObject.phone,
           email: allDataObject.email,
-          cestuje: allDataObject.cestuje ? "Ano" : "Ne",
           mistenka: allDataObject.mistanka ? "Ano" : "Ne",
           kod: allDataObject.code,
           termin: allDataObject.date,
@@ -233,13 +232,15 @@ function FormStater({
           jm5: allDataObject.names && allDataObject.names.names5 && allDataObject.names.names5,
           jm6: allDataObject.names && allDataObject.names.names6 && allDataObject.names.names6,
           jm7: allDataObject.names && allDataObject.names.names7 && allDataObject.names.names7,
+          jm8: allDataObject.names && allDataObject.names.names8 && allDataObject.names.names8,
           nar1: allDataObject.births && allDataObject.births.births1 && allDataObject.births.births1,
           nar2: allDataObject.births && allDataObject.births.births2 && allDataObject.births.births2,
           nar3: allDataObject.births && allDataObject.births.births3 && allDataObject.births.births3,
           nar4: allDataObject.births && allDataObject.births.births4 && allDataObject.births.births4,
           nar5: allDataObject.births && allDataObject.births.births5 && allDataObject.births.births5,
           nar6: allDataObject.births && allDataObject.births.births6 && allDataObject.births.births6,
-          nar7: allDataObject.births && allDataObject.births.births7 && allDataObject.births.births7
+          nar7: allDataObject.births && allDataObject.births.births7 && allDataObject.births.births7,
+          nar8: allDataObject.births && allDataObject.births.births8 && allDataObject.births.births8
         },
         "user_2tNsUaIQSULo6wFXKZVCs"
       )

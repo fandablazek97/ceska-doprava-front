@@ -61,12 +61,12 @@ export default function Passengers({
 
   return (
     <div className="mt-16 flex flex-col">
-      <Heading level={3} size={"base"} className="lg:!text-3xl">
-        Cestující
+      <Heading level={3} size={"base"} className="lg:!text-3xl mb-3">
+        Seznam cestujících
       </Heading>
       {allOthers}
       <div className="mt-10 flex flex-row gap-5">
-        {allOthers.length < 7 && (
+        {allOthers.length < 8 && (
           <Button
             onClick={() => setPassengers(passengers + 1)}
             color="dark"
@@ -77,7 +77,7 @@ export default function Passengers({
             Přidat cestujícího
           </Button>
         )}
-        {allOthers.length >= 1 && (
+        {allOthers.length >= 2 && (
           <Button
             onClick={() => {
               delete allDataObject.names["names" + passengers];

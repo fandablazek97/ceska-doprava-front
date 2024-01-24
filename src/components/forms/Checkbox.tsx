@@ -117,14 +117,14 @@ export default function Checkbox({
           isRequired &&
           oneOfMany === false &&
           (allDataObject[name] === "" || allDataObject[name] === "false" || (name === "gdpr" && allDataObject[name] === false)) && (
-            <span className="ml-1 text-primary">Toto pole je povinné!</span>
+            <span className="ml-1 text-primary font-semibold">Toto pole je povinné!</span>
           )}
         {inValidation === "refused" &&
           isRequired &&
           typeof oneOfMany === "string" &&
           (allDataObject[oneOfMany][name] === "" ||
             allDataObject[oneOfMany][name] === "false" || (name === "gdpr" && allDataObject[name] === false)) && (
-            <span className="ml-1 text-primary">Toto pole je povinné!</span>
+            <span className="ml-1 text-primary font-semibold">Toto pole je povinné!</span>
           )}
       </label>
     </div>
