@@ -2,7 +2,6 @@ import Heading from "@components/bricks/Heading";
 import Checkbox from "@components/forms/Checkbox";
 import ComboSelect from "@components/forms/ComboSelect";
 import Select from "@components/forms/Select";
-import Textarea from "@components/forms/Textarea";
 import { useState } from "react";
 
 type Props = {
@@ -143,23 +142,6 @@ export default function Trip({
           </Select>
         )}
       </div>
-      <Checkbox
-        allDataObject={allDataObject}
-        requiredArray={requiredArray}
-        label="Chci místenky"
-        name="mistenka"
-        formState={formState}
-        parentClassName="mt-10 font-semibold text-black"
-      />
-      <p className="mt-3 text-sm font-medium">
-        Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel.
-      </p>
-      <Textarea
-        className="mt-10"
-        name="comment"
-        label="Poznámka k objednávce"
-        allDataObject={allDataObject}
-      />
     </div>
   );
 }
