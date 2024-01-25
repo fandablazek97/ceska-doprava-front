@@ -62,7 +62,7 @@ export default function Passengers({
   return (
     <div className="mt-16 flex flex-col">
       <Heading level={3} size={"base"} className="lg:!text-3xl mb-3">
-        Seznam cestujících
+        Seznam všech cestujících
       </Heading>
       {allOthers}
       <div className="mt-10 flex flex-row gap-5">
@@ -136,7 +136,7 @@ function AddOthers({
     });
   }
   return (
-    <div className="border-b-1 mt-10 grid grid-cols-1 gap-10 border-gray-200 pb-6 md:grid-cols-2">
+    <div className="border-b-1 mt-10 grid grid-cols-1 gap-10 border-gray-200 md:grid-cols-2">
       <Input
         className="mt-3 border-none bg-gray-100"
         name={`names${id}`}

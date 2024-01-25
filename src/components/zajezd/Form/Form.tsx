@@ -11,6 +11,7 @@ import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
+import Textarea from "@components/forms/Textarea";
 import "public/fonts/DejaVuSans.js";
 import { zajezd64 } from "public/images/pdfs/zajezd64";
 
@@ -303,6 +304,25 @@ function FormStater({
           allDataObject={allDataObject}
           requiredArray={requiredArray}
           formState={formState}
+        />
+
+        <Checkbox
+          allDataObject={allDataObject}
+          requiredArray={requiredArray}
+          label="Chci místenky"
+          name="mistenka"
+          formState={formState}
+          parentClassName="mt-16 font-semibold text-black"
+          onChange={(value) => setSeats(value)}
+        />
+        <p className="mt-3 text-sm font-medium">
+          Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel.
+        </p>
+        <Textarea
+          className="mt-5"
+          name="comment"
+          label="Vaše poznámka"
+          allDataObject={allDataObject}
         />
         <div className="mt-10 flex flex-col">
           <span className="text-lg font-semibold text-rich">Celková cena:</span>
