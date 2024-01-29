@@ -61,9 +61,10 @@ export default function Passengers({
 
   return (
     <div className="mt-16 flex flex-col">
-      <Heading level={3} size={"base"} className="lg:!text-3xl mb-3">
+      <Heading level={3} size={"base"} className="lg:!text-3xl">
         Seznam všech cestujících
       </Heading>
+      <Heading level={4} size={"sm"} className="mt-5">Celkový počet cestujících: <span className="font-semibold">{passengers}</span></Heading>
       {allOthers}
       <div className="mt-10 flex flex-row gap-5">
         {allOthers.length < 8 && (

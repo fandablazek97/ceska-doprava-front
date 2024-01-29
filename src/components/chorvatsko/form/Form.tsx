@@ -231,7 +231,7 @@ function FormStater({
           tel6: allDataObject.phones && allDataObject.phones.phones6 && allDataObject.phones.phones6,
           tel7: allDataObject.phones && allDataObject.phones.phones7 && allDataObject.phones.phones7,
           tel8: allDataObject.phones && allDataObject.phones.phones8 && allDataObject.phones.phones8,
-
+          cestujicich: passengers
         },
         "user_2tNsUaIQSULo6wFXKZVCs"
       )
@@ -296,6 +296,21 @@ function FormStater({
           allDataObject={allDataObject}
         />
       </div>
+      <div>
+        <Heading level={3} size={"base"} className="lg:!text-3xl mt-10">
+          Shrnutí objednávky
+        </Heading>
+        <div className="flex flex-col mt-5">
+          <div className="flex flex-row gap-x-3 items-end">
+            <span className="font-semibold text-rich pb-0.5">Celkový počet cestujících:</span>
+            <span className="text-xl font-bold text-rich">
+              {passengers}
+            </span>
+          </div>
+        </div>
+      </div>
+      <Alert isDismissable={false} className="mt-5" status="warning" title="Upozornění" text="Pokud vyplňujete tento formulář a jste zároveň jedním z cestujících, musíte být uvedení v seznamu cestujících. Seznam cestujících musí být kompletní seznam osob včetně objednavatele." />
+
 
       <div className="mt-16 flex flex-col">
         <Checkbox

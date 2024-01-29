@@ -52,7 +52,7 @@ export default function Reviews({ reviews }: Props) {
               disableOnInteraction: true,
             }}
           >
-            {data.map((review: any, key: number) => (
+            {data.map((review: any, key: number) => review.attributes.text.length < 300 && (
               <SwiperSlide key={key} className="pb-16">
                 <ReviewCard
                   name={review.attributes.jmeno}
