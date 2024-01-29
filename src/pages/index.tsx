@@ -14,7 +14,7 @@ type Props = {
   reviews: any;
 };
 
-export default function Home({ trips,reviews }: Props) {
+export default function Home({ trips, reviews }: Props) {
   return (
     <>
       <Seo
@@ -25,7 +25,7 @@ export default function Home({ trips,reviews }: Props) {
       <Hero />
 
       {/* Nejbližší odjezdy */}
-      <NearestDepartures data={trips}/>
+      <NearestDepartures data={trips} />
 
       {/* Aftermovie */}
       <Aftermovie />
@@ -64,20 +64,20 @@ export async function getStaticProps() {
   const fieldsQuery = "&fields[0]=nazev&fields[1]=stat";
   const paginationQuery = "&pagination[pageSize]=4";
   const tripsRes =
-  await fetch(
-    ipToFetch +
+    await fetch(
+      ipToFetch +
       "/api/zajezds" +
       populateQuery +
       filtersQuery +
       fieldsQuery +
       paginationQuery
-  )
+    )
   const tripsDataAndMeta = await tripsRes.json();
   const tripsData = tripsDataAndMeta.data;
 
   const reviewsRes = await fetch(
     ipToFetch +
-      "/api/recenzes?populate[fotka][fields][0]=url&pagination[pageSize]=4"
+    "/api/recenzes?populate[fotka][fields][0]=url"
   );
   const reviewsDataAndMeta = await reviewsRes.json();
   const reviewsRata = reviewsDataAndMeta.data;

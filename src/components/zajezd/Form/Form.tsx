@@ -241,7 +241,8 @@ function FormStater({
           nar5: allDataObject.births && allDataObject.births.births5 && allDataObject.births.births5,
           nar6: allDataObject.births && allDataObject.births.births6 && allDataObject.births.births6,
           nar7: allDataObject.births && allDataObject.births.births7 && allDataObject.births.births7,
-          nar8: allDataObject.births && allDataObject.births.births8 && allDataObject.births.births8
+          nar8: allDataObject.births && allDataObject.births.births8 && allDataObject.births.births8,
+          cestujicich: passengers
         },
         "user_2tNsUaIQSULo6wFXKZVCs"
       )
@@ -324,14 +325,26 @@ function FormStater({
           label="Vaše poznámka"
           allDataObject={allDataObject}
         />
-        <div className="mt-10 flex flex-col">
-          <span className="text-lg font-semibold text-rich">Celková cena:</span>
-          <span className="text-3xl font-bold text-rich">
-            {numberWithSpaces(calculatedPrice)}
-            {" Kč"}
-          </span>
+        <Heading level={3} size={"base"} className="lg:!text-3xl mt-10">
+          Shrnutí objednávky
+        </Heading>
+        <div className="flex flex-col mt-5">
+          <div className="flex flex-row gap-x-3 items-end">
+            <span className="font-semibold text-rich pb-0.5">Celkový počet cestujících:</span>
+            <span className="text-xl font-bold text-rich">
+              {passengers}
+            </span>
+          </div>
+          <div className="flex flex-row gap-x-3 items-end">
+            <span className="font-semibold text-rich pb-0.5">Celková cena:</span>
+            <span className="text-xl font-bold text-rich">
+              {numberWithSpaces(calculatedPrice)}
+              {" Kč"}
+            </span>
+          </div>
         </div>
       </div>
+      <Alert isDismissable={false} className="mt-5" status="warning" title="Upozornění" text="Pokud vyplňujete tento formulář a jste zároveň jedním z cestujících, musíte být uvedení v seznamu cestujících. Seznam cestujících musí být kompletní seznam osob včetně objednavatele." />
 
       <div className="mt-8 flex flex-col">
         <Checkbox
