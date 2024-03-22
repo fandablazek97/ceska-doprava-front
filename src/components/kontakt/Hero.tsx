@@ -93,13 +93,13 @@ export default function Hero() {
           </Heading>
           <p>Zpracování faktur, objednávky, administrace webu</p>
           <div>
-            <a
+            {/* <a
               href={"tel:+420 602 469 374"}
               className="c-link-3-a flex items-center font-medium text-primary"
             >
               <HiPhone className="mr-2" />
               +420 602 469 374
-            </a>
+            </a> */}
             <a
               href={"mailto:fakturace.ceskadoprava@email.cz"}
               className="c-link-3-a flex items-center font-medium text-primary"
