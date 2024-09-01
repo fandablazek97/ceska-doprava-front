@@ -66,7 +66,7 @@ export default function Textarea({
         }
       }
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     setInValidation(formState);
@@ -98,12 +98,11 @@ export default function Textarea({
         className={`mt-3 h-auto w-full resize-y rounded-md border
       border-body-200 bg-body-200 px-4 py-3
       text-base font-normal text-gray-900 transition duration-150
-      placeholder:text-body placeholder:opacity-60
-      focus:border-primary focus:bg-white focus:!outline-none focus:ring-1 focus:ring-primary ${
-        isDisabled
-          ? "pointer-events-none cursor-not-allowed opacity-60"
-          : "cursor-text opacity-100"
-      }`}
+      placeholder:opacity-60
+      focus:border-primary focus:bg-white focus:!outline-none focus:ring-1 focus:ring-primary ${isDisabled
+            ? "pointer-events-none cursor-not-allowed opacity-60"
+            : "cursor-text opacity-100"
+          }`}
         disabled={isDisabled}
         required={isRequired}
         onChange={(e: any) => {

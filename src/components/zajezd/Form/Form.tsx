@@ -11,6 +11,7 @@ import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
+import Select from "@components/forms/Select";
 import Textarea from "@components/forms/Textarea";
 import "public/fonts/DejaVuSans.js";
 import { zajezd64 } from "public/images/pdfs/zajezd64";
@@ -221,7 +222,8 @@ function FormStater({
           narozeni: allDataObject.birth,
           phone: allDataObject.phone,
           email: allDataObject.email,
-          mistenka: allDataObject.mistanka ? "Ano" : "Ne",
+          mistenka: allDataObject.mistoSelect,
+          mistenkaKomentar: allDataObject.mistoComment,
           kod: allDataObject.code,
           termin: allDataObject.date,
           misto: allDataObject.departurePoint,
@@ -242,7 +244,7 @@ function FormStater({
           nar6: allDataObject.births && allDataObject.births.births6 && allDataObject.births.births6,
           nar7: allDataObject.births && allDataObject.births.births7 && allDataObject.births.births7,
           nar8: allDataObject.births && allDataObject.births.births8 && allDataObject.births.births8,
-          cestujicich: passengers
+          cestujicich: passengers,
         },
         "peXEQ-b1oFp3uAQvI"
       )
@@ -306,24 +308,56 @@ function FormStater({
           requiredArray={requiredArray}
           formState={formState}
         />
-
-        <Checkbox
-          allDataObject={allDataObject}
+        <Select
+          name="mistoSelect"
+          label="Chcete objednat místenky?"
+          isRequired={true}
           requiredArray={requiredArray}
-          label="Chci místenky"
-          name="mistenka"
+          allDataObject={allDataObject}
           formState={formState}
-          parentClassName="mt-16 font-semibold text-black"
-          onChange={(value) => setSeats(value)}
+          setFunction={(value: any) => {
+            if (value === 1) {
+              setSeats(true);
+            } else {
+              setSeats(false);
+              allDataObject.mistoComment = "";
+            }
+          }}
+          className="mt-14"
+          rare="returnIndex"
+          emptyValue="Vyberte možnost"
+        >
+
+          {["Vyberte možnost",
+            "Ano (vyberu si místa sám) + 200 Kč / os",
+            "Ne (je mi jedno, kde budeme sedět) - zdarma"].map((word: string, key: number) => (
+              <option value={word} key={key}>
+                {word}
+              </option>
+            ))}
+        </Select>
+        <Textarea
+          className="mt-5 mb-14"
+          name="mistoComment"
+          label="Specifikujte místa k sezení"
+          requiredArray={requiredArray}
+          allDataObject={allDataObject}
+          rows={2}
+          isDisabled={!seats}
+          isRequired={seats}
+          key={"ref" + seats}
+          defaultValue={allDataObject.mistoComment}
+          formState={formState}
+          placeholder="Např. 3. řada sedadel na pravé straně (bráno po směru jízdy autobusu)"
         />
-        <p className="mt-3 text-sm font-medium">
-          Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel.
-        </p>
+
+
         <Textarea
           className="mt-5"
           name="comment"
           label="Vaše poznámka"
           allDataObject={allDataObject}
+          formState={formState}
         />
         <Heading level={3} size={"base"} className="lg:!text-3xl mt-10">
           Shrnutí objednávky

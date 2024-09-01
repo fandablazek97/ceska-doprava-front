@@ -11,6 +11,7 @@ import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
+import Select from "@components/forms/Select";
 import Textarea from "@components/forms/Textarea";
 import "public/fonts/DejaVuSans.js";
 import { chorvatsko64 } from "public/images/pdfs/chorvatsko64";
@@ -102,6 +103,7 @@ function FormStater({
     "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
   const [passengers, setPassengers] = useState<number>(1);
+  const [seats, setSeats] = useState(false);
 
   function verifying() {
     setFormState("verifying");
@@ -198,7 +200,8 @@ function FormStater({
           mistoChor: allDataObject.zpatecni && allDataObject.pointHr,
           datumCr: allDataObject.dateCz && allDataObject.dateCz,
           datumChor: allDataObject.dateHr && allDataObject.dateHr,
-          mistenka: allDataObject.mistenka ? "Ano" : "Ne",
+          mistenka: allDataObject.mistoSelect,
+          mistenkaKomentar: allDataObject.mistoComment,
           jm1: allDataObject.names && allDataObject.names.names1 && allDataObject.names.names1,
           jm2: allDataObject.names && allDataObject.names.names2 && allDataObject.names.names2,
           jm3: allDataObject.names && allDataObject.names.names3 && allDataObject.names.names3,
@@ -278,22 +281,54 @@ function FormStater({
           departurePoints={departurePoints}
         />
 
-        <Checkbox
-          allDataObject={allDataObject}
+        <Select
+          name="mistoSelect"
+          label="Chcete objednat místenky?"
+          isRequired={true}
           requiredArray={requiredArray}
-          label="Chci místenky"
-          name="mistenka"
-          formState={formState}
-          parentClassName="mt-16 font-semibold text-black"
-        />
-        <p className="mt-3 text-sm font-medium">
-          Možnost zakoupení místenek (200 Kč / osoba). Případný požadavek uveďte do poznámky. Specifikujte požadovanou část autobusu. Např. 3. řada sedadel.
-        </p>
-        <Textarea
-          className="mt-10"
-          name="comment"
-          label="Poznámka k objednávce"
           allDataObject={allDataObject}
+          formState={formState}
+          setFunction={(value: any) => {
+            if (value === 1) {
+              setSeats(true);
+            } else {
+              setSeats(false);
+              allDataObject.mistoComment = "";
+            }
+          }}
+          className="mt-14"
+          rare="returnIndex"
+          emptyValue="Vyberte možnost"
+        >
+
+          {["Vyberte možnost",
+            "Ano (vyberu si místa sám) + 200 Kč / os",
+            "Ne (je mi jedno, kde budeme sedět) - zdarma"].map((word: string, key: number) => (
+              <option value={word} key={key}>
+                {word}
+              </option>
+            ))}
+        </Select>
+        <Textarea
+          className="mt-5 mb-14"
+          name="mistoComment"
+          label="Specifikujte místa k sezení"
+          requiredArray={requiredArray}
+          allDataObject={allDataObject}
+          rows={2}
+          isDisabled={!seats}
+          isRequired={seats}
+          key={"ref" + seats}
+          defaultValue={allDataObject.mistoComment}
+          formState={formState}
+          placeholder="Např. 3. řada sedadel na pravé straně (bráno po směru jízdy autobusu)"
+        />
+        <Textarea
+          className="mt-5"
+          name="comment"
+          label="Vaše poznámka"
+          allDataObject={allDataObject}
+          formState={formState}
         />
       </div>
       <div>
