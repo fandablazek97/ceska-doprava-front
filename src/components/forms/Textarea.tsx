@@ -74,7 +74,7 @@ export default function Textarea({
 
   return (
     <Tag className={`block w-full ${className}`}>
-      <label className="cursor-pointer font-semibold text-black" htmlFor={name}>
+      <label className={`cursor-pointer font-semibold text-black ${isDisabled && "opacity-50 font-normal cursor-default"}`} htmlFor={name}>
         {label}
         {isRequired && <span className="ml-1 text-primary">*</span>}
         {inValidation === "refused" &&

@@ -1,12 +1,13 @@
 import Heading from "@components/bricks/Heading";
 import DatePicker from "@components/forms/DatePicker";
 import Input from "@components/forms/Input";
+import { returnIsPhoneNumber } from "./Form";
 
 type Props = {
   passengers: number
   setPassengers: any;
   formState: "waiting" | "verifying" | "refused" | "accepted";
-  allDataObject: object;
+  allDataObject: any;
   requiredArray: string[] | object[];
 };
 
@@ -56,6 +57,7 @@ export default function Customer({
           requiredArray={requiredArray}
           allDataObject={allDataObject}
           formState={formState}
+          errorMessage={allDataObject.phone === "" ? undefined : returnIsPhoneNumber(allDataObject.phone) ? undefined : "Není vyplněno správně!"}
         />
         <Input
           name="email"

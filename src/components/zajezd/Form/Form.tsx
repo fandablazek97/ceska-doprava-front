@@ -122,19 +122,27 @@ function FormStater({
 
   useEffect(() => {
     setCalculatedPrice((price + cityPrice) * passengers + (seats ? passengers * 200 : 0));
-  }, [price, cityPrice, passengers, seats])
+  }, [price, cityPrice, passengers, seats]);
+
+
 
   function verifying(e: any) {
     setFormState("verifying");
     let tempState = "verifying";
     Object.entries(requiredArray).map((e) => {
       if (typeof e[1] === "string") {
-        if (!(e[1] === "gdpr")) {
-          if (e[1] in allDataObject && allDataObject[e[1]] === "") {
+        if (e[1] === "gdpr") {
+          if (allDataObject[e[1]] === false || allDataObject[e[1]] === "") {
             tempState = "refused";
           }
-        } else {
-          if (allDataObject[e[1]] === false || allDataObject[e[1]] === "") {
+        }
+        if ((e[1] === "phone")) {
+          if (allDataObject[e[1]] === "" || !returnIsPhoneNumber(allDataObject[e[1]])) {
+            tempState = "refused";
+          }
+        }
+        else {
+          if (e[1] in allDataObject && allDataObject[e[1]] === "") {
             tempState = "refused";
           }
         }
@@ -397,7 +405,8 @@ function FormStater({
         <Button
           className="my-8 w-fit"
           onClick={(e: any) => verifying(e)}
-          isLoading={formState === "verifying" ? true : false}
+          isLoading={formState === "verifying"}
+          isDisabled={formState !== "waiting"}
         >
           Odeslat objednávku
         </Button>
@@ -419,4 +428,9 @@ function FormStater({
       )}
     </Wrapper>
   );
+}
+
+export function returnIsPhoneNumber(value: string) {
+  const regex = /^(\+?420\s?)?(\d{3}[\s-]?\d{3}[\s-]?\d{3}|\d{9})$/;
+  return regex.test(value);
 }

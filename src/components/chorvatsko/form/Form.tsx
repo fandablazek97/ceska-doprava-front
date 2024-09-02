@@ -13,6 +13,7 @@ import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
 import Select from "@components/forms/Select";
 import Textarea from "@components/forms/Textarea";
+import { returnIsPhoneNumber } from "@components/zajezd/Form/Form";
 import "public/fonts/DejaVuSans.js";
 import { chorvatsko64 } from "public/images/pdfs/chorvatsko64";
 
@@ -110,12 +111,18 @@ function FormStater({
     let tempState = "verifying";
     Object.entries(requiredArray).map((e) => {
       if (typeof e[1] === "string") {
-        if (!(e[1] === "gdpr")) {
-          if (e[1] in allDataObject && allDataObject[e[1]] === "") {
+        if (e[1] === "gdpr") {
+          if (allDataObject[e[1]] === false || allDataObject[e[1]] === "") {
             tempState = "refused";
           }
-        } else {
-          if (allDataObject[e[1]] === false || allDataObject[e[1]] === "") {
+        }
+        if ((e[1] === "phone")) {
+          if (allDataObject[e[1]] === "" || !returnIsPhoneNumber(allDataObject[e[1]])) {
+            tempState = "refused";
+          }
+        }
+        else {
+          if (e[1] in allDataObject && allDataObject[e[1]] === "") {
             tempState = "refused";
           }
         }
@@ -364,7 +371,9 @@ function FormStater({
         <Button
           className="my-8 w-fit"
           onClick={() => verifying()}
-          isLoading={formState === "verifying" ? true : false}
+          isLoading={formState === "verifying"}
+          isDisabled={formState !== "waiting"}
+
         >
           Odeslat objednávku
         </Button>
@@ -381,6 +390,7 @@ function FormStater({
           status="error"
           title="Chyba!"
           text="Zapoměli jste vypnit některá pole"
+          onClose={() => setFormState("waiting")}
         />
       )}
     </Wrapper>

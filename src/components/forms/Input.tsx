@@ -13,6 +13,7 @@ type Props = {
   requiredArray?: any;
   oneOfMany?: boolean | string;
   formState?: "waiting" | "verifying" | "refused" | "accepted";
+  errorMessage?: string;
 };
 
 export default function Input({
@@ -28,6 +29,7 @@ export default function Input({
   requiredArray,
   oneOfMany = false,
   formState,
+  errorMessage
 }: Props) {
   const [inValidation, setInValidation] = useState<
     undefined | "waiting" | "verifying" | "refused" | "accepted"
@@ -80,14 +82,14 @@ export default function Input({
         {inValidation === "refused" &&
           isRequired &&
           oneOfMany === false &&
-          allDataObject[name] === "" && (
-            <span className="ml-1 text-primary">Toto pole je povinné!</span>
+          (allDataObject[name] === "" || errorMessage) && (
+            <span className="ml-1 text-primary">{errorMessage ? errorMessage : "Toto pole je povinné!"}</span>
           )}
         {inValidation === "refused" &&
           isRequired &&
           typeof oneOfMany === "string" &&
-          allDataObject[oneOfMany][name] === "" && (
-            <span className="ml-1 text-primary">Toto pole je povinné!</span>
+          (allDataObject[oneOfMany][name] === "" || errorMessage) && (
+            <span className="ml-1 text-primary">{errorMessage ? errorMessage : "Toto pole je povinné!"}</span>
           )}
       </label>
       <input
@@ -103,6 +105,7 @@ export default function Input({
             ? "pointer-events-none cursor-not-allowed opacity-60"
             : "cursor-text opacity-100"
           }`}
+        pattern="\d*"
         disabled={isDisabled}
         required={isRequired}
         readOnly={isReadOnly}
