@@ -77,7 +77,7 @@ export default function OtherServices() {
           </Link>
         </div>
 
-        <Link href="/zajezdy">
+        <Link href="/zajezdy/vse">
           <a className="group relative isolate aspect-square overflow-hidden rounded-xl md:aspect-[21/9]">
             <Image
               src={"/images/home/otherServices/zajezdy.jpg"}

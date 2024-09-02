@@ -99,14 +99,14 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/zajezdy/#keStazeni">
+              <Link href="/zajezdy/vse/#keStazeni">
                 <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
                   Aktuální katalog
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/zajezdy/#keStazeni">
+              <Link href="/zajezdy/vse/#keStazeni">
                 <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
                   Obchodní podmínky
                 </a>

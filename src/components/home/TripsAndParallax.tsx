@@ -136,7 +136,7 @@ export default function TripsAndParallax() {
             Chorvatsko, Rakousko, Německo a Polsko
           </p>
           <div>
-            <Link href="/zajezdy">
+            <Link href="/zajezdy/vse">
               <Button as="a">Zobrazit zájezdy</Button>
             </Link>
           </div>
