@@ -29,50 +29,51 @@ export default function TripMinimal({
   categories,
   filterCategory,
 }: Props) {
-  let dateFrom: string = "2024-12-31";
-  let dateTo: string | null = "2024-12-31";
+  let dateFrom: string = "2030-12-31";
+  let dateTo: string | null = "2030-12-31";
   let price: number = 0;
   let counterForTags = 0;
   let tempPrice = 0;
   let today = new Date().toISOString().slice(0, 10);
 
+
   dateAndPrice.map((entry, index) => {
     if (index + 1 === dateAndPrice.length) {
       if (
         new Date(entry.datumOd).getTime() >=
-          new Date(today).getTime() &&
+        new Date(today).getTime() &&
         new Date(entry.datumOd).getTime() < new Date(dateFrom).getTime()
       ) {
         if (entry.datumDo === null) {
-          dateFrom = changeDateType(entry.datumOd);
+          dateFrom = changeDateType(entry.datumOd, true);
           dateTo = "none";
           price = entry.cena;
         } else {
           dateFrom = changeDateType(entry.datumOd);
-          dateTo = changeDateType(entry.datumDo);
+          dateTo = changeDateType(entry.datumDo, true);
           price = entry.cena;
         }
       } else {
         if (entry.datumDo === null) {
-          dateFrom = changeDateType(dateFrom);
+          dateFrom = changeDateType(dateFrom, true);
           dateTo = "none";
           price = entry.cena;
         } else {
           dateFrom = changeDateType(dateFrom);
-          if(dateTo) dateTo = changeDateType(dateTo);
+          if (dateTo) dateTo = changeDateType(dateTo, true);
           price = entry.cena;
         }
       }
     } else {
       if (
         new Date(entry.datumOd).getTime() >=
-          new Date(today).getTime() &&
+        new Date(today).getTime() &&
         new Date(entry.datumOd).getTime() < new Date(dateFrom).getTime()
       ) {
-        if(entry.datumOd === entry.datumDo){
+        if (entry.datumOd === entry.datumDo) {
           dateTo = null;
         }
-        else{
+        else {
           dateTo = entry.datumDo;
         }
         dateFrom = entry.datumOd;
@@ -81,8 +82,9 @@ export default function TripMinimal({
     }
   });
 
-  function changeDateType(date: string) {
-    var newDate = date.split("-")[2] + "." + date.split("-")[1] + ".";
+  function changeDateType(date: string, year?: boolean) {
+    var newDate = date.split("-")[2] + "." + date.split("-")[1];
+    if (year) newDate += "." + date.split("-")[0]
     return newDate;
   }
 
@@ -138,10 +140,10 @@ export default function TripMinimal({
             </div>
             <span className="block min-w-[100px] text-right font-medium">
               {(dateTo === "none" || !dateTo || dateFrom === dateTo)
-                  ?
-                    dateFrom
-                  :
-                    dateFrom + " - " + dateTo
+                ?
+                dateFrom
+                :
+                dateFrom + " - " + dateTo
               }
             </span>
           </div>
