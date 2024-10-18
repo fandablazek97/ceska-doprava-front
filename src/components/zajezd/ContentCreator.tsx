@@ -29,6 +29,7 @@ type Props = {
   comment?: string;
   trasy: any;
   organizer?: any;
+  full: boolean;
 };
 
 export default function ContentCreator({
@@ -44,6 +45,7 @@ export default function ContentCreator({
   comment,
   trasy,
   organizer,
+  full
 }: Props) {
   const [content, setContent] = useState("informace");
   let contentShown: any;
@@ -73,6 +75,7 @@ export default function ContentCreator({
         country={country}
         dateAndPrice={dateAndPrice}
         trasy={trasy}
+        full={full}
       />
     );
   }

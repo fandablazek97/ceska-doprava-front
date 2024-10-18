@@ -19,6 +19,7 @@ type Props = {
   dateAndPrice: DateAndPrice[];
   categories: Categories[];
   filterCategory: string;
+  full: boolean;
 };
 
 export default function TripMinimal({
@@ -28,6 +29,7 @@ export default function TripMinimal({
   dateAndPrice,
   categories,
   filterCategory,
+  full,
 }: Props) {
   let dateFrom: string = "2030-12-31";
   let dateTo: string | null = "2030-12-31";
@@ -149,9 +151,12 @@ export default function TripMinimal({
           </div>
 
           {/* Cena */}
-          <span className="block text-lg font-semibold leading-tight">
-            {changePriceFormat(price)} Kč
-          </span>
+          <div className="flex flex-row w-full gap-x-3 text-lg font-semibold leading-tight">
+            <span className={`block ${full && "line-through"}`}>
+              {changePriceFormat(price)} Kč
+            </span>
+            {full && <span className="block text-primary">Obsazeno!</span>}
+          </div>
 
           {/* Zjistit více */}
           <div className="flex w-full flex-row items-center justify-between font-semibold text-primary transition-colors duration-300 sm:text-lg">

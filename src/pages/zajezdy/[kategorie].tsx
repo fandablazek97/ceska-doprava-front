@@ -52,7 +52,7 @@ export async function getStaticProps({ params }: any) {
     "2023-03-05" +
     "&filters[$and][1][terminACena][datumOd][$lte]=" +
     "2025-12-31";
-  const fieldsQuery = "&fields[0]=nazev";
+  const fieldsQuery = "&fields[0]=nazev&fields[1]=obsazeny";
   const sortQuery = "&sort[0]=dulezitost%3Adesc&sort[1]=id";
   const paginationQuery = "&pagination[start]=0&pagination[limit]=1000";
   const categoryQuery = params.kategorie !== "vse" ? "&filters[kategorie][kategorie][$containsi]=" + params.kategorie : "";

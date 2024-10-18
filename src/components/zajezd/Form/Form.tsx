@@ -28,6 +28,7 @@ type FormProps = {
     }
   ];
   trasy: any;
+  full: boolean;
 };
 
 export default function Form({
@@ -36,6 +37,7 @@ export default function Form({
   name,
   dateAndPrice,
   trasy,
+  full,
 }: FormProps) {
   let allDataObject: any = {};
   let requiredArray: any = [];
@@ -51,6 +53,7 @@ export default function Form({
       allDataObject={allDataObject}
       requiredArray={requiredArray}
       allDeparturePoints={allDeparturePoints}
+      full={full}
     />
   );
 }
@@ -70,6 +73,7 @@ type FormStaterProps = {
   allDataObject: any;
   requiredArray: any;
   allDeparturePoints: string[];
+  full: boolean;
 };
 
 function FormStater({
@@ -80,7 +84,8 @@ function FormStater({
   trasy,
   allDataObject,
   requiredArray,
-  allDeparturePoints
+  allDeparturePoints,
+  full
 }: FormStaterProps) {
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
@@ -281,151 +286,161 @@ function FormStater({
 
   return (
     <Wrapper size="base" as={"section"} className="mb-16">
-      <div className="mt-12">
-        <Heading level={2} size={"lg"}>
-          Objednávkový formulář
-        </Heading>
-        <p className="mt-10 max-w-prose text-gray-600">
-          Pole označená hvězdičkou jsou nutné vyplnit. Veškeré informace
-          týkající se zájezdu naleznete zde nad formulářem
-        </p>
-        <Customer
-          passengers={passengers}
-          setPassengers={setPassengers}
-          allDataObject={allDataObject}
-          requiredArray={requiredArray}
-          formState={formState}
-        />
-        <Trip
-          setPrice={setPrice}
-          setPriceByCity={setPriceByCity}
-          code={code}
-          dateAndPrice={dateAndPrice}
-          departurePoints={allDeparturePoints}
-          allDataObject={allDataObject}
-          requiredArray={requiredArray}
-          formState={formState}
-          cityPrice={cityPrice}
-          seats={seats}
-          setSeats={setSeats}
-        />
-        <Passengers
-          passengers={passengers}
-          setPassengers={setPassengers}
-          allDataObject={allDataObject}
-          requiredArray={requiredArray}
-          formState={formState}
-        />
-        <Select
-          name="mistoSelect"
-          label="Chcete objednat místenky?"
-          isRequired={true}
-          requiredArray={requiredArray}
-          allDataObject={allDataObject}
-          formState={formState}
-          setFunction={(value: any) => {
-            if (value === 1) {
-              setSeats(true);
-            } else {
-              setSeats(false);
-              allDataObject.mistoComment = "";
-            }
-          }}
-          className="mt-14"
-          rare="returnIndex"
-          emptyValue="Vyberte možnost"
-        >
+      {full ? <div className="mt-12"><Heading level={2} size={"lg"}>
+        Zájezd plně obsazen
+      </Heading>
+        <p className="mt-10 max-w-lg text-gray-600">
+          Děkujeme za váš zájem! Tento zájezd je bohužel již plně obsazen.
+          Prosím, <button className="underline" onClick={() => history.back()}>vraťte se na předchozí stránku</button> a podívejte se na naše další skvělé nabídky.
+        </p></div> :
+        <>
+          <div className="mt-12">
+            <Heading level={2} size={"lg"}>
+              Objednávkový formulář
+            </Heading>
+            <p className="mt-10 max-w-prose text-gray-600">
+              Pole označená hvězdičkou jsou nutné vyplnit. Veškeré informace
+              týkající se zájezdu naleznete zde nad formulářem
+            </p>
+            <Customer
+              passengers={passengers}
+              setPassengers={setPassengers}
+              allDataObject={allDataObject}
+              requiredArray={requiredArray}
+              formState={formState}
+            />
+            <Trip
+              setPrice={setPrice}
+              setPriceByCity={setPriceByCity}
+              code={code}
+              dateAndPrice={dateAndPrice}
+              departurePoints={allDeparturePoints}
+              allDataObject={allDataObject}
+              requiredArray={requiredArray}
+              formState={formState}
+              cityPrice={cityPrice}
+              seats={seats}
+              setSeats={setSeats}
+            />
+            <Passengers
+              passengers={passengers}
+              setPassengers={setPassengers}
+              allDataObject={allDataObject}
+              requiredArray={requiredArray}
+              formState={formState}
+            />
+            <Select
+              name="mistoSelect"
+              label="Chcete objednat místenky?"
+              isRequired={true}
+              requiredArray={requiredArray}
+              allDataObject={allDataObject}
+              formState={formState}
+              setFunction={(value: any) => {
+                if (value === 1) {
+                  setSeats(true);
+                } else {
+                  setSeats(false);
+                  allDataObject.mistoComment = "";
+                }
+              }}
+              className="mt-14"
+              rare="returnIndex"
+              emptyValue="Vyberte možnost"
+            >
 
-          {["Vyberte možnost",
-            "Ano (vyberu si místa sám) + 200 Kč / os",
-            "Ne (je mi jedno, kde budeme sedět) - zdarma"].map((word: string, key: number) => (
-              <option value={word} key={key}>
-                {word}
-              </option>
-            ))}
-        </Select>
-        <Textarea
-          className="mt-5 mb-14"
-          name="mistoComment"
-          label="Specifikujte místa k sezení"
-          requiredArray={requiredArray}
-          allDataObject={allDataObject}
-          rows={2}
-          isDisabled={!seats}
-          isRequired={seats}
-          key={"ref" + seats}
-          defaultValue={allDataObject.mistoComment}
-          formState={formState}
-          placeholder="Např. 3. řada sedadel na pravé straně (bráno po směru jízdy autobusu)"
-        />
+              {["Vyberte možnost",
+                "Ano (vyberu si místa sám) + 200 Kč / os",
+                "Ne (je mi jedno, kde budeme sedět) - zdarma"].map((word: string, key: number) => (
+                  <option value={word} key={key}>
+                    {word}
+                  </option>
+                ))}
+            </Select>
+            <Textarea
+              className="mt-5 mb-14"
+              name="mistoComment"
+              label="Specifikujte místa k sezení"
+              requiredArray={requiredArray}
+              allDataObject={allDataObject}
+              rows={2}
+              isDisabled={!seats}
+              isRequired={seats}
+              key={"ref" + seats}
+              defaultValue={allDataObject.mistoComment}
+              formState={formState}
+              placeholder="Např. 3. řada sedadel na pravé straně (bráno po směru jízdy autobusu)"
+            />
 
 
-        <Textarea
-          className="mt-5"
-          name="comment"
-          label="Vaše poznámka"
-          allDataObject={allDataObject}
-          formState={formState}
-        />
-        <Heading level={3} size={"base"} className="lg:!text-3xl mt-10">
-          Shrnutí objednávky
-        </Heading>
-        <div className="flex flex-col mt-5">
-          <div className="flex flex-row gap-x-3 items-end">
-            <span className="font-semibold text-rich pb-0.5">Celkový počet cestujících:</span>
-            <span className="text-xl font-bold text-rich">
-              {passengers}
-            </span>
+            <Textarea
+              className="mt-5"
+              name="comment"
+              label="Vaše poznámka"
+              allDataObject={allDataObject}
+              formState={formState}
+            />
+            <Heading level={3} size={"base"} className="lg:!text-3xl mt-10">
+              Shrnutí objednávky
+            </Heading>
+            <div className="flex flex-col mt-5">
+              <div className="flex flex-row gap-x-3 items-end">
+                <span className="font-semibold text-rich pb-0.5">Celkový počet cestujících:</span>
+                <span className="text-xl font-bold text-rich">
+                  {passengers}
+                </span>
+              </div>
+              <div className="flex flex-row gap-x-3 items-end">
+                <span className="font-semibold text-rich pb-0.5">Celková cena:</span>
+                <span className="text-xl font-bold text-rich">
+                  {numberWithSpaces(calculatedPrice)}
+                  {" Kč"}
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-row gap-x-3 items-end">
-            <span className="font-semibold text-rich pb-0.5">Celková cena:</span>
-            <span className="text-xl font-bold text-rich">
-              {numberWithSpaces(calculatedPrice)}
-              {" Kč"}
-            </span>
-          </div>
-        </div>
-      </div>
-      <Alert isDismissable={false} className="mt-5" status="warning" title="Upozornění" text="Pokud vyplňujete tento formulář a jste zároveň jedním z cestujících, musíte být uvedení v seznamu cestujících. Seznam cestujících musí být kompletní seznam osob včetně objednavatele." />
+          <Alert isDismissable={false} className="mt-5" status="warning" title="Upozornění" text="Pokud vyplňujete tento formulář a jste zároveň jedním z cestujících, musíte být uvedení v seznamu cestujících. Seznam cestujících musí být kompletní seznam osob včetně objednavatele." />
 
-      <div className="mt-8 flex flex-col">
-        <Checkbox
-          allDataObject={allDataObject}
-          requiredArray={requiredArray}
-          isRequired={true}
-          label={
-            <>
-              Souhlasím se{" "}
-              <span className="text-primary">zpracováním osobních údajů</span>
-            </>
-          }
-          name="gdpr"
-          formState={formState}
-        />
-        <Button
-          className="my-8 w-fit"
-          onClick={(e: any) => verifying(e)}
-          isLoading={formState === "verifying"}
-          isDisabled={formState !== "waiting"}
-        >
-          Odeslat objednávku
-        </Button>
-      </div>
-      {formState === "accepted" && (
-        <Alert
-          status="success"
-          title="Úspěch!"
-          text="Děkujeme za vaši objednávku. Data zpracováváme a potvrdíme do 2 pracovních dnů."
-        />
-      )}
-      {formState === "refused" && (
-        <Alert
-          status="error"
-          title="Chyba!"
-          text="Zapoměli jste vypnit některá pole"
-          onClose={() => setFormState("waiting")}
-        />
-      )}
+          <div className="mt-8 flex flex-col">
+            <Checkbox
+              allDataObject={allDataObject}
+              requiredArray={requiredArray}
+              isRequired={true}
+              label={
+                <>
+                  Souhlasím se{" "}
+                  <span className="text-primary">zpracováním osobních údajů</span>
+                </>
+              }
+              name="gdpr"
+              formState={formState}
+            />
+            <Button
+              className="my-8 w-fit"
+              onClick={(e: any) => verifying(e)}
+              isLoading={formState === "verifying"}
+              isDisabled={formState !== "waiting"}
+            >
+              Odeslat objednávku
+            </Button>
+          </div>
+          {formState === "accepted" && (
+            <Alert
+              status="success"
+              title="Úspěch!"
+              text="Děkujeme za vaši objednávku. Data zpracováváme a potvrdíme do 2 pracovních dnů."
+            />
+          )}
+          {formState === "refused" && (
+            <Alert
+              status="error"
+              title="Chyba!"
+              text="Zapoměli jste vypnit některá pole"
+              onClose={() => setFormState("waiting")}
+            />
+          )}
+        </>
+      }
     </Wrapper>
   );
 }

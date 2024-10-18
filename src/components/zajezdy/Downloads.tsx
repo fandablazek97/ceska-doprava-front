@@ -60,8 +60,7 @@ export default function Downloads({ calendar, catalog, conditions }: Props) {
                   Aktuální katalog
                 </Heading>
                 <p className="mt-5 text-sm text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero.
+                  Objevte naši nejnovější nabídku zájezdů a inspirujte se širokým výběrem destinací pro vaši příští dovolenou. Stačí si stáhnout katalog a začít plánovat!
                 </p>
                 <span className="mt-10 ml-0 flex flex-row font-semibold">
                   Stáhnout zde
@@ -85,8 +84,7 @@ export default function Downloads({ calendar, catalog, conditions }: Props) {
                   Všeobecné obchodní podmínky
                 </Heading>
                 <p className="mt-5 text-sm text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero.
+                  Seznamte se s našimi obchodními podmínkami, které vám poskytnou všechny důležité informace o rezervaci a účasti na zájezdech.
                 </p>
                 <span className="mt-10 ml-0 flex flex-row font-semibold">
                   Stáhnout zde

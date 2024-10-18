@@ -29,6 +29,7 @@ type Props = {
   comment?: string;
   trasy: any;
   organizer?: any;
+  obsazeny: boolean;
 };
 
 export default function Zajezd({
@@ -48,6 +49,7 @@ export default function Zajezd({
   comment,
   trasy,
   organizer,
+  obsazeny,
 }: Props) {
   const [lowestPrice, setLowestPrice] = useState<number>(9999999);
   useEffect(() => {
@@ -73,6 +75,7 @@ export default function Zajezd({
         categories={categories}
         imageSrc={imageSrc}
         imageAlt="Úvodní fotka zájezdu"
+        full={obsazeny}
       />
       <ContentCreator
         code={code}
@@ -88,6 +91,7 @@ export default function Zajezd({
         comment={comment}
         trasy={trasy}
         organizer={organizer}
+        full={obsazeny}
       />
     </>
   );
@@ -140,6 +144,7 @@ export async function getStaticProps({ params }: any) {
       comment: zajezdData.attributes.poznamka,
       trasy: trasyData,
       organizer: zajezdData.attributes.poradatel,
+      obsazeny: zajezdData.attributes.obsazeny
     },
   };
 }

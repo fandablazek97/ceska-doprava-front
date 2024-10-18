@@ -19,6 +19,7 @@ type Props = {
   categories: Category[];
   imageSrc: string;
   imageAlt: string;
+  full: boolean;
 };
 
 export default function Hero({
@@ -32,6 +33,7 @@ export default function Hero({
   categories,
   imageSrc,
   imageAlt,
+  full,
 }: Props) {
   // Change price to number with spaces every thousand
   const priceWithSpaces = price!
@@ -70,11 +72,15 @@ export default function Hero({
           {perex}
         </p>
         <div className="mt-12 flex flex-col gap-y-2">
-          <span className="shrink-0 text-lg font-bold text-primary">
-            {categories.some((e) => e.kategorie === "Jednodenni")
-              ? priceWithSpaces + " Kč"
-              : "Od " + priceWithSpaces + " Kč"}
-          </span>
+          <div className="flex flex-row gap-x-3 shrink-0 text-lg font-bold text-primary">
+            <span className={`block ${full && "line-through"}`}>
+              {categories.some((e) => e.kategorie === "Jednodenni")
+                ? priceWithSpaces + " Kč"
+                : "Od " + priceWithSpaces + " Kč"}
+            </span>
+            {full && <span className="block">Obsazeno!</span>}
+          </div>
+
           {date &&
             <span className="shrink-0 text-lg text-gray-500">
               Datum zájezdu: {changeDateType(date)}
