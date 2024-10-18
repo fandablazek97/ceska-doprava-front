@@ -72,13 +72,13 @@ export default function Hero({
           {perex}
         </p>
         <div className="mt-12 flex flex-col gap-y-2">
-          <div className="flex flex-row gap-x-3 shrink-0 text-lg font-bold text-primary">
-            <span className={`block ${full && "line-through"}`}>
+          <div className="flex flex-row gap-x-3 shrink-0 text-lg">
+            <span className={`block ${full ? "line-through font-semibold" : "text-primary font-bold"}`}>
               {categories.some((e) => e.kategorie === "Jednodenni")
                 ? priceWithSpaces + " Kč"
                 : "Od " + priceWithSpaces + " Kč"}
             </span>
-            {full && <span className="block">Obsazeno!</span>}
+            {full && <span className="block text-primary font-bold">Obsazeno!</span>}
           </div>
 
           {date &&
