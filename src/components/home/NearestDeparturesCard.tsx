@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Props = {
   tripId?: number;
@@ -33,16 +33,16 @@ export default function NearestDeparturesCard({
     dateFrom: string;
     dateTo: string;
   }>({ dateFrom: "2023-12-31", dateTo: "2023-12-31" });
-  
-  let dateFrom: string = "2024-12-31";
-  let dateTo: string | null = "2024-12-31";
+
+  let dateFrom: string = "2030-12-31";
+  let dateTo: string | null = "2030-12-31";
   let today = new Date().toISOString().slice(0, 10);
 
   !fake && dateAndPrice && dateAndPrice.map((entry, index) => {
     if (index + 1 === dateAndPrice.length) {
       if (
         new Date(entry.datumOd).getTime() >=
-          new Date(today).getTime() &&
+        new Date(today).getTime() &&
         new Date(entry.datumOd).getTime() < new Date(dateFrom).getTime()
       ) {
         if (entry.datumDo === null) {
@@ -58,19 +58,19 @@ export default function NearestDeparturesCard({
           dateTo = "none";
         } else {
           dateFrom = changeDateType(dateFrom);
-          if(dateTo) dateTo = changeDateType(dateTo);
+          if (dateTo) dateTo = changeDateType(dateTo);
         }
       }
     } else {
       if (
         new Date(entry.datumOd).getTime() >=
-          new Date(today).getTime() &&
+        new Date(today).getTime() &&
         new Date(entry.datumOd).getTime() < new Date(dateFrom).getTime()
       ) {
-        if(entry.datumOd === entry.datumDo){
+        if (entry.datumOd === entry.datumDo) {
           dateTo = null;
         }
-        else{
+        else {
           dateTo = entry.datumDo;
         }
         dateFrom = entry.datumOd;
@@ -85,17 +85,15 @@ export default function NearestDeparturesCard({
   return (
     <Link href={fake ? "" : `/zajezd/${tripId}`}>
       <a
-        className={`group flex flex-col md:gap-2 ${
-          fake
+        className={`group flex flex-col md:gap-2 ${fake
             ? "animate-pulse justify-between"
             : "items-start transition duration-300 hover:scale-95"
-        } ${className}`}
+          } ${className}`}
         onClick={(e) => fake && e.preventDefault()}
       >
         <div
-          className={`relative isolate aspect-[16/10] w-full overflow-hidden rounded-2xl ${
-            fake && "bg-gray-200"
-          }`}
+          className={`relative isolate aspect-[16/10] w-full overflow-hidden rounded-2xl ${fake && "bg-gray-200"
+            }`}
         >
           {!fake && (
             <Image
@@ -113,11 +111,10 @@ export default function NearestDeparturesCard({
         </div>
         <div className="flex flex-col gap-2 py-2 px-1">
           <span
-            className={`block ${
-              fake
+            className={`block ${fake
                 ? "h-5 w-40 bg-gray-200"
                 : "text-lg font-semibold leading-6 text-rich"
-            }`}
+              }`}
           >
             {!fake && name}
           </span>
@@ -125,12 +122,12 @@ export default function NearestDeparturesCard({
             className={`block ${fake ? "h-5 w-28 bg-gray-200" : "mt-auto"}`}
           >
             {!fake ? (dateTo === "none" || !dateTo || dateFrom === dateTo)
-                ? 
-                  dateFrom
-                  :
-                    dateFrom + " - " + dateTo
-                    : null
-              }
+              ?
+              dateFrom
+              :
+              dateFrom + " - " + dateTo
+              : null
+            }
           </span>
         </div>
       </a>
