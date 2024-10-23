@@ -13,6 +13,7 @@ import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
 import Select from "@components/forms/Select";
 import Textarea from "@components/forms/Textarea";
+import { useRouter } from "next/router";
 import "public/fonts/DejaVuSans.js";
 import { zajezd64 } from "public/images/pdfs/zajezd64";
 
@@ -283,15 +284,23 @@ function FormStater({
     ))
   }
 
+  const history = useRouter();
+
 
   return (
     <Wrapper size="base" as={"section"} className="mb-16">
       {full ? <div className="mt-12"><Heading level={2} size={"lg"}>
         Zájezd plně obsazen
       </Heading>
-        <p className="mt-10 max-w-lg text-gray-600">
-          Děkujeme za váš zájem! Tento zájezd je bohužel již plně obsazen.
-          Prosím, <button className="underline" onClick={() => history.back()}>vraťte se na předchozí stránku</button> a podívejte se na naše další skvělé nabídky.
+        <p className="mt-10 max-w-xl text-gray-600">
+          Děkujeme za váš zájem! Tento zájezd je bohužel <strong>již plně obsazen.</strong>
+          <br />
+          <br />
+          Prosím, vraťte se na <button className="underline" onClick={() => history.back()}>předchozí stránku</button> a podívejte se na naše další skvělé nabídky.
+          <br />
+          <br />
+          V případě, že máte zájem o umístění na seznam náhradníků, napište <strong>nám na email: <a href="mailto:cestovka.ceskadoprava@email.cz" className="underline">cestovka.ceskadoprava@email.cz</a>.</strong>
+          Pokud se místa uvolní - budeme vás kontaktovat.
         </p></div> :
         <>
           <div className="mt-12">
