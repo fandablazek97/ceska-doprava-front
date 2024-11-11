@@ -105,7 +105,7 @@ export default function Input({
             ? "pointer-events-none cursor-not-allowed opacity-60"
             : "cursor-text opacity-100"
           }`}
-        pattern="\d*"
+        pattern={type === "number" ? "\d*" : undefined}
         disabled={isDisabled}
         required={isRequired}
         readOnly={isReadOnly}
