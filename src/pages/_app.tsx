@@ -1,9 +1,9 @@
 import AppLayout from "@layouts/AppLayout";
+import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-import { Analytics } from '@vercel/analytics/react';
 
 // Fonts
 import "@fontsource/bebas-neue";
@@ -14,6 +14,7 @@ import "@fontsource/inter/700.css";
 import "@fontsource/inter/800.css";
 
 // Styles
+import GoogleAnalytics from "@components/GoogleAnalytics";
 import "../styles/main.css";
 
 // GA
@@ -37,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   useNormalScrollRoutes();
   return (
     <AppLayout>
-      {/* <GoogleAnalytics measurementId="G-RZB55HZCDW" /> */}
+      <GoogleAnalytics measurementId="G-DHP10PY3S4" />
       <Component {...pageProps} />
       <ToastContainer
         position="top-center"
@@ -50,7 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         draggable
         pauseOnHover
       />
-      
+
       <Analytics />
     </AppLayout>
   );
