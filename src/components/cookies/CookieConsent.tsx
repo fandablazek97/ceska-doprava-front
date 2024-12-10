@@ -161,7 +161,7 @@ export function CookieBanner({ isDebugMode = false, showOnScroll = false }: Cook
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed w-min bottom-0 right-0 z-fixed m-4 flex flex-col gap-2 border border-gray-800 bg-body p-3 sm:gap-4 sm:p-6 lg:gap-6 lg:p-8"
+          className="fixed w-[calc(100%-32px)] sm:w-min bottom-0 right-0 z-fixed flex m-4 flex-col gap-2 border border-gray-800 bg-body p-3 sm:gap-4 sm:p-6 lg:gap-6 lg:p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -174,7 +174,7 @@ export function CookieBanner({ isDebugMode = false, showOnScroll = false }: Cook
             </Link>
             .
           </p>
-          <form className="flex flex-row gap-2 sm:gap-6">
+          <form className="flex flex-col sm:flex-row gap-2 sm:gap-6">
             <Checkbox checked isDisabled label={"Nezbytné"} name="necessary" />
             <Checkbox
               name="analytics"
