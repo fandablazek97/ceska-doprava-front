@@ -1,31 +1,53 @@
-import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
-import CookiesPolicy from "@components/cookies/CookiesPolicy";
-import Seo from "@components/root/seo/Seo";
-import type { NextPage } from "next";
-import { globalConfig } from "src/configs/globalConfig";
+import { GridCell, GridColumnLayout } from "@components/cookies/Grid";
+import HeroUniversal from "@components/cookies/HeroUniversal";
+import Cookies, { CookieData } from "../components/cookies/Cookies";
 
-const CookiesPage: NextPage = () => {
+type CookieDataType = CookieData[];
+
+const sampleData: CookieDataType = [
+  {
+    name: "_ga",
+    owner: "Google",
+    category: "marketing",
+    expiry: "2 years",
+  },
+  {
+    name: "_ga_*",
+    owner: "Google",
+    category: "marketing",
+    expiry: "2 years",
+  },
+  {
+    name: "cookiePreference",
+    owner: "Our website",
+    category: "functional",
+    expiry: "1 year",
+  },
+];
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  return {
+    title: "Cookies | Moje česká doprava",
+    description: "Používáme cookies ke zlepšení vašeho zážitku. Více informací najdete v našich zásadách používání cookies.",
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
+
+export default function page() {
   return (
     <>
-      <Seo title="Zásady používání cookies" description="" />
-      <Wrapper className="pt-24 md:pb-16 md:pt-36">
-        <Heading level={1} size="xl" className="pt-20 md:pt-32" align="center">
-          Zásady používání cookies
-        </Heading>
-      </Wrapper>
-      <Wrapper size="sm" className="pb-40">
-        <CookiesPolicy
-          domain={globalConfig.meta.shortUrl}
-          ownerName={globalConfig.client.companyName}
-          adress={globalConfig.client.adress}
-          ico={globalConfig.client.ico}
-          validTime="šest měsíců"
-          lastUpdated="1. 9. 2022"
-        />
+      <HeroUniversal heading="Cookie settings" />
+      <Wrapper whitespace="-/lg">
+        <GridColumnLayout>
+          <GridCell colSpan="2" colShift="1" isFullOnMobile>
+            <Cookies cookies={sampleData} />
+          </GridCell>
+        </GridColumnLayout>
       </Wrapper>
     </>
   );
-};
-
-export default CookiesPage;
+}

@@ -8,7 +8,7 @@ type Props = {
   isReadOnly?: boolean;
   className?: string;
   defaultValue?: string;
-  allDataObject: object | any;
+  allDataObject?: object | any;
   requiredArray?: string[] | object[] | any;
   oneOfMany?: boolean | string;
   position?: number;
@@ -16,6 +16,7 @@ type Props = {
   otherState?: any;
   parentClassName?: string;
   onChange?: (value: boolean) => void;
+  checked?: boolean;
 };
 
 export default function Checkbox({
@@ -32,13 +33,15 @@ export default function Checkbox({
   formState,
   otherState = undefined,
   parentClassName = "",
-  onChange
+  onChange,
+  checked,
 }: Props) {
   const [inValidation, setInValidation] = useState<
     undefined | "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
 
   useEffect(() => {
+    if (!allDataObject) return;
     if (oneOfMany === false) {
       if (allDataObject[name] === undefined) {
         if (defaultValue === "__false") {
@@ -95,17 +98,20 @@ export default function Checkbox({
         disabled={isDisabled}
         required={isRequired}
         readOnly={isReadOnly}
+        checked={checked}
         onChange={(e: any) => {
-          if (oneOfMany === false) {
-            if (otherState !== undefined) {
-              otherState(e.target.checked);
+          if (allDataObject) {
+            if (oneOfMany === false) {
+              if (otherState !== undefined) {
+                otherState(e.target.checked);
+              }
+              allDataObject[name] = e.target.checked;
+            } else if (typeof oneOfMany === "string") {
+              if (otherState !== undefined) {
+                otherState(e.target.checked);
+              }
+              allDataObject[oneOfMany][name] = e.target.checked;
             }
-            allDataObject[name] = e.target.checked;
-          } else if (typeof oneOfMany === "string") {
-            if (otherState !== undefined) {
-              otherState(e.target.checked);
-            }
-            allDataObject[oneOfMany][name] = e.target.checked;
           }
           onChange && onChange(e.target.checked);
         }}

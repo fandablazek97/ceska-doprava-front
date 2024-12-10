@@ -14,6 +14,7 @@ import "@fontsource/inter/700.css";
 import "@fontsource/inter/800.css";
 
 // Styles
+import { CookieProvider } from "@components/cookies/CookieConsent";
 import GoogleAnalytics from "@components/GoogleAnalytics";
 import "../styles/main.css";
 
@@ -37,23 +38,25 @@ function useNormalScrollRoutes() {
 function MyApp({ Component, pageProps }: AppProps) {
   useNormalScrollRoutes();
   return (
-    <AppLayout>
-      <GoogleAnalytics measurementId="G-DHP10PY3S4" />
-      <Component {...pageProps} />
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+    <CookieProvider>
+      <AppLayout>
+        <GoogleAnalytics measurementId="G-DHP10PY3S4" />
+        <Component {...pageProps} />
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
 
-      <Analytics />
-    </AppLayout>
+        <Analytics />
+      </AppLayout>
+    </CookieProvider>
   );
 }
 
