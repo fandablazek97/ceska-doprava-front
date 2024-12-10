@@ -1,6 +1,8 @@
 import Button from "@components/bricks/Button";
 import Wrapper from "@components/bricks/Wrapper";
+import Select from "@components/forms/Select";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
@@ -8,6 +10,7 @@ import { tagAndText } from "./References";
 import TripMinimal from "./TripMinimal";
 
 export default function ContentAndFilter({ category, zajezdData }: { category: string, zajezdData: any }) {
+  const router = useRouter();
   const addItems = 9;
   const [showedItems, setShowedItems] = useState<number>(12);
 
@@ -16,8 +19,11 @@ export default function ContentAndFilter({ category, zajezdData }: { category: s
 
       {/* Filter */}
       <section id="filter" className="border-mute relative mb-5 border-y">
+        <Select defaultValue={category} name="filterSelect" label="" className="md:hidden mb-5" setFunction={(value: string) => router.push("/zajezdy/" + value)}>
+          {Object.entries(tagAndText).map((elem: any, index: number) => <option key={"ok" + index} value={elem[0]}>{elem[1]}</option>)}
+        </Select>
         <div
-          className={`flex min-h-[75px] !w-full flex-row justify-between py-5 xl:py-10`}
+          className={`hidden md:flex min-h-[75px] !w-full flex-row justify-between py-5 xl:py-10`}
         >
           <div
             className={`grid w-fit grid-cols-1 justify-between mx-auto`}

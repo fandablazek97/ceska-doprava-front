@@ -7,13 +7,14 @@ type Props = {
   isRequired?: boolean;
   className?: string;
   children: any;
-  allDataObject: any;
+  allDataObject?: any;
   requiredArray?: any;
   oneOfMany?: boolean | string;
   formState?: "waiting" | "verifying" | "refused" | "accepted";
   setFunction?: any;
   rare?: string | boolean;
   emptyValue?: string;
+  defaultValue?: string;
 };
 
 export default function Select({
@@ -30,12 +31,14 @@ export default function Select({
   setFunction,
   rare = false,
   emptyValue = "",
+  defaultValue,
 }: Props) {
   const [inValidation, setInValidation] = useState<
     undefined | "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
 
   useEffect(() => {
+    if (!allDataObject) return;
     if (oneOfMany === false) {
       if (allDataObject[name] === undefined) {
         if (rare !== "dateAndPrice" && children !== undefined && children !== null) {
@@ -121,7 +124,9 @@ export default function Select({
           }`}
         disabled={isDisabled}
         required={isRequired}
+        defaultValue={defaultValue}
         onChange={(e: any) => {
+          if (!allDataObject) return setFunction(e.target.value);
           if (rare === false) {
             if (oneOfMany === false) {
               allDataObject[name] = e.target.value;
