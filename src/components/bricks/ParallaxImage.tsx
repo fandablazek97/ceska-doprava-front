@@ -30,8 +30,7 @@ export default function ParallaxImage({
             <Image
               src={src}
               alt={alt}
-              layout="fill"
-              objectFit="cover"
+              fill
               loading={priority ? "eager" : loading}
               priority={priority}
               sizes="(max-width: 768px) 100vw,
@@ -51,8 +50,7 @@ export default function ParallaxImage({
               <Image
                 src={src}
                 alt={alt}
-                layout="fill"
-                objectFit="cover"
+                fill
                 loading={priority ? "eager" : loading}
                 priority={priority}
                 sizes="(max-width: 768px) 100vw,
@@ -66,8 +64,7 @@ export default function ParallaxImage({
           <Image
             src={src}
             alt={alt}
-            layout="fill"
-            objectFit="cover"
+            fill
             loading={priority ? "eager" : loading}
             priority={priority}
             sizes="(max-width: 768px) 100vw,

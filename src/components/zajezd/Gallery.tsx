@@ -71,8 +71,7 @@ export default function Gallery({ images }: Props) {
               <Image
                 src={images[imageIndex]}
                 alt="#"
-                layout="fill"
-                objectFit="contain"
+                fill
               />
             </div>
 
@@ -106,19 +105,17 @@ export default function Gallery({ images }: Props) {
                     onClick={() => setImageIndex(index)}
                     className={`
                        relative aspect-[4/3] min-w-[150px] cursor-pointer select-none duration-200 hover:shadow-md
-                      ${
-                        images.indexOf(imageSrc) === imageIndex
-                          ? "scale-100"
-                          : "scale-75 hover:scale-90"
+                      ${images.indexOf(imageSrc) === imageIndex
+                        ? "scale-100"
+                        : "scale-75 hover:scale-90"
                       }
                     `}
                   >
                     <Image
                       src={imageSrc}
                       alt="#"
-                      layout="fill"
+                      fill
                       className="rounded-md"
-                      objectFit="cover"
                       sizes="(max-width: 768px) 50vw,
                       (max-width: 1200px) 50vw,
                       50vw"
@@ -137,13 +134,12 @@ export default function Gallery({ images }: Props) {
             <span
               key={index}
               onClick={() => setImageIndex(index)}
-              className=" relative aspect-[4/3] cursor-pointer overflow-hidden rounded-md bg-gray-200 select-none duration-200 hover:scale-105 hover:shadow-md"
+              className="relative aspect-[4/3] cursor-pointer overflow-hidden rounded-md bg-gray-200 select-none duration-200 hover:scale-105 hover:shadow-md"
             >
               <Image
                 src={imageSrc}
                 alt="#"
-                layout="fill"
-                className="object-cover"
+                fill
                 sizes="(max-width: 768px) 50vw,
                 (max-width: 1200px) 33vw,
                 33vw"

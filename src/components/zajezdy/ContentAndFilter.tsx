@@ -39,8 +39,8 @@ export default function ContentAndFilter({ category, zajezdData }: { category: s
                     ${elem[0] === category ? "bg-gray-200" : "hover:bg-gray-100"
                     }`}
                 >
-                  <Link href={`${elem[0]}`} scroll={false}><a>
-                    {elem[1]}</a></Link>
+                  <Link href={`${elem[0]}`} scroll={false}>
+                    {elem[1]}</Link>
                 </li>
               ))}
             </ScrollContainer>

@@ -47,8 +47,7 @@ export default function BasicHero({
           <Image
             src={imageSrc}
             alt={imageAlt ?? "Hero image"}
-            layout="fill"
-            objectFit="contain"
+            fill
             loading="eager"
             priority={true}
             sizes={`(max-width: 768px) ${imageSizeSm},

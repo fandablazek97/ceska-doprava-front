@@ -134,8 +134,7 @@ export default function Information({
                   <Image
                     src={e.attributes.obrazek.data.attributes.url}
                     alt={""}
-                    layout="fill"
-                    objectFit="contain"
+                    fill
                     sizes="(max-width: 768px) 50vw,
                     (max-width: 1200px) 50vw,
                     50vw"

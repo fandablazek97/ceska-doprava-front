@@ -11,8 +11,7 @@ export default function BigImage({ imageSrc, imageAlt }: Props) {
       <Image
         src={imageSrc}
         alt={imageAlt}
-        layout="fill"
-        objectFit="cover"
+        fill
         loading="lazy"
       />
     </div>

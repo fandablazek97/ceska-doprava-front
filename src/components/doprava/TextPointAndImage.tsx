@@ -39,8 +39,7 @@ export default function TextPointAndImage({
           <Image
             src={imageBigSrc}
             alt={imageBigAlt}
-            layout="fill"
-            objectFit="cover"
+            fill
           />
         </div>
         <div className="grid grid-cols-2 gap-5">
@@ -48,16 +47,14 @@ export default function TextPointAndImage({
             <Image
               src={imageSmallLeftSrc}
               alt={imageSmallLeftAlt}
-              layout="fill"
-              objectFit="cover"
+              fill
             />
           </div>
           <div className="relative aspect-[8/5] overflow-hidden rounded-xl">
             <Image
               src={imageSmallRightSrc}
               alt={imageSmallRightAlt}
-              layout="fill"
-              objectFit="cover"
+              fill
             />
           </div>
         </div>

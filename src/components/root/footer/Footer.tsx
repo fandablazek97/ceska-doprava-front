@@ -68,10 +68,8 @@ export default function Footer() {
           <ul className="mt-2 space-y-1">
             {mainRoutes.map((route) => (
               <li key={route.label}>
-                <Link href={route.path}>
-                  <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
-                    {route.label}
-                  </a>
+                <Link href={route.path} className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
+                  {route.label}
                 </Link>
               </li>
             ))}
@@ -85,31 +83,23 @@ export default function Footer() {
           </Heading>
           <ul className="mt-2 space-y-1">
             <li>
-              <Link href="/cookies">
-                <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
-                  Cookies
-                </a>
+              <Link href="/cookies" className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
+                Cookies
               </Link>
             </li>
             <li>
-              <Link href="/gdpr">
-                <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
-                  Zpracování osobních údajů
-                </a>
+              <Link href="/gdpr" className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
+                Zpracování osobních údajů
               </Link>
             </li>
             <li>
-              <Link href="/zajezdy/vse/#keStazeni">
-                <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
-                  Aktuální katalog
-                </a>
+              <Link href="/zajezdy/vse/#keStazeni" className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
+                Aktuální katalog
               </Link>
             </li>
             <li>
-              <Link href="/zajezdy/vse/#keStazeni">
-                <a className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
-                  Obchodní podmínky
-                </a>
+              <Link href="/zajezdy/vse/#keStazeni" className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
+                Obchodní podmínky
               </Link>
             </li>
           </ul>
