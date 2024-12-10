@@ -14,6 +14,7 @@ import Checkbox from "@components/forms/Checkbox";
 import Select from "@components/forms/Select";
 import Textarea from "@components/forms/Textarea";
 import { returnIsPhoneNumber } from "@components/zajezd/Form/Form";
+import { useRouter } from "next/router";
 import "public/fonts/DejaVuSans.js";
 import { chorvatsko64 } from "public/images/pdfs/chorvatsko64";
 
@@ -105,6 +106,8 @@ function FormStater({
   >("waiting");
   const [passengers, setPassengers] = useState<number>(1);
   const [seats, setSeats] = useState(false);
+
+  const router = useRouter();
 
   function verifying() {
     setFormState("verifying");
@@ -247,7 +250,7 @@ function FormStater({
       )
       .then(
         () => {
-          setFormState("accepted");
+          return router.push("/chorvatsko-success");
         },
         () => {
           setFormState("refused");
@@ -378,13 +381,6 @@ function FormStater({
           Odeslat objednávku
         </Button>
       </div>
-      {formState === "accepted" && (
-        <Alert
-          status="success"
-          title="Úspěch!"
-          text="Děkujeme za vaši objednávku. Data zpracováváme a potvrdíme do 2 pracovních dnů."
-        />
-      )}
       {formState === "refused" && (
         <Alert
           status="error"

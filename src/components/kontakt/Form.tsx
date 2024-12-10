@@ -8,6 +8,7 @@ import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
 import Input from "@components/forms/Input";
 import Textarea from "@components/forms/Textarea";
+import { useRouter } from "next/router";
 
 export default function Form() {
   let allDataObject: any = {};
@@ -27,6 +28,7 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
+  const router = useRouter();
 
   function verifying(e: any) {
     e.preventDefault();
@@ -83,7 +85,7 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
       )
       .then(
         (result) => {
-          setFormState("accepted");
+          return router.push("/kontakt-success");
         },
         (error) => {
           setFormState("refused");
@@ -155,13 +157,6 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
           </Button>
         </div>
       </form>
-      {formState === "accepted" && (
-        <Alert
-          status="success"
-          title="Úspěch!"
-          text="Vaši objednávku zpracováváme a potvrdíme ji do 48hodin"
-        />
-      )}
       {formState === "refused" && (
         <Alert
           status="error"

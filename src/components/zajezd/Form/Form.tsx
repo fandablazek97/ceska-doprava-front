@@ -97,6 +97,8 @@ function FormStater({
   const [cityPrice, setCityPrice] = useState<number>(0);
   const [calculatedPrice, setCalculatedPrice] = useState<number>(0);
 
+  const router = useRouter();
+
   useEffect(() => {
     allDataObject.country = country;
 
@@ -264,7 +266,7 @@ function FormStater({
       )
       .then(
         () => {
-          setFormState("accepted");
+          return router.push("/zajezd-success");
         },
         () => {
           setFormState("refused");
@@ -284,8 +286,6 @@ function FormStater({
     ))
   }
 
-  const history = useRouter();
-
 
   return (
     <Wrapper size="base" as={"section"} className="mb-16">
@@ -296,7 +296,7 @@ function FormStater({
           Děkujeme za váš zájem! Tento zájezd je bohužel <strong>již plně obsazen.</strong>
           <br />
           <br />
-          Prosím, vraťte se na <button className="underline" onClick={() => history.back()}>předchozí stránku</button> a podívejte se na naše další skvělé nabídky.
+          Prosím, vraťte se na <button className="underline" onClick={() => router.back()}>předchozí stránku</button> a podívejte se na naše další skvělé nabídky.
           <br />
           <br />
           V případě, že máte zájem o umístění na seznam náhradníků, napište <strong>nám na email: <a href="mailto:cestovka.ceskadoprava@email.cz" className="underline">cestovka.ceskadoprava@email.cz</a>.</strong>
@@ -433,13 +433,6 @@ function FormStater({
               Odeslat objednávku
             </Button>
           </div>
-          {formState === "accepted" && (
-            <Alert
-              status="success"
-              title="Úspěch!"
-              text="Děkujeme za vaši objednávku. Data zpracováváme a potvrdíme do 2 pracovních dnů."
-            />
-          )}
           {formState === "refused" && (
             <Alert
               status="error"
