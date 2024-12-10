@@ -16,12 +16,12 @@ export const mainRoutes = [
   },
   {
     label: "Autobusová doprava",
-    path: "/doprava_autobus",
+    path: "/doprava-autobus",
     main: false,
   },
   {
     label: "Kamionová doprava",
-    path: "/doprava_kamion",
+    path: "/doprava-kamion",
     main: false,
   },
   {

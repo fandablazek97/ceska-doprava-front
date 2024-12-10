@@ -23,7 +23,7 @@ export default function OtherServices() {
 
       <Wrapper size="lg" className="flex flex-col gap-y-10 pb-20">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-          <Link href="/doprava_autobus" className="group relative isolate aspect-square overflow-hidden rounded-xl md:aspect-[4/3]">
+          <Link href="/doprava-autobus" className="group relative isolate aspect-square overflow-hidden rounded-xl md:aspect-[4/3]">
             <Image
               src={"/images/home/otherServices/autobus.jpg"}
               alt={"doplnit alt!!"}
@@ -46,7 +46,7 @@ export default function OtherServices() {
               doprava
             </Heading>
           </Link>
-          <Link href="/doprava_kamion" className="group relative isolate aspect-square overflow-hidden rounded-xl md:aspect-[4/3]">
+          <Link href="/doprava-kamion" className="group relative isolate aspect-square overflow-hidden rounded-xl md:aspect-[4/3]">
             <Image
               src={"/images/home/otherServices/kamion.jpg"}
               alt={"doplnit alt!!"}
