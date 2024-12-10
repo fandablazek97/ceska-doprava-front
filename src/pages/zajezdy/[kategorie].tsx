@@ -4,6 +4,7 @@ import ContentAndFilter from "@components/zajezdy/ContentAndFilter";
 import Downloads from "@components/zajezdy/Downloads";
 import { tagAndText } from "@components/zajezdy/References";
 import { ipToFetch } from "@configs/globalConfig";
+import { sortByClosestDatumOd } from "src/utils";
 
 type Props = {
   calendar: string;
@@ -71,6 +72,7 @@ export async function getStaticProps({ params }: any) {
   const zajezdDataAndMeta = await zajezdRes.json();
   const zajezdData = zajezdDataAndMeta.data ? zajezdDataAndMeta.data : null;
 
+  const sortedData = zajezdData ? sortByClosestDatumOd(zajezdData) : null;
 
   /* INFO */
   const infoRes = await fetch(
@@ -85,7 +87,7 @@ export async function getStaticProps({ params }: any) {
       calendar: infoData.kalendar ? infoData.kalendar.data ? infoData.kalendar.data.attributes.url : null : null,
       catalog: infoData.katalog ? infoData.katalog.data ? infoData.katalog.data.attributes.url : null : null,
       conditions: infoData.katalog ? infoData.podminky.data ? infoData.podminky.data.attributes.url : null : null,
-      zajezdData: zajezdData ? zajezdData : null,
+      zajezdData: sortedData ? sortedData : null,
       category: params.kategorie
     },
   };
