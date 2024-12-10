@@ -32,7 +32,7 @@ export default function HeroUniversal({
             </MotionStaggeredWords> */}
             <h1
               className={clsx(
-                "text-center font-display text-2xl font-medium leading-tight text-rich min-[450px]:text-4xl min-[450px]:leading-tight sm:text-5xl sm:leading-tight md:text-6xl md:leading-tight lg:text-7xl lg:leading-none xl:text-8xl xl:leading-none 2xl:leading-none",
+                "text-center text-2xl font-semibold leading-tight text-rich min-[450px]:text-4xl min-[450px]:leading-tight sm:text-5xl sm:leading-tight md:text-6xl md:leading-tight lg:text-7xl lg:leading-none xl:text-8xl xl:leading-none 2xl:leading-none",
                 isShortHeading ? "2xl:text-[10.5rem]" : "2xl:text-9xl"
               )}
             >
