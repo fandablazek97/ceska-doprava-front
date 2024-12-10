@@ -108,13 +108,14 @@ export function CookieBanner({ isDebugMode = false, showOnScroll = false }: Cook
   const handleDismissBanner = () => {
     localStorage.setItem("bannerDismissed", "true");
     setIsBannerDismissed(true);
+    !isDebugMode && setIsVisible(false);
   };
+
 
   // Accept selected preferences and close the banner
   const handleAcceptSelected = () => {
     onCookieSubmit();
     handleDismissBanner();
-    !isDebugMode && setIsVisible(false); // Close the banner
   };
 
   // Accept all preferences and close the banner
@@ -127,7 +128,6 @@ export function CookieBanner({ isDebugMode = false, showOnScroll = false }: Cook
     });
     onCookieSubmit();
     handleDismissBanner();
-    !isDebugMode && setIsVisible(false); // Close the banner
   };
 
   // Decline all preferences and close the banner
@@ -140,7 +140,6 @@ export function CookieBanner({ isDebugMode = false, showOnScroll = false }: Cook
     });
     onCookieSubmit();
     handleDismissBanner();
-    !isDebugMode && setIsVisible(false); // Close the banner
   };
 
   const { scrollY } = useScroll();
@@ -204,7 +203,7 @@ export function CookieBanner({ isDebugMode = false, showOnScroll = false }: Cook
           </form>
           <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
             <Button
-              onPress={handleDeclineAll}
+              onClick={handleDeclineAll}
               variant="transparent"
               className="border border-gray-400"
               size="sm"
@@ -212,14 +211,14 @@ export function CookieBanner({ isDebugMode = false, showOnScroll = false }: Cook
               Odmítnout vše
             </Button>
             <Button
-              onPress={handleAcceptSelected}
+              onClick={handleAcceptSelected}
               variant="transparent"
               className="border border-gray-400"
               size="sm"
             >
               Přijmout vybrané
             </Button>
-            <Button onPress={handleAcceptAll} size="sm">
+            <Button onClick={handleAcceptAll} size="sm">
               Přijmout vše
             </Button>
           </div>

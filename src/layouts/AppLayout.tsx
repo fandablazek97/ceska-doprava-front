@@ -18,7 +18,7 @@ export default function AppLayout({ children }: AppShellOptions) {
       </header>
       <main id="main">{children}</main>
       <Footer />
-      <CookieBanner />
+      <CookieBanner showOnScroll />
     </>
   );
 }

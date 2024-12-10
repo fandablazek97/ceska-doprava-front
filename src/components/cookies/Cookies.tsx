@@ -127,7 +127,7 @@ function CookieSettings() {
           label="Funkční"
         />
       </form>
-      <Button type="submit" onPress={() => onCookieSubmit()}>
+      <Button type="submit" onClick={() => onCookieSubmit()}>
         Uložit preference
       </Button>
     </>
