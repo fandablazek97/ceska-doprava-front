@@ -36,18 +36,18 @@ export default function ComboSelect({
   const [inValidation, setInValidation] = useState<
     undefined | "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
-  const [selected, setSelected] = useState(values[0]);
+  const [selected, setSelected] = useState();
   const [query, setQuery] = useState("");
 
   const filteredPoints =
     query === ""
       ? values
       : values.filter((point: any) =>
-          point
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
-        );
+        point
+          .toLowerCase()
+          .replace(/\s+/g, "")
+          .includes(query.toLowerCase().replace(/\s+/g, ""))
+      );
 
   useEffect(() => {
     if (oneOfMany === false) {
@@ -79,19 +79,15 @@ export default function ComboSelect({
         }
       }
     }
-  },[]);
-
-  useEffect(() => {
-    setSelected(values[0]);
-  }, [values[0]])
+  }, []);
 
   useEffect(() => {
     if (oneOfMany === false) {
       allDataObject[name] = selected;
-      if(specialFunction) specialFunction(selected);
+      if (specialFunction) specialFunction(selected);
     } else {
       allDataObject[oneOfMany][name] = selected;
-      if(specialFunction) specialFunction(selected);
+      if (specialFunction) specialFunction(selected);
     }
   }, [selected]);
 
@@ -107,13 +103,13 @@ export default function ComboSelect({
         {inValidation === "refused" &&
           isRequired &&
           oneOfMany === false &&
-          allDataObject[name] === "" && (
+          !allDataObject[name] && (
             <span className="ml-1 text-primary">Toto pole je povinné!</span>
           )}
         {inValidation === "refused" &&
           isRequired &&
           typeof oneOfMany === "string" &&
-          allDataObject[oneOfMany][name] === "" && (
+          !allDataObject[oneOfMany][name] && (
             <span className="ml-1 text-primary">Toto pole je povinné!</span>
           )}
       </label>
@@ -124,13 +120,13 @@ export default function ComboSelect({
               className={`h-auto w-full rounded-md border
               border-body bg-body-200 px-4 py-3 text-base 
               font-normal  transition duration-150 
-              focus:border-primary focus:bg-white focus:!outline-none focus:ring-1 focus:ring-primary ${
-                isDisabled
+              focus:border-primary focus:bg-white focus:!outline-none focus:ring-1 focus:ring-primary ${isDisabled
                   ? "pointer-events-none cursor-not-allowed opacity-60"
                   : "cursor-default opacity-100"
-              }`}
+                }`}
               displayValue={(point: string) => point}
               onChange={(event) => setQuery(event.target.value)}
+              placeholder="Vyberte jednu z možností"
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
               <HiChevronDown
@@ -156,8 +152,7 @@ export default function ComboSelect({
                   <Combobox.Option
                     key={point}
                     className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? "bg-primary text-white" : "text-gray-900"
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-primary text-white" : "text-gray-900"
                       }`
                     }
                     value={point}
@@ -165,17 +160,15 @@ export default function ComboSelect({
                     {({ selected, active }) => (
                       <>
                         <span
-                          className={`block truncate ${
-                            selected ? "font-medium" : "font-normal"
-                          }`}
+                          className={`block truncate ${selected ? "font-medium" : "font-normal"
+                            }`}
                         >
                           {point}
                         </span>
                         {selected ? (
                           <span
-                            className={`absolute inset-y-0 left-0 flex h-full items-center pl-3 ${
-                              active ? "text-white" : "text-primary"
-                            }`}
+                            className={`absolute inset-y-0 left-0 flex h-full items-center pl-3 ${active ? "text-white" : "text-primary"
+                              }`}
                           >
                             <HiCheck className="h-5 w-5" aria-hidden="true" />
                           </span>

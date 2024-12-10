@@ -11,11 +11,6 @@ export default function ContentAndFilter({ category, zajezdData }: { category: s
   const addItems = 9;
   const [showedItems, setShowedItems] = useState<number>(12);
 
-  function changeDateType(date: string) {
-    let newDate = date.split("-")[2] + "." + date.split("-")[1] + ".";
-    return newDate;
-  }
-
   return (
     <Wrapper as={"section"} size="lg">
 

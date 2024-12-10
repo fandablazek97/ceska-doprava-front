@@ -312,7 +312,7 @@ function FormStater({
         >
 
           {["Vyberte možnost",
-            "Ano (vyberu si místa sám) + 200 Kč / os",
+            "Ano (vyberu si místa sám) + 300 Kč / os",
             "Ne (je mi jedno, kde budeme sedět) - zdarma"].map((word: string, key: number) => (
               <option value={word} key={key}>
                 {word}

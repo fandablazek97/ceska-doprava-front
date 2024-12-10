@@ -9,4 +9,5 @@ export const tagAndText = {
   muzikaly: "Muzikály a divadla",
   adventni: "Adventní",
   badfussing: "Bad Füssing",
+  "jednodenni-koupani": "Jednodenní koupání",
 };
