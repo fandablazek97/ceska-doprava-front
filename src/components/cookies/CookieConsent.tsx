@@ -67,7 +67,6 @@ export function CookieProvider({ children }: CookieProviderProps) {
     };
   });
 
-  // Initialize Google consent mode
   useEffect(() => {
     if (typeof window !== "undefined") {
       (window as any).gtag("consent", "default", {
