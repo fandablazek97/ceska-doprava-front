@@ -24,21 +24,37 @@ type CookieContextType = {
 // Create the cookie context
 const CookieContext = createContext<CookieContextType>({} as CookieContextType);
 
+// Helper function to update Google Analytics consent
+const updateGoogleConsent = (preferences: CookiePreferences) => {
+  if (typeof window !== "undefined") {
+    (window as any).gtag("consent", "update", {
+      analytics_storage: preferences.analytics ? "granted" : "denied",
+      ad_storage: preferences.marketing ? "granted" : "denied",
+      ad_user_data: preferences.marketing ? "granted" : "denied",
+      ad_personalization: preferences.marketing ? "granted" : "denied",
+      functionality_storage: preferences.functional ? "granted" : "denied",
+      security_storage: "granted", // Always granted for necessary cookies
+    });
+  }
+};
+
 // Context provider component
 type CookieProviderProps = {
   children: React.ReactNode;
 };
 
 export function CookieProvider({ children }: CookieProviderProps) {
-  // Initialize state with a function that reads from localStorage
   const [isVisible, setIsVisible] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>(() => {
     if (typeof window !== "undefined") {
       const savedPreferences = localStorage.getItem("cookiePreferences");
       if (savedPreferences) {
         try {
+          const parsed = JSON.parse(savedPreferences) as CookiePreferences;
           setIsVisible(false);
-          return JSON.parse(savedPreferences) as CookiePreferences;
+          // Update Google consent with saved preferences
+          updateGoogleConsent(parsed);
+          return parsed;
         } catch (error) {
           console.error("Error parsing saved preferences from localStorage:", error);
         }
@@ -51,9 +67,24 @@ export function CookieProvider({ children }: CookieProviderProps) {
     };
   });
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window as any).gtag("consent", "default", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        functionality_storage: "denied",
+        security_storage: "granted", // Always grant necessary cookies
+      });
+    }
+  }, []);
+
   // Save preferences to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("cookiePreferences", JSON.stringify(preferences));
+    // Update Google consent whenever preferences change
+    updateGoogleConsent(preferences);
   }, [preferences]);
 
   return (
@@ -64,13 +95,15 @@ export function CookieProvider({ children }: CookieProviderProps) {
         isVisible,
         setIsVisible,
         onCookieSubmit: () => {
-          // console.log("Cookie preferences submitted");
+          updateGoogleConsent(preferences);
         },
         handleCheckboxChange: (id, isSelected) => {
-          setPreferences({
+          const newPreferences = {
             ...preferences,
             [id]: isSelected,
-          });
+          };
+          setPreferences(newPreferences);
+          updateGoogleConsent(newPreferences);
         },
       }}
     >

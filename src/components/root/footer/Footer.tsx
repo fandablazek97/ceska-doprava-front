@@ -102,6 +102,11 @@ export default function Footer() {
                 Obchodní podmínky
               </Link>
             </li>
+            <li>
+              <Link href="/kariera" className="c-link-3-a text-base font-medium text-muted outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
+                Volná pracovní místa
+              </Link>
+            </li>
           </ul>
         </div>
       </Wrapper>
