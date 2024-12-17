@@ -84,9 +84,9 @@ export async function getStaticProps({ params }: any) {
 
   return {
     props: {
-      calendar: infoData.kalendar ? infoData.kalendar.data ? infoData.kalendar.data.attributes.url : null : null,
-      catalog: infoData.katalog ? infoData.katalog.data ? infoData.katalog.data.attributes.url : null : null,
-      conditions: infoData.katalog ? infoData.podminky.data ? infoData.podminky.data.attributes.url : null : null,
+      calendar: infoData?.kalendar ? infoData.kalendar.data ? infoData.kalendar.data.attributes.url : null : null,
+      catalog: infoData?.katalog ? infoData.katalog.data ? infoData.katalog.data.attributes.url : null : null,
+      conditions: infoData?.pdominky ? infoData.podminky.data ? infoData.podminky.data.attributes.url : null : null,
       zajezdData: sortedData ? sortedData : null,
       category: params.kategorie
     },

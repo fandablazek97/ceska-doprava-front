@@ -1,6 +1,9 @@
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
+import { GoogleMap, InfoWindowF, LoadScript, MarkerF, PolylineF } from "@react-google-maps/api";
+
 import Image from "next/image";
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 type Props = {
@@ -10,6 +13,7 @@ type Props = {
   programme?: string;
   comment?: string;
   departurePoints: any;
+  newDeparturePoints?: any;
   organizer?: string;
 };
 
@@ -20,6 +24,7 @@ export default function Information({
   programme,
   comment,
   departurePoints,
+  newDeparturePoints,
   organizer,
 }: Props) {
   return (
@@ -84,67 +89,71 @@ export default function Information({
         </div>
       )}
 
-      {departurePoints && departurePoints.length !== 0 && (
-        <div>
-          <Heading level={2} size={"base"}>
-            Odjezdová místa
-          </Heading>
-          {departurePoints.map((e: any, key: number) => (
-            <div key={key}>
-              <table className="w-full max-w-2xl">
-                <thead>
-                  <tr>
-                    <td>
-                      <Heading level={4} size="xs" className="mb-5 mt-7">
-                        Nástupní místo
-                      </Heading>
-                    </td>
-                    <td>
-                      <Heading
-                        level={4}
-                        size="xs"
-                        align="right"
-                        className="mb-5 mt-7 min-w-[125px]"
-                      >
-                        Příplatek
-                      </Heading>
-                    </td>
-                  </tr>
-                </thead>
-                <tbody className="divide-y-2">
-                  {e.attributes.mesta.map((en: any, key: number) => (
-                    <tr key={key}>
+      {newDeparturePoints ?
+        <NewMap stops={newDeparturePoints?.[0].attributes?.mesta.flatMap((stop: any) =>
+          stop.mesto.map((m: any) => ({ ...m, cena: stop.cena }))
+        )} center={newDeparturePoints?.[0].attributes?.stred} />
+        : departurePoints?.length !== 0 && (
+          <div>
+            <Heading level={2} size={"base"}>
+              Odjezdová místa
+            </Heading>
+            {departurePoints.map((e: any, key: number) => (
+              <div key={key}>
+                <table className="w-full max-w-2xl">
+                  <thead>
+                    <tr>
                       <td>
-                        {en.mesto.map((mesto: any, key: number) =>
-                          key !== en.mesto.length - 1
-                            ? mesto.mesto + ", "
-                            : mesto.mesto
-                        )}
+                        <Heading level={4} size="xs" className="mb-5 mt-7">
+                          Nástupní místo
+                        </Heading>
                       </td>
-                      <td className="py-2 text-right font-medium text-primary">
-                        {en.cena === 0 ? "Zdarma" : en.cena}
-                        {en.cena !== 0 && " Kč / osoba"}
+                      <td>
+                        <Heading
+                          level={4}
+                          size="xs"
+                          align="right"
+                          className="mb-5 mt-7 min-w-[125px]"
+                        >
+                          Příplatek
+                        </Heading>
                       </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              {e.attributes.obrazek.data !== null && (
-                <div className="relative mt-5 aspect-square max-h-[400px] w-full overflow-hidden rounded-md">
-                  <Image
-                    src={e.attributes.obrazek.data.attributes.url}
-                    alt={""}
-                    fill
-                    sizes="(max-width: 768px) 50vw,
+                  </thead>
+                  <tbody className="divide-y-2">
+                    {e.attributes.mesta.map((en: any, key: number) => (
+                      <tr key={key}>
+                        <td>
+                          {en.mesto.map((mesto: any, key: number) =>
+                            key !== en.mesto.length - 1
+                              ? mesto.mesto + ", "
+                              : mesto.mesto
+                          )}
+                        </td>
+                        <td className="py-2 text-right font-medium text-primary">
+                          {en.cena === 0 ? "Zdarma" : en.cena}
+                          {en.cena !== 0 && " Kč / osoba"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {e.attributes.obrazek.data !== null && (
+                  <div className="relative mt-5 aspect-square max-h-[400px] w-full overflow-hidden rounded-md">
+                    <Image
+                      src={e.attributes.obrazek.data.attributes.url}
+                      alt={""}
+                      fill
+                      sizes="(max-width: 768px) 50vw,
                     (max-width: 1200px) 50vw,
                     50vw"
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       {programme && (
         <div>
           <Heading level={2} size={"base"}>
@@ -196,5 +205,60 @@ export default function Information({
 
       <p className="mt-10 font-bold">ZMĚNA PROGRAMU VYHRAZENA</p>
     </Wrapper>
+  );
+}
+
+function NewMap({ center, stops }: { center?: string, stops?: any }) {
+  const [selectedStop, setSelectedStop] = useState<any>();
+  const [busIcon, setBusIcon] = useState<any>();
+  if (!stops || !center) return null
+  const routePath = stops.map((stop: any) => { const [lat, lng] = stop.souradnice.split(","); return { lat: parseFloat(lat), lng: parseFloat(lng) } });
+  const [centerLat, centerLng] = center.split(",");
+
+  return (
+    <div>
+      <LoadScript
+        onLoad={() => setBusIcon({
+          url: "/icons/bus.png",
+          scaledSize: new window.google.maps.Size(36, 36),
+        })}
+        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? ""}>
+        <GoogleMap mapContainerStyle={{ width: '100%', height: '500px' }} zoom={11} center={{ lat: parseFloat(centerLat), lng: parseFloat(centerLng) }}>
+          {busIcon && stops.map((stop: any, index: number) => {
+            let [lat, lng] = stop.souradnice.split(",");
+            lat = parseFloat(lat);
+            lng = parseFloat(lng)
+            return <MarkerF
+              icon={busIcon}
+              key={index}
+              position={{ lat: lat, lng: lng }}
+              onClick={() => setSelectedStop({ lat: lat, lng: lng, ...stop })}
+            />
+          })}
+          <PolylineF
+            path={routePath}
+            options={{
+              strokeColor: '#FF0000',
+              strokeOpacity: 0.8,
+              strokeWeight: 2
+            }}
+          />
+          {selectedStop && (
+            <InfoWindowF
+              position={{ lat: selectedStop.lat, lng: selectedStop.lng }}
+              onCloseClick={() => setSelectedStop(undefined)}
+            >
+              <div className="space-y-1.5">
+                <p>Adresa: <b>{selectedStop.adresa}</b></p>
+                <p>{selectedStop.popisek && <>Popis: <b>{selectedStop.popisek}</b></>}</p>
+                <p>Cena: <b>{selectedStop.cena}Kč</b></p>
+                <p>Odkaz: <b>{selectedStop.souradnice}</b></p>
+              </div>
+            </InfoWindowF>
+          )}
+        </GoogleMap>
+
+      </LoadScript>
+    </div>
   );
 }

@@ -42,7 +42,15 @@ export default function Form({
 }: FormProps) {
   let allDataObject: any = {};
   let requiredArray: any = [];
-  let allDeparturePoints: string[] = [];
+  const allDeparturePoints: string[] = trasy?.reduce((acc: string[], e: any) => {
+    e.attributes.mesta.forEach((en: any) => {
+      en.mesto.forEach((env: any) => {
+        if (!acc.includes(env.mesto)) acc.push(env.mesto);
+      });
+    });
+    return acc;
+  }, []) || [];
+
 
   return (
     <FormStater
@@ -73,7 +81,7 @@ type FormStaterProps = {
   trasy: any;
   allDataObject: any;
   requiredArray: any;
-  allDeparturePoints: string[];
+  allDeparturePoints: any;
   full: boolean;
 };
 
@@ -101,17 +109,6 @@ function FormStater({
 
   useEffect(() => {
     allDataObject.country = country;
-
-    allDeparturePoints = trasy !== null &&
-      trasy.map((e: any, i: number) => {
-        e.attributes.mesta.map(
-          (en: any) => {
-            en.mesto.map((env: any) => {
-              !allDeparturePoints.includes(env.mesto) &&
-                allDeparturePoints.push(env.mesto)
-            })
-          });
-      });
 
     if (price === undefined) {
       let tempPrice = 0;
