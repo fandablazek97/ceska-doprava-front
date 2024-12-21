@@ -31,6 +31,7 @@ type Props = {
   newTrasy?: any;
   organizer?: any;
   full: boolean;
+  cenaMistenky: number;
 };
 
 export default function ContentCreator({
@@ -47,7 +48,8 @@ export default function ContentCreator({
   trasy,
   newTrasy,
   organizer,
-  full
+  full,
+  cenaMistenky
 }: Props) {
   const [content, setContent] = useState("informace");
   let contentShown: any;
@@ -63,10 +65,9 @@ export default function ContentCreator({
       dateAndPrice={dateAndPrice}
       trasy={newTrasy ? newTrasy : trasy}
       full={full}
+      cenaMistenky={cenaMistenky}
     />
   );
-
-
   return (
     <Wrapper size="sm" as={"section"} className="pt-24">
       <ContentFilter content={content} setContent={setContent} />

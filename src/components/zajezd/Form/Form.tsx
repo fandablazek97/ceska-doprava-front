@@ -30,6 +30,7 @@ type FormProps = {
   ];
   trasy: any;
   full: boolean;
+  cenaMistenky: number;
 };
 
 export default function Form({
@@ -39,6 +40,7 @@ export default function Form({
   dateAndPrice,
   trasy,
   full,
+  cenaMistenky
 }: FormProps) {
   let allDataObject: any = {};
   let requiredArray: any = [];
@@ -63,6 +65,7 @@ export default function Form({
       requiredArray={requiredArray}
       allDeparturePoints={allDeparturePoints}
       full={full}
+      cenaMistenky={cenaMistenky}
     />
   );
 }
@@ -83,6 +86,7 @@ type FormStaterProps = {
   requiredArray: any;
   allDeparturePoints: any;
   full: boolean;
+  cenaMistenky: number;
 };
 
 function FormStater({
@@ -94,7 +98,8 @@ function FormStater({
   allDataObject,
   requiredArray,
   allDeparturePoints,
-  full
+  full,
+  cenaMistenky
 }: FormStaterProps) {
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
@@ -126,7 +131,7 @@ function FormStater({
   }, []);
 
   useEffect(() => {
-    setCalculatedPrice((price + cityPrice) * passengers + (seats ? passengers * 300 : 0));
+    setCalculatedPrice((price + cityPrice) * passengers + (seats ? passengers * cenaMistenky : 0));
   }, [price, cityPrice, passengers, seats]);
 
 
@@ -356,7 +361,7 @@ function FormStater({
             >
 
               {["Vyberte možnost",
-                "Ano (vyberu si místa sám) + 300 Kč / os",
+                `Ano (vyberu si místa sám) + ${cenaMistenky} Kč / os`,
                 "Ne (je mi jedno, kde budeme sedět) - zdarma"].map((word: string, key: number) => (
                   <option value={word} key={key}>
                     {word}

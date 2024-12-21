@@ -59,7 +59,7 @@ export default function ContentAndFilter({ category, zajezdData }: { category: s
               key={trip.id}
               id={trip.id}
               name={trip.attributes.nazev}
-              imageSrc={trip.attributes.uvodniFoto.data.attributes.url}
+              imageSrc={trip.attributes.uvodniFoto.data?.attributes.url}
               categories={trip.attributes.kategorie}
               dateAndPrice={trip.attributes.terminACena}
               filterCategory={category}

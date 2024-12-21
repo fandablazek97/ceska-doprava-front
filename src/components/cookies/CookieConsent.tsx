@@ -21,12 +21,18 @@ type CookieContextType = {
   handleCheckboxChange?: (id: keyof CookiePreferences, isSelected: boolean) => void;
 };
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 // Create the cookie context
 const CookieContext = createContext<CookieContextType>({} as CookieContextType);
 
 // Helper function to update Google Analytics consent
 const updateGoogleConsent = (preferences: CookiePreferences) => {
-  if (typeof window !== "undefined") {
+  if (typeof window !== "undefined" && typeof window.gtag === 'function') {
     (window as any).gtag("consent", "update", {
       analytics_storage: preferences.analytics ? "granted" : "denied",
       ad_storage: preferences.marketing ? "granted" : "denied",
@@ -68,7 +74,7 @@ export function CookieProvider({ children }: CookieProviderProps) {
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && typeof window.gtag === 'function') {
       (window as any).gtag("consent", "default", {
         analytics_storage: "denied",
         ad_storage: "denied",

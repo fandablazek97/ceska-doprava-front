@@ -31,6 +31,7 @@ type Props = {
   newTrasy?: any;
   organizer?: any;
   obsazeny: boolean;
+  cenaMistenky: number;
 };
 
 export default function Zajezd({
@@ -52,6 +53,7 @@ export default function Zajezd({
   newTrasy,
   organizer,
   obsazeny,
+  cenaMistenky
 }: Props) {
   const [lowestPrice, setLowestPrice] = useState<number>(9999999);
   useEffect(() => {
@@ -95,6 +97,7 @@ export default function Zajezd({
         newTrasy={newTrasy}
         organizer={organizer}
         full={obsazeny}
+        cenaMistenky={cenaMistenky}
       />
     </>
   );
@@ -160,7 +163,8 @@ export async function getStaticProps({ params }: any) {
       trasy: trasyData,
       newTrasy: newTrasyData,
       organizer: zajezdData.attributes.poradatel,
-      obsazeny: zajezdData.attributes.obsazeny
+      obsazeny: zajezdData.attributes.obsazeny,
+      cenaMistenky: zajezdData.attributes.cenaMistenky ?? 300
     },
   };
 }
