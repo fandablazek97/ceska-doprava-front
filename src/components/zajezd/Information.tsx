@@ -91,8 +91,8 @@ export default function Information({
 
       {newDeparturePoints ?
         <NewMap stops={newDeparturePoints?.[0].attributes?.mesta.flatMap((stop: any) =>
-          stop.mesto.map((m: any) => ({ ...m, cena: stop.cena }))
-        )} center={newDeparturePoints?.[0].attributes?.stred} />
+          stop.mesto.map((m: any) => ({ ...m, cena: stop.cena })))?.sort((a: any, b: any) => a.poradi - b.poradi)
+        } center={newDeparturePoints?.[0].attributes?.stred} />
         : departurePoints?.length !== 0 && (
           <div>
             <Heading level={2} size={"base"}>
@@ -208,13 +208,13 @@ export default function Information({
   );
 }
 
-function NewMap({ center, stops }: { center?: string, stops?: any }) {
+export function NewMap({ center, stops }: { center?: string, stops?: any }) {
   const [selectedStop, setSelectedStop] = useState<any>();
   const [busIcon, setBusIcon] = useState<any>();
   if (!stops || !center) return null
   const routePath = stops.map((stop: any) => { const [lat, lng] = stop.souradnice.split(","); return { lat: parseFloat(lat), lng: parseFloat(lng) } });
   const [centerLat, centerLng] = center.split(",");
-
+  console.log(stops);
   return (
     <div>
       <LoadScript

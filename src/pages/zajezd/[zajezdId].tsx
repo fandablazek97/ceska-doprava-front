@@ -137,7 +137,7 @@ export async function getStaticProps({ params }: any) {
   });
   const newTrasyData = (
     await (
-      await fetch(ipToFetch + "/api/nova-trasas" + noveTrasyString + "&populate[mesta][fields][0]=cena&populate[mesta][populate]=souradnice&populate[mesta][populate]=adresa&populate[mesta][populate]=popisek&populate[mesta][populate]=mesto")
+      await fetch(ipToFetch + "/api/nova-trasas" + noveTrasyString + "&populate[mesta][fields][0]=cena&populate[mesta][populate]=souradnice&populate[mesta][populate]=adresa&populate[mesta][populate]=popisek&populate[mesta][populate]=mesto&populate[mesta][populate]=poradi")
     ).json()
   ).data;
   return {
