@@ -88,10 +88,9 @@ export default function Information({
           </div>
         </div>
       )}
-
       {newDeparturePoints ?
         <NewMap stops={newDeparturePoints?.[0].attributes?.mesta.flatMap((stop: any) =>
-          stop.mesto.map((m: any) => ({ ...m, cena: stop.cena })))?.sort((a: any, b: any) => a.poradi - b.poradi)
+          stop.mesto?.map((m: any) => ({ ...m, cena: stop.cena })))?.sort((a: any, b: any) => a.poradi - b.poradi)
         } center={newDeparturePoints?.[0].attributes?.stred} />
         : departurePoints?.length !== 0 && (
           <div>
@@ -208,13 +207,13 @@ export default function Information({
   );
 }
 
-export function NewMap({ center, stops }: { center?: string, stops?: any }) {
+export function NewMap({ center, stops, zoom = 11 }: { center?: string, stops?: any, zoom?: number }) {
   const [selectedStop, setSelectedStop] = useState<any>();
   const [busIcon, setBusIcon] = useState<any>();
   if (!stops || !center) return null
   const routePath = stops.map((stop: any) => { const [lat, lng] = stop.souradnice.split(","); return { lat: parseFloat(lat), lng: parseFloat(lng) } });
   const [centerLat, centerLng] = center.split(",");
-  console.log(stops);
+
   return (
     <div>
       <LoadScript
@@ -223,7 +222,7 @@ export function NewMap({ center, stops }: { center?: string, stops?: any }) {
           scaledSize: new window.google.maps.Size(36, 36),
         })}
         googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? ""}>
-        <GoogleMap mapContainerStyle={{ width: '100%', height: '500px' }} zoom={11} center={{ lat: parseFloat(centerLat), lng: parseFloat(centerLng) }}>
+        <GoogleMap mapContainerStyle={{ width: '100%', height: '500px' }} zoom={zoom} center={{ lat: parseFloat(centerLat), lng: parseFloat(centerLng) }}>
           {busIcon && stops.map((stop: any, index: number) => {
             let [lat, lng] = stop.souradnice.split(",");
             lat = parseFloat(lat);

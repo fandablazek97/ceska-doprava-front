@@ -44,7 +44,7 @@ export default function ComboSelect({
       ? values
       : values.filter((point: any) =>
         point
-          .toLowerCase()
+          ?.toLowerCase()
           .replace(/\s+/g, "")
           .includes(query.toLowerCase().replace(/\s+/g, ""))
       );

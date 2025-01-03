@@ -19,6 +19,8 @@ type Props = {
   departurePoints: DeparturePointsProps[];
   specialPrices: SpecialPricesProps[];
   year: string;
+  zoom: number;
+  stred: string;
 };
 
 interface SpecialPricesProps {
@@ -43,10 +45,11 @@ interface DeparturePointsProps {
 export default function chorvatsko({
   prices,
   swimming,
-  months,
   departurePoints,
   specialPrices,
   year,
+  zoom,
+  stred,
 }: Props) {
   return (
     <>
@@ -87,16 +90,16 @@ export default function chorvatsko({
         speed={-25}
         src="/images/home/chorvatsko.jpg"
       />
-      <DeparturePoints departurePoints={departurePoints} />
-      <Dates months={months} year={year} />
+      <DeparturePoints departurePoints={departurePoints} zoom={zoom} stred={stred} />
+      <Dates year={year} />
       <Pricing
         prices={prices}
         specialPrices={specialPrices}
         swimming={swimming}
       />
       <Form
+        year={year}
         prices={prices}
-        months={months}
         departurePoints={departurePoints}
         specialPrices={specialPrices}
       />
@@ -112,19 +115,18 @@ export default function chorvatsko({
 export async function getStaticProps() {
   const pricesQuery = "?populate[jizdne][populate][0]=x";
   const swimmingQuery = "&populate[koupani][populate][0]=X";
-  const monthsQuery =
-    "&populate[mesice][populate][0]=datumCr&populate[mesice][populate][1]=datumHr";
   const departurePointsQuery = "&populate[odjezdMista][populate][0]=mesto";
   const specialPricesQuery = "&populate[nastupniMista][populate][0]=mesto";
+  const mapQuery = "&populate[mesta][populate][0]=Y";
 
   const res = await fetch(
     ipToFetch +
-      "/api/chorvatsko" +
-      pricesQuery +
-      swimmingQuery +
-      monthsQuery +
-      departurePointsQuery +
-      specialPricesQuery
+    "/api/chorvatsko" +
+    pricesQuery +
+    swimmingQuery +
+    departurePointsQuery +
+    specialPricesQuery +
+    mapQuery
   );
   const dataAndMeta = await res.json();
   const data = dataAndMeta.data.attributes;
@@ -132,10 +134,11 @@ export async function getStaticProps() {
     props: {
       prices: data.jizdne,
       swimming: data.koupani,
-      months: data.mesice,
       departurePoints: data.odjezdMista,
       specialPrices: data.nastupniMista,
       year: data.rok,
+      stred: data.mapaStred,
+      zoom: data.mapaZoom,
     },
   };
 }

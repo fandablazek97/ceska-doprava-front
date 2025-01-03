@@ -17,12 +17,13 @@ import { returnIsPhoneNumber } from "@components/zajezd/Form/Form";
 import { useRouter } from "next/router";
 import "public/fonts/DejaVuSans.js";
 import { chorvatsko64 } from "public/images/pdfs/chorvatsko64";
+import { getFridaysAndSaturdays } from "src/utils";
 
 type FormProps = {
   prices: Prices[];
-  months: Months[];
   specialPrices: SpecialPrices[];
   departurePoints: departurePoints[];
+  year: string;
 };
 
 interface Months {
@@ -65,21 +66,22 @@ interface departurePoints {
 
 export default function Form({
   prices,
-  months,
   specialPrices,
   departurePoints,
+  year,
 }: FormProps) {
   let allDataObject: any = {};
   let requiredArray: any = [];
+  const months: any = getFridaysAndSaturdays(year);
 
   return (
     <FormStater
       allDataObject={allDataObject}
       requiredArray={requiredArray}
       prices={prices}
-      months={months}
       specialPrices={specialPrices}
       departurePoints={departurePoints}
+      months={months}
     />
   );
 }
@@ -88,18 +90,18 @@ type FormStaterProps = {
   allDataObject: object | any;
   requiredArray: string[] | object[];
   prices: Prices[];
-  months: Months[];
   specialPrices: SpecialPrices[];
   departurePoints: any;
+  months: Months[];
 };
 
 function FormStater({
   allDataObject,
   requiredArray,
   prices,
-  months,
   specialPrices,
   departurePoints,
+  months,
 }: FormStaterProps) {
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
@@ -278,8 +280,8 @@ function FormStater({
           requiredArray={requiredArray}
           formState={formState}
           prices={prices}
-          months={months}
           departurePoints={departurePoints}
+          months={months}
         />
         <Passengers
           passengers={passengers}
@@ -287,8 +289,8 @@ function FormStater({
           allDataObject={allDataObject}
           requiredArray={requiredArray}
           formState={formState}
-          months={months}
           departurePoints={departurePoints}
+          months={months}
         />
 
         <Select
