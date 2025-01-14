@@ -14,6 +14,12 @@ export const mainRoutes = [
     path: "/chorvatsko",
     main: true,
   },
+
+  {
+    label: "Zájezd na klíč",
+    path: "/zajezd-na-klic",
+    main: false,
+  },
   {
     label: "Autobusová doprava",
     path: "/doprava-autobus",
