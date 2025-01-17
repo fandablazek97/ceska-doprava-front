@@ -1,4 +1,3 @@
-import BasicHero from "@components/bricks/BasicHero";
 import Seo from "@components/root/seo/Seo";
 import ContentAndFilter from "@components/zajezdy/ContentAndFilter";
 import Downloads from "@components/zajezdy/Downloads";
@@ -22,13 +21,13 @@ export default function Exkurze({ calendar, catalog, conditions, zajezdData, cat
         title="Cestovní agentura – Nabízíme desítky zájezdů po celém Česku i Evropě"
         description="Nabízíme zájezdy za poznáním, kulturou, sportem a odpočinkem. Vydejte se s námi na jednodenní či vícedenní výlety. Již od 499 Kč."
       />
-      <BasicHero
+      {/* <BasicHero
         heading="Cestovní agentura"
         text={
           "Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás."
         }
       >
-      </BasicHero>
+      </BasicHero> */}
 
       {/* Zobrazovač zájezdů + Filtr + veškerá logika*/}
       <ContentAndFilter category={category} zajezdData={zajezdData} />

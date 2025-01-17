@@ -2,7 +2,6 @@ import BasicContact from "@components/bricks/BasicContact";
 import BasicHero from "@components/bricks/BasicHero";
 import Button from "@components/bricks/Button";
 import ParallaxImage from "@components/bricks/ParallaxImage";
-import Dates from "@components/chorvatsko/Dates";
 import DeparturePoints from "@components/chorvatsko/DeparturePoints";
 import Form from "@components/chorvatsko/form/Form";
 import Informations from "@components/chorvatsko/Informations";
@@ -91,7 +90,6 @@ export default function chorvatsko({
         src="/images/home/chorvatsko.jpg"
       />
       <DeparturePoints departurePoints={departurePoints} zoom={zoom} stred={stred} />
-      <Dates year={year} />
       <Pricing
         prices={prices}
         specialPrices={specialPrices}

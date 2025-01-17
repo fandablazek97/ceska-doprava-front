@@ -16,7 +16,7 @@ export const mainRoutes = [
   },
 
   {
-    label: "Zájezd na klíč",
+    label: "Školní výlety a zájezd na klíč",
     path: "/zajezd-na-klic",
     main: false,
   },

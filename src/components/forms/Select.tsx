@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { HiChevronDown } from "react-icons/hi";
 
 type Props = {
   name: string;
@@ -6,6 +7,7 @@ type Props = {
   isDisabled?: boolean;
   isRequired?: boolean;
   className?: string;
+  selectClassName?: string;
   children: any;
   allDataObject?: any;
   requiredArray?: any;
@@ -23,6 +25,7 @@ export default function Select({
   isDisabled = false,
   isRequired = false,
   className = "",
+  selectClassName = "",
   children,
   allDataObject,
   requiredArray,
@@ -112,55 +115,59 @@ export default function Select({
             <span className="ml-1 text-primary">Toto pole je povinné!</span>
           )}
       </label>
-      <select
-        id={name}
-        name={name}
-        className={`mt-3 h-auto w-full rounded-md border
+      <div className="relative">
+        <select
+          id={name}
+          name={name}
+          className={`h-auto w-full rounded-md border pr-8
           border-body bg-body-200 px-4 py-3 text-base 
           font-normal  transition duration-150 
           focus:border-primary focus:bg-white focus:!outline-none focus:ring-1 focus:ring-primary ${isDisabled
-            ? "pointer-events-none cursor-not-allowed opacity-60"
-            : "cursor-default opacity-100"
-          }`}
-        disabled={isDisabled}
-        required={isRequired}
-        defaultValue={defaultValue}
-        onChange={(e: any) => {
-          if (!allDataObject) return setFunction(e.target.value);
-          if (rare === false) {
-            if (oneOfMany === false) {
-              allDataObject[name] = e.target.value;
-            } else if (typeof oneOfMany === "string") {
-              allDataObject[oneOfMany][name] = e.target.value;
+              ? "pointer-events-none cursor-not-allowed opacity-60"
+              : "cursor-default opacity-100"
             }
-          } else {
-            if (rare === "dateAndPrice") {
-              allDataObject.date = JSON.parse(e.target.value).date;
-              allDataObject.price = JSON.parse(e.target.value).price;
-              setFunction(parseInt(allDataObject.price));
-            }
-            else if (rare === "returnValue") {
+            ${selectClassName}`}
+          disabled={isDisabled}
+          required={isRequired}
+          defaultValue={defaultValue}
+          onChange={(e: any) => {
+            if (!allDataObject) return setFunction(e.target.value);
+            if (rare === false) {
               if (oneOfMany === false) {
                 allDataObject[name] = e.target.value;
               } else if (typeof oneOfMany === "string") {
                 allDataObject[oneOfMany][name] = e.target.value;
               }
-              setFunction(e.target.value);
-            }
-            else if (rare === "returnIndex") {
-              if (oneOfMany === false) {
-                allDataObject[name] = e.target.value;
-              } else if (typeof oneOfMany === "string") {
-                allDataObject[oneOfMany][name] = e.target.value;
+            } else {
+              if (rare === "dateAndPrice") {
+                allDataObject.date = JSON.parse(e.target.value).date;
+                allDataObject.price = JSON.parse(e.target.value).price;
+                setFunction(parseInt(allDataObject.price));
               }
-              setFunction(e.target.selectedIndex);
+              else if (rare === "returnValue") {
+                if (oneOfMany === false) {
+                  allDataObject[name] = e.target.value;
+                } else if (typeof oneOfMany === "string") {
+                  allDataObject[oneOfMany][name] = e.target.value;
+                }
+                setFunction(e.target.value);
+              }
+              else if (rare === "returnIndex") {
+                if (oneOfMany === false) {
+                  allDataObject[name] = e.target.value;
+                } else if (typeof oneOfMany === "string") {
+                  allDataObject[oneOfMany][name] = e.target.value;
+                }
+                setFunction(e.target.selectedIndex);
+              }
             }
-          }
 
-        }}
-      >
-        {children}
-      </select>
+          }}
+        >
+          {children}
+        </select>
+        <HiChevronDown className="absolute h-6 w-6 right-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+      </div>
     </div>
   );
 }

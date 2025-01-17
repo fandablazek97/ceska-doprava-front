@@ -28,11 +28,14 @@ export default function DeparturePoints({ departurePoints, stred, zoom }: Props)
         <Heading level={2} size="xl">
           Nástupní a výstupní místa
         </Heading>
-        <p className="mt-10 max-w-prose">
+        <p className="mt-10">
           Nabízíme největší počet nástupních míst v Plzeňském a Jihočeském
           kraji. Nabereme vás doslova na každém rohu. V Chorvatsku obsluhujeme
           všechna letoviska podél celého pobřeží.
         </p>
+        <div className="mt-12 text-error font-bold text-lg">
+          Od června do září odjíždí autobusy z České republiky každý pátek a z Chorvatska zpět do ČR každou sobotu.
+        </div>
       </ScrollReveal>
 
       <NewMap stops={departurePoints.flatMap((stop: any) =>

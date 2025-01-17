@@ -1,8 +1,8 @@
 export const tagAndText = {
   vse: "Vše",
   novinky: "Novinky",
-  jednodenni: "Jednodenní",
-  vicedenni: "Vícedenní",
+  jednodenni: "Jednodenní výlety",
+  vicedenni: "Vícedenní výlety",
   chorvatsko: "Chorvatsko",
   lyzovani: "Lyžování",
   exkurze: "Exkurze",
