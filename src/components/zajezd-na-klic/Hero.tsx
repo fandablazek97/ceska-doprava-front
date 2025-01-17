@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <div className="relative pt-36 pb-12">
       <Wrapper size="sm">
-        <Heading level={1} size="xl">
+        <Heading level={1} size="lg">
           ŠKOLNÍ VÝLETY A ZÁJEZDY NA KLÍČ
         </Heading>
         <p className="mt-10">
