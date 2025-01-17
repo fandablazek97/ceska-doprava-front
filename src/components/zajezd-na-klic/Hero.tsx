@@ -4,7 +4,7 @@ import Wrapper from "@components/bricks/Wrapper";
 export default function Hero() {
   return (
     <div className="relative pt-36 pb-12">
-      <Wrapper size="base">
+      <Wrapper size="sm">
         <Heading level={1} size="xl">
           ŠKOLNÍ VÝLETY A ZÁJEZDY NA KLÍČ
         </Heading>

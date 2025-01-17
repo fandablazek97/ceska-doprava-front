@@ -75,7 +75,7 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
     }
 
     return (
-        <Wrapper size="base" as={"section"} className="mt-16">
+        <Wrapper size="sm" as={"section"} className="mt-16">
             <form>
                 <Heading level={2} size={"base"}>
                     Máte zájem o zájezd?

@@ -3,7 +3,7 @@ import Wrapper from "@components/bricks/Wrapper";
 
 export default function Info() {
     return (
-        <Wrapper size="base" className="space-y-8 text-black">
+        <Wrapper size="sm" className="space-y-8 text-black">
             <Heading level={2} size="base">
                 Zajistíme
             </Heading>
