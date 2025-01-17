@@ -14,14 +14,20 @@ export const mainRoutes = [
     path: "/chorvatsko",
     main: true,
   },
+
+  {
+    label: "Školní výlety a zájezd na klíč",
+    path: "/zajezd-na-klic",
+    main: false,
+  },
   {
     label: "Autobusová doprava",
-    path: "/doprava_autobus",
+    path: "/doprava-autobus",
     main: false,
   },
   {
     label: "Kamionová doprava",
-    path: "/doprava_kamion",
+    path: "/doprava-kamion",
     main: false,
   },
   {

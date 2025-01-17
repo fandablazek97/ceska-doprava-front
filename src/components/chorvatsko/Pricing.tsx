@@ -153,7 +153,7 @@ export default function Pricing({ prices, specialPrices, swimming }: Props) {
                   return (
                     <tr key={key}>
                       <td>
-                        {e.mesto.map((mesto: any, key: number) =>
+                        {e.mesto?.map((mesto: any, key: number) =>
                           key !== e.mesto.length - 1
                             ? mesto.nazev + ", "
                             : mesto.nazev

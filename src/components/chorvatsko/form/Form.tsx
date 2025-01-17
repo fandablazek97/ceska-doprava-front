@@ -14,14 +14,16 @@ import Checkbox from "@components/forms/Checkbox";
 import Select from "@components/forms/Select";
 import Textarea from "@components/forms/Textarea";
 import { returnIsPhoneNumber } from "@components/zajezd/Form/Form";
+import { useRouter } from "next/router";
 import "public/fonts/DejaVuSans.js";
 import { chorvatsko64 } from "public/images/pdfs/chorvatsko64";
+import { getFridaysAndSaturdays } from "src/utils";
 
 type FormProps = {
   prices: Prices[];
-  months: Months[];
   specialPrices: SpecialPrices[];
   departurePoints: departurePoints[];
+  year: string;
 };
 
 interface Months {
@@ -64,21 +66,22 @@ interface departurePoints {
 
 export default function Form({
   prices,
-  months,
   specialPrices,
   departurePoints,
+  year,
 }: FormProps) {
   let allDataObject: any = {};
   let requiredArray: any = [];
+  const months: any = getFridaysAndSaturdays(year);
 
   return (
     <FormStater
       allDataObject={allDataObject}
       requiredArray={requiredArray}
       prices={prices}
-      months={months}
       specialPrices={specialPrices}
       departurePoints={departurePoints}
+      months={months}
     />
   );
 }
@@ -87,24 +90,26 @@ type FormStaterProps = {
   allDataObject: object | any;
   requiredArray: string[] | object[];
   prices: Prices[];
-  months: Months[];
   specialPrices: SpecialPrices[];
   departurePoints: any;
+  months: Months[];
 };
 
 function FormStater({
   allDataObject,
   requiredArray,
   prices,
-  months,
   specialPrices,
   departurePoints,
+  months,
 }: FormStaterProps) {
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
   >("waiting");
   const [passengers, setPassengers] = useState<number>(1);
   const [seats, setSeats] = useState(false);
+
+  const router = useRouter();
 
   function verifying() {
     setFormState("verifying");
@@ -247,7 +252,7 @@ function FormStater({
       )
       .then(
         () => {
-          setFormState("accepted");
+          return router.push("/chorvatsko-success");
         },
         () => {
           setFormState("refused");
@@ -275,8 +280,8 @@ function FormStater({
           requiredArray={requiredArray}
           formState={formState}
           prices={prices}
-          months={months}
           departurePoints={departurePoints}
+          months={months}
         />
         <Passengers
           passengers={passengers}
@@ -284,8 +289,8 @@ function FormStater({
           allDataObject={allDataObject}
           requiredArray={requiredArray}
           formState={formState}
-          months={months}
           departurePoints={departurePoints}
+          months={months}
         />
 
         <Select
@@ -309,7 +314,7 @@ function FormStater({
         >
 
           {["Vyberte možnost",
-            "Ano (vyberu si místa sám) + 200 Kč / os",
+            "Ano (vyberu si místa sám) + 300 Kč / os",
             "Ne (je mi jedno, kde budeme sedět) - zdarma"].map((word: string, key: number) => (
               <option value={word} key={key}>
                 {word}
@@ -378,13 +383,6 @@ function FormStater({
           Odeslat objednávku
         </Button>
       </div>
-      {formState === "accepted" && (
-        <Alert
-          status="success"
-          title="Úspěch!"
-          text="Děkujeme za vaši objednávku. Data zpracováváme a potvrdíme do 2 pracovních dnů."
-        />
-      )}
       {formState === "refused" && (
         <Alert
           status="error"

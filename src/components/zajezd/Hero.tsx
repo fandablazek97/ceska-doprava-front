@@ -98,8 +98,7 @@ export default function Hero({
         <Image
           src={imageSrc}
           alt={imageAlt}
-          layout="fill"
-          objectFit="cover"
+          fill
           loading="eager"
           priority={true}
           sizes="100vh 100vw"

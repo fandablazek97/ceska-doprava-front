@@ -97,13 +97,12 @@ export default function TripMinimal({
 
   return (
     <Link href={`/zajezd/${id}`}>
-      <a className="group relative flex flex-col rounded-lg transition-transform duration-300 hover:scale-95">
+      <span className="group relative flex flex-col rounded-lg transition-transform duration-300 hover:scale-95">
         <div className="relative isolate aspect-[16/10] w-full overflow-hidden rounded-2xl bg-gray-200">
           <Image
             src={imageSrc}
             alt={name}
-            layout="fill"
-            objectFit="cover"
+            fill
             priority={true}
             sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
@@ -164,7 +163,7 @@ export default function TripMinimal({
             <HiArrowRight className="ml-5 h-5 w-5" />
           </div>
         </div>
-      </a>
+      </span>
     </Link>
   );
 }

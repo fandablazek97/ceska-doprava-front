@@ -20,7 +20,7 @@ export default function Croatia() {
         </p>
         <div>
           <Link href="/chorvatsko">
-            <Button as={"a"}>Zjistit více</Button>
+            <Button>Zjistit více</Button>
           </Link>
         </div>
       </ScrollReveal>

@@ -1,4 +1,4 @@
-import CookieConsentBar from "@components/root/cookieConsent/CookieConsentBar";
+import { CookieBanner } from "@components/cookies/CookieConsent";
 import { Footer } from "@components/root/footer";
 import { Head } from "@components/root/head";
 import { Navbar } from "@components/root/navbar";
@@ -16,9 +16,9 @@ export default function AppLayout({ children }: AppShellOptions) {
         <Head />
         <Navbar />
       </header>
-      <CookieConsentBar />
       <main id="main">{children}</main>
       <Footer />
+      <CookieBanner showOnScroll />
     </>
   );
 }

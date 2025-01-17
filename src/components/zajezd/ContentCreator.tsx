@@ -28,8 +28,10 @@ type Props = {
   programme?: string;
   comment?: string;
   trasy: any;
+  newTrasy?: any;
   organizer?: any;
   full: boolean;
+  cenaMistenky: number;
 };
 
 export default function ContentCreator({
@@ -44,46 +46,43 @@ export default function ContentCreator({
   programme,
   comment,
   trasy,
+  newTrasy,
   organizer,
-  full
+  full,
+  cenaMistenky
 }: Props) {
   const [content, setContent] = useState("informace");
   let contentShown: any;
-  let allDeparturePoints: string[] = [];
 
-  if (content === "informace") {
-    contentShown = (
-      <Information
-        text={text}
-        information={information}
-        transport={transport}
-        programme={programme}
-        comment={comment}
-        departurePoints={trasy}
-        organizer={organizer}
-      />
-    );
-  } else if (content === "termin") {
-    contentShown = <DatesAll dateAndPrice={dateAndPrice} />;
-  } else if (content === "galerie") {
-    contentShown = <Gallery images={otherImages} />;
-  } else if (content === "objednavka") {
-    contentShown = (
-      <Form
-        code={code}
-        name={name}
-        country={country}
-        dateAndPrice={dateAndPrice}
-        trasy={trasy}
-        full={full}
-      />
-    );
-  }
-
+  if (content === "informace") contentShown = null;
+  else if (content === "termin") contentShown = <DatesAll dateAndPrice={dateAndPrice} />;
+  else if (content === "galerie") contentShown = <Gallery images={otherImages} />;
+  else if (content === "objednavka") contentShown = (
+    <Form
+      code={code}
+      name={name}
+      country={country}
+      dateAndPrice={dateAndPrice}
+      trasy={newTrasy ? newTrasy : trasy}
+      full={full}
+      cenaMistenky={cenaMistenky}
+    />
+  );
   return (
     <Wrapper size="sm" as={"section"} className="pt-24">
       <ContentFilter content={content} setContent={setContent} />
-
+      <div className={`${content !== "informace" && "hidden"}`}>
+        <Information
+          text={text}
+          information={information}
+          transport={transport}
+          programme={programme}
+          comment={comment}
+          departurePoints={trasy}
+          newDeparturePoints={newTrasy}
+          organizer={organizer}
+        />
+      </div>
       {contentShown}
     </Wrapper>
   );

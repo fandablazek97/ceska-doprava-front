@@ -92,7 +92,7 @@ export default function GdprPolicy({
       <p>
         Pro více informací o cookies si přečtěte naše{" "}
         <Link href="/cookies">
-          <a>zásady používání cookies.</a>
+          zásady používání cookies.
         </Link>
       </p>
 

@@ -24,22 +24,19 @@ export default function Navbar() {
   }, [scroll.y, scroll.lastY]);
   return (
     <nav
-      className={`fixed z-[100] h-20 w-screen bg-white transition duration-500 ${
-        isNavbarScrolled && "shadow-2xl"
-      }`}
+      className={`fixed z-[100] h-20 w-screen bg-white transition duration-500 ${isNavbarScrolled && "shadow-2xl"
+        }`}
     >
       <Wrapper
         size="fluid"
         className="flex h-full items-center justify-between gap-4 xl:gap-10"
       >
-        <Link href="/">
-          <a className="z-[110] mr-auto flex h-full items-center text-2xl font-bold outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
-            <img
-              src="/logos/logo.svg"
-              alt="logo česká doprava"
-              className="h-full max-w-[200px]"
-            ></img>
-          </a>
+        <Link href="/" className="z-[110] mr-auto flex h-full items-center text-2xl font-bold outline-none focus-visible:ring-4 focus-visible:ring-primary/70">
+          <img
+            src="/logos/logo.svg"
+            alt="logo česká doprava"
+            className="h-full max-w-[200px]"
+          />
         </Link>
         <NavbarMainLinks className="hidden lg:flex" />
         <NavbarAdditionalLinks />

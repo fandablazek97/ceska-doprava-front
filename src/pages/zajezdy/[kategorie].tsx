@@ -1,9 +1,9 @@
-import BasicHero from "@components/bricks/BasicHero";
 import Seo from "@components/root/seo/Seo";
 import ContentAndFilter from "@components/zajezdy/ContentAndFilter";
 import Downloads from "@components/zajezdy/Downloads";
 import { tagAndText } from "@components/zajezdy/References";
 import { ipToFetch } from "@configs/globalConfig";
+import { sortByClosestDatumOd } from "src/utils";
 
 type Props = {
   calendar: string;
@@ -21,13 +21,13 @@ export default function Exkurze({ calendar, catalog, conditions, zajezdData, cat
         title="Cestovní agentura – Nabízíme desítky zájezdů po celém Česku i Evropě"
         description="Nabízíme zájezdy za poznáním, kulturou, sportem a odpočinkem. Vydejte se s námi na jednodenní či vícedenní výlety. Již od 499 Kč."
       />
-      <BasicHero
+      {/* <BasicHero
         heading="Cestovní agentura"
         text={
           "Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás."
         }
       >
-      </BasicHero>
+      </BasicHero> */}
 
       {/* Zobrazovač zájezdů + Filtr + veškerá logika*/}
       <ContentAndFilter category={category} zajezdData={zajezdData} />
@@ -71,6 +71,7 @@ export async function getStaticProps({ params }: any) {
   const zajezdDataAndMeta = await zajezdRes.json();
   const zajezdData = zajezdDataAndMeta.data ? zajezdDataAndMeta.data : null;
 
+  const sortedData = zajezdData ? sortByClosestDatumOd(zajezdData) : null;
 
   /* INFO */
   const infoRes = await fetch(
@@ -82,10 +83,10 @@ export async function getStaticProps({ params }: any) {
 
   return {
     props: {
-      calendar: infoData.kalendar ? infoData.kalendar.data ? infoData.kalendar.data.attributes.url : null : null,
-      catalog: infoData.katalog ? infoData.katalog.data ? infoData.katalog.data.attributes.url : null : null,
-      conditions: infoData.katalog ? infoData.podminky.data ? infoData.podminky.data.attributes.url : null : null,
-      zajezdData: zajezdData ? zajezdData : null,
+      calendar: infoData?.kalendar ? infoData.kalendar.data ? infoData.kalendar.data.attributes.url : null : null,
+      catalog: infoData?.katalog ? infoData.katalog.data ? infoData.katalog.data.attributes.url : null : null,
+      conditions: infoData?.pdominky ? infoData.podminky.data ? infoData.podminky.data.attributes.url : null : null,
+      zajezdData: sortedData ? sortedData : null,
       category: params.kategorie
     },
   };

@@ -83,54 +83,50 @@ export default function NearestDeparturesCard({
   }
 
   return (
-    <Link href={fake ? "" : `/zajezd/${tripId}`}>
-      <a
-        className={`group flex flex-col md:gap-2 ${fake
-            ? "animate-pulse justify-between"
-            : "items-start transition duration-300 hover:scale-95"
-          } ${className}`}
-        onClick={(e) => fake && e.preventDefault()}
+    <Link href={fake ? "" : `/zajezd/${tripId}`}
+      className={`group flex flex-col md:gap-2 ${fake
+        ? "animate-pulse justify-between"
+        : "items-start transition duration-300 hover:scale-95"
+        } ${className}`}
+      onClick={(e) => fake && e.preventDefault()}>
+      <div
+        className={`relative isolate aspect-[16/10] w-full overflow-hidden rounded-2xl ${fake && "bg-gray-200"
+          }`}
       >
-        <div
-          className={`relative isolate aspect-[16/10] w-full overflow-hidden rounded-2xl ${fake && "bg-gray-200"
-            }`}
-        >
-          {!fake && (
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
-              layout="fill"
-              objectFit="cover"
-              loading="eager"
-              sizes="(max-width: 768px) 50vw,
+        {!fake && (
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            loading="eager"
+            sizes="(max-width: 768px) 50vw,
                 (max-width: 1200px) 25vw,
                 25vw"
-              className="transition-transform duration-300 group-hover:scale-105"
-            />
-          )}
-        </div>
-        <div className="flex flex-col gap-2 py-2 px-1">
-          <span
-            className={`block ${fake
-                ? "h-5 w-40 bg-gray-200"
-                : "text-lg font-semibold leading-6 text-rich"
-              }`}
-          >
-            {!fake && name}
-          </span>
-          <span
-            className={`block ${fake ? "h-5 w-28 bg-gray-200" : "mt-auto"}`}
-          >
-            {!fake ? (dateTo === "none" || !dateTo || dateFrom === dateTo)
-              ?
-              dateFrom
-              :
-              dateFrom + " - " + dateTo
-              : null
-            }
-          </span>
-        </div>
-      </a>
+            className="transition-transform duration-300 group-hover:scale-105"
+          />
+        )}
+      </div>
+      <div className="flex flex-col gap-2 py-2 px-1">
+        <span
+          className={`block ${fake
+            ? "h-5 w-40 bg-gray-200"
+            : "text-lg font-semibold leading-6 text-rich"
+            }`}
+        >
+          {!fake && name}
+        </span>
+        <span
+          className={`block ${fake ? "h-5 w-28 bg-gray-200" : "mt-auto"}`}
+        >
+          {!fake ? (dateTo === "none" || !dateTo || dateFrom === dateTo)
+            ?
+            dateFrom
+            :
+            dateFrom + " - " + dateTo
+            : null
+          }
+        </span>
+      </div>
     </Link>
   );
 }

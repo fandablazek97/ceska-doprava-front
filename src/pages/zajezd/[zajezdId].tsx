@@ -28,8 +28,10 @@ type Props = {
   programme?: string;
   comment?: string;
   trasy: any;
+  newTrasy?: any;
   organizer?: any;
   obsazeny: boolean;
+  cenaMistenky: number;
 };
 
 export default function Zajezd({
@@ -48,8 +50,10 @@ export default function Zajezd({
   programme,
   comment,
   trasy,
+  newTrasy,
   organizer,
   obsazeny,
+  cenaMistenky
 }: Props) {
   const [lowestPrice, setLowestPrice] = useState<number>(9999999);
   useEffect(() => {
@@ -90,8 +94,10 @@ export default function Zajezd({
         programme={programme}
         comment={comment}
         trasy={trasy}
+        newTrasy={newTrasy}
         organizer={organizer}
         full={obsazeny}
+        cenaMistenky={cenaMistenky}
       />
     </>
   );
@@ -104,12 +110,12 @@ export async function getStaticProps({ params }: any) {
         ipToFetch +
         "/api/zajezds/" +
         params.zajezdId +
-        "?populate[terminACena][fields][0]=datumOd&populate[terminACena][fields][1]=datumDo&populate[terminACena][fields][2]=cena&populate[kategorie][fields][3]=kategorie&populate[odjezdovaMista][fields][4]=mesto&populate[odjezdovaMista][fields][5]=ulice&populate[odjezdovaMista][fields][6]=cisloPopisne&populate[uvodniFoto][fields][7]=url&populate[dalsiFoto][fields][8]=url&populate[terminACena][fields][9]=pocetDni&populate[terminACena][fields][10]=pocetNoci&populate[trasy][fields][11]=oznaceni"
+        "?populate[terminACena][fields][0]=datumOd&populate[terminACena][fields][1]=datumDo&populate[terminACena][fields][2]=cena&populate[kategorie][fields][3]=kategorie&populate[odjezdovaMista][fields][4]=mesto&populate[odjezdovaMista][fields][5]=ulice&populate[odjezdovaMista][fields][6]=cisloPopisne&populate[uvodniFoto][fields][7]=url&populate[dalsiFoto][fields][8]=url&populate[terminACena][fields][9]=pocetDni&populate[terminACena][fields][10]=pocetNoci&populate[trasy][fields][11]=oznaceni&populate[noveTrasy][fields][11]=oznaceni"
       )
     ).json()
   ).data;
   let trasyString = "";
-  zajezdData.attributes.trasy.map((e: any, i: number) => {
+  zajezdData.attributes.trasy?.map((e: any, i: number) => {
     if (trasyString === "") {
       trasyString += "?filters[$or][" + i + "][oznaceni][$eq]=" + e.oznaceni;
     } else {
@@ -121,7 +127,19 @@ export async function getStaticProps({ params }: any) {
       await fetch(ipToFetch + "/api/trasas" + trasyString + "&populate[obrazek][fields][0]=url&populate[mesta][fields][1]=cena&populate[mesta][populate]=mesto")
     ).json()
   ).data;
-
+  let noveTrasyString = "";
+  zajezdData.attributes.noveTrasy?.map((e: any, i: number) => {
+    if (noveTrasyString === "") {
+      noveTrasyString += "?filters[$or][" + i + "][oznaceni][$eq]=" + e.oznaceni;
+    } else {
+      noveTrasyString += "&filters[$or][" + i + "][oznaceni][$eq]=" + e.oznaceni;
+    }
+  });
+  const newTrasyData = (
+    await (
+      await fetch(ipToFetch + "/api/nova-trasas" + noveTrasyString + "&populate[mesta][fields][0]=cena&populate[mesta][populate]=souradnice&populate[mesta][populate]=adresa&populate[mesta][populate]=popisek&populate[mesta][populate]=mesto&populate[mesta][populate]=poradi")
+    ).json()
+  ).data;
   return {
     props: {
       country: zajezdData.attributes.stat,
@@ -130,7 +148,7 @@ export async function getStaticProps({ params }: any) {
       perex: zajezdData.attributes.kratkyPopis,
       code: zajezdData.attributes.kod,
       categories: zajezdData.attributes.kategorie,
-      imageSrc: zajezdData.attributes.uvodniFoto.data.attributes.url,
+      imageSrc: zajezdData.attributes.uvodniFoto.data?.attributes.url ?? "",
       otherImages:
         zajezdData.attributes.dalsiFoto.data !== null &&
         zajezdData.attributes.dalsiFoto.data.map((e: any) => {
@@ -143,8 +161,10 @@ export async function getStaticProps({ params }: any) {
       programme: zajezdData.attributes.program,
       comment: zajezdData.attributes.poznamka,
       trasy: trasyData,
+      newTrasy: newTrasyData,
       organizer: zajezdData.attributes.poradatel,
-      obsazeny: zajezdData.attributes.obsazeny
+      obsazeny: zajezdData.attributes.obsazeny,
+      cenaMistenky: zajezdData.attributes.cenaMistenky ?? 300
     },
   };
 }

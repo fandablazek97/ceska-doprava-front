@@ -29,9 +29,8 @@ export default function BasicHero({
     <Wrapper
       as={"header"}
       size={"base"}
-      className={`flex flex-col gap-10 pb-16 pt-24 xl:pb-24 xl:pt-32 ${
-        imagePosition === "left" ? "md:flex-row-reverse" : "md:flex-row"
-      }`}
+      className={`flex flex-col gap-10 pb-16 pt-24 xl:pb-24 xl:pt-32 ${imagePosition === "left" ? "md:flex-row-reverse" : "md:flex-row"
+        }`}
     >
       <div className={`mt-20 flex items-center justify-center md:mt-0 ${imageSrc && "md:w-1/2"}`}>
         <div className="flex flex-col space-y-10">
@@ -43,20 +42,19 @@ export default function BasicHero({
         </div>
       </div>
       {
-        imageSrc && 
-      <div className="relative aspect-square md:w-1/2">
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          layout="fill"
-          objectFit="contain"
-          loading="eager"
-          priority={true}
-          sizes={`(max-width: 768px) ${imageSizeSm},
+        imageSrc &&
+        <div className="relative aspect-square md:w-1/2">
+          <Image
+            src={imageSrc}
+            alt={imageAlt ?? "Hero image"}
+            fill
+            loading="eager"
+            priority={true}
+            sizes={`(max-width: 768px) ${imageSizeSm},
               (max-width: 1200px) ${imageSizeMd},
               ${imageSizeLg}`}
-        />
-      </div>
+          />
+        </div>
       }
     </Wrapper>
   );

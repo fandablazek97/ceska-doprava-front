@@ -30,6 +30,7 @@ type FormProps = {
   ];
   trasy: any;
   full: boolean;
+  cenaMistenky: number;
 };
 
 export default function Form({
@@ -39,10 +40,19 @@ export default function Form({
   dateAndPrice,
   trasy,
   full,
+  cenaMistenky
 }: FormProps) {
   let allDataObject: any = {};
   let requiredArray: any = [];
-  let allDeparturePoints: string[] = [];
+  const allDeparturePoints: string[] = trasy?.reduce((acc: string[], e: any) => {
+    e.attributes.mesta.forEach((en: any) => {
+      en.mesto.forEach((env: any) => {
+        if (!acc.includes(env.mesto)) acc.push(env.mesto);
+      });
+    });
+    return acc;
+  }, []) || [];
+
 
   return (
     <FormStater
@@ -55,6 +65,7 @@ export default function Form({
       requiredArray={requiredArray}
       allDeparturePoints={allDeparturePoints}
       full={full}
+      cenaMistenky={cenaMistenky}
     />
   );
 }
@@ -73,8 +84,9 @@ type FormStaterProps = {
   trasy: any;
   allDataObject: any;
   requiredArray: any;
-  allDeparturePoints: string[];
+  allDeparturePoints: any;
   full: boolean;
+  cenaMistenky: number;
 };
 
 function FormStater({
@@ -86,7 +98,8 @@ function FormStater({
   allDataObject,
   requiredArray,
   allDeparturePoints,
-  full
+  full,
+  cenaMistenky
 }: FormStaterProps) {
   const [formState, setFormState] = useState<
     "waiting" | "verifying" | "refused" | "accepted"
@@ -97,19 +110,10 @@ function FormStater({
   const [cityPrice, setCityPrice] = useState<number>(0);
   const [calculatedPrice, setCalculatedPrice] = useState<number>(0);
 
+  const router = useRouter();
+
   useEffect(() => {
     allDataObject.country = country;
-
-    allDeparturePoints = trasy !== null &&
-      trasy.map((e: any, i: number) => {
-        e.attributes.mesta.map(
-          (en: any) => {
-            en.mesto.map((env: any) => {
-              !allDeparturePoints.includes(env.mesto) &&
-                allDeparturePoints.push(env.mesto)
-            })
-          });
-      });
 
     if (price === undefined) {
       let tempPrice = 0;
@@ -127,7 +131,7 @@ function FormStater({
   }, []);
 
   useEffect(() => {
-    setCalculatedPrice((price + cityPrice) * passengers + (seats ? passengers * 200 : 0));
+    setCalculatedPrice((price + cityPrice) * passengers + (seats ? passengers * cenaMistenky : 0));
   }, [price, cityPrice, passengers, seats]);
 
 
@@ -264,7 +268,7 @@ function FormStater({
       )
       .then(
         () => {
-          setFormState("accepted");
+          return router.push("/zajezd-success");
         },
         () => {
           setFormState("refused");
@@ -284,8 +288,6 @@ function FormStater({
     ))
   }
 
-  const history = useRouter();
-
 
   return (
     <Wrapper size="base" as={"section"} className="mb-16">
@@ -296,7 +298,7 @@ function FormStater({
           Děkujeme za váš zájem! Tento zájezd je bohužel <strong>již plně obsazen.</strong>
           <br />
           <br />
-          Prosím, vraťte se na <button className="underline" onClick={() => history.back()}>předchozí stránku</button> a podívejte se na naše další skvělé nabídky.
+          Prosím, vraťte se na <button className="underline" onClick={() => router.back()}>předchozí stránku</button> a podívejte se na naše další skvělé nabídky.
           <br />
           <br />
           V případě, že máte zájem o umístění na seznam náhradníků, napište <strong>nám na email: <a href="mailto:cestovka.ceskadoprava@email.cz" className="underline">cestovka.ceskadoprava@email.cz</a>.</strong>
@@ -359,7 +361,7 @@ function FormStater({
             >
 
               {["Vyberte možnost",
-                "Ano (vyberu si místa sám) + 200 Kč / os",
+                `Ano (vyberu si místa sám) + ${cenaMistenky} Kč / os`,
                 "Ne (je mi jedno, kde budeme sedět) - zdarma"].map((word: string, key: number) => (
                   <option value={word} key={key}>
                     {word}
@@ -433,13 +435,6 @@ function FormStater({
               Odeslat objednávku
             </Button>
           </div>
-          {formState === "accepted" && (
-            <Alert
-              status="success"
-              title="Úspěch!"
-              text="Děkujeme za vaši objednávku. Data zpracováváme a potvrdíme do 2 pracovních dnů."
-            />
-          )}
           {formState === "refused" && (
             <Alert
               status="error"

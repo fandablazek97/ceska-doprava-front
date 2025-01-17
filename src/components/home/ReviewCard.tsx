@@ -20,8 +20,7 @@ export default function ReviewCard({
           <Image
             src={imageSrc}
             alt="Ikona"
-            layout="fill"
-            objectFit="cover"
+            fill
             loading="eager"
           />
         </div>

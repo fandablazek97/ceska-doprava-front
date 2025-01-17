@@ -28,8 +28,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
           <Image
             src="/images/home/parallax/1.jpg"
             alt="Obrázek"
-            layout="fill"
-            objectFit="cover"
+            fill
             loading="lazy"
             className="rounded-3xl"
             sizes="(max-width: 768px) 0,
@@ -44,8 +43,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
             <Image
               src="/images/home/parallax/2.jpg"
               alt="Obrázek"
-              layout="fill"
-              objectFit="cover"
+              fill
               loading="lazy"
               className="rounded-3xl"
               sizes="(max-width: 768px) 50vw,
@@ -57,8 +55,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
             <Image
               src="/images/home/parallax/3.jpg"
               alt="Obrázek"
-              layout="fill"
-              objectFit="cover"
+              fill
               loading="lazy"
               className="rounded-3xl"
               sizes="(max-width: 768px) 50vw,
@@ -74,8 +71,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
             <Image
               src="/images/home/parallax/4.jpg"
               alt="Obrázek"
-              layout="fill"
-              objectFit="cover"
+              fill
               loading="lazy"
               className="rounded-3xl"
               sizes="(max-width: 768px) 50vw,
@@ -87,8 +83,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
             <Image
               src="/images/home/parallax/5.jpg"
               alt="Obrázek"
-              layout="fill"
-              objectFit="cover"
+              fill
               loading="lazy"
               className="rounded-3xl"
               sizes="(max-width: 768px) 50vw,
@@ -106,8 +101,7 @@ function JustParallax({ className = "" }: JustParallaxProps) {
           <Image
             src="/images/home/parallax/6.jpg"
             alt="Obrázek"
-            layout="fill"
-            objectFit="cover"
+            fill
             loading="lazy"
             className="rounded-3xl"
             sizes="(max-width: 768px) 0,
@@ -137,7 +131,7 @@ export default function TripsAndParallax() {
           </p>
           <div>
             <Link href="/zajezdy/vse">
-              <Button as="a">Zobrazit zájezdy</Button>
+              <Button>Zobrazit zájezdy</Button>
             </Link>
           </div>
         </ScrollReveal>
