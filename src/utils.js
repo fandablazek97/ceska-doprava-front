@@ -16,9 +16,10 @@ function findClosestDate(terminACena, currentDate) {
     return Infinity; // No valid dates; treat as very far
   }
 
-  // Find the closest datumOd in the terminACena array
+  // Find the closest future datumOd in the terminACena array
   return terminACena.reduce((closest, item) => {
     const datumOd = new Date(item.datumOd);
+    if (datumOd <= currentDate) return closest;
     return Math.abs(datumOd - currentDate) < Math.abs(closest - currentDate)
       ? datumOd
       : closest;
