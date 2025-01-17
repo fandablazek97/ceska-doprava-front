@@ -137,8 +137,8 @@ export async function getStaticProps() {
       departurePoints: data.odjezdMista,
       specialPrices: data.nastupniMista,
       year: data.rok,
-      stred: data.mapaStred,
-      zoom: data.mapaZoom,
+      stred: data.mapaStred ?? null,
+      zoom: data.mapaZoom ?? null,
     },
   };
 }
