@@ -221,7 +221,7 @@ export function NewMap({ center, stops, zoom = 11 }: { center?: string, stops?: 
           url: "/icons/bus.png",
           scaledSize: new window.google.maps.Size(36, 36),
         })}
-        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ?? ""}>
+        googleMapsApiKey={process.env.GOOGLE_MAPS_KEY ?? ""}>
         <GoogleMap mapContainerStyle={{ width: '100%', height: '500px' }} zoom={zoom} center={{ lat: parseFloat(centerLat), lng: parseFloat(centerLng) }}>
           {busIcon && stops.map((stop: any, index: number) => {
             let [lat, lng] = stop.souradnice.split(",");
