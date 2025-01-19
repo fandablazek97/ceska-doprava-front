@@ -248,8 +248,9 @@ export function NewMap({ center, stops, zoom = 11 }: { center?: string, stops?: 
               onCloseClick={() => setSelectedStop(undefined)}
             >
               <div className="space-y-1.5">
-                <p>Adresa: <b>{selectedStop.adresa}</b></p>
                 <p>{selectedStop.popisek && <>Popis: <b>{selectedStop.popisek}</b></>}</p>
+                <p>Město: <b>{selectedStop.nazev}</b></p>
+                <p>Adresa: <b>{selectedStop.adresa}</b></p>
                 <p>Cena: <b>{selectedStop.cena}Kč</b></p>
                 <p>Odkaz: <b>{selectedStop.souradnice}</b></p>
               </div>
