@@ -2,8 +2,10 @@ import Button from "@components/bricks/Button";
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Select from "@components/forms/Select";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import ScrollContainer from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { tagAndText } from "./References";
 import TripMinimal from "./TripMinimal";
@@ -26,35 +28,35 @@ export default function ContentAndFilter({ category, zajezdData }: { category: s
 
               <p>Vyberte si cestovatelský zážitek podle svých představ a objevujte s námi krásy světa kolem nás.</p>
             </div>
-            <Select defaultValue={category} name="filterSelect" label="Vyberte kategorii:" className="md:w-fit flex flex-col gap-y-1.5" selectClassName="w-full md:min-w-[320px]" setFunction={(value: string) => router.push("/zajezdy/" + value)}>
+            <Select defaultValue={category} name="filterSelect" label="Vyberte kategorii:" className="flex md:hidden md:w-fit flex-col gap-y-1.5" selectClassName="w-full md:min-w-[320px]" setFunction={(value: string) => router.push("/zajezdy/" + value)}>
               {Object.entries(tagAndText).map((elem: any, index: number) => <option key={"ok" + index} value={elem[0]}>{elem[1]}</option>)}
             </Select>
           </div>
-          {/* <div
-          className={`hidden md:flex min-h-[75px] !w-full flex-row justify-between py-5 xl:py-10`}
-        >
           <div
-            className={`grid w-fit grid-cols-1 justify-between mx-auto`}
+            className={`hidden md:flex min-h-[75px] !w-full flex-row justify-between`}
           >
-            <ScrollContainer
-              component={"ul"}
-              className={`my-auto flex flex-row`}
+            <div
+              className={`grid w-fit grid-cols-1`}
             >
-              {Object.entries(tagAndText).map((elem: any, key: number) => (
-                <li
-                  tabIndex={0}
-                  key={key}
-                  className={`mx-1 flex h-10 w-fit cursor-pointer items-center justify-center whitespace-nowrap rounded-lg px-3 text-sm font-semibold md:text-base xl:px-5
+              <ScrollContainer
+                component={"ul"}
+                className={`flex flex-row gap-x-1.5 py-5 xl:py-10`}
+              >
+                {Object.entries(tagAndText).map((elem: any, key: number) => (
+                  <li
+                    tabIndex={0}
+                    key={key}
+                    className={`flex h-10 w-fit cursor-pointer items-center justify-center whitespace-nowrap rounded-lg px-2 text-sm font-semibold md:text-base select-none
                     ${elem[0] === category ? "bg-gray-200" : "hover:bg-gray-100"
-                    }`}
-                >
-                  <Link href={`${elem[0]}`} scroll={false}>
-                    {elem[1]}</Link>
-                </li>
-              ))}
-            </ScrollContainer>
+                      }`}
+                  >
+                    <Link href={`${elem[0]}`} scroll={false}>
+                      {elem[1]}</Link>
+                  </li>
+                ))}
+              </ScrollContainer>
+            </div>
           </div>
-        </div> */}
         </section>
       </Wrapper>
 
