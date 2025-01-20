@@ -1,6 +1,6 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, Marker, Polyline, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 export default function Map({ center = [50.073658, 14.418540], zoom = 9, markers, className = "" }: { center?: [number, number] | number, zoom?: number, markers: { position: [number, number], children: React.ReactNode }[], className?: string }) {
     const customIcon = L.icon({
@@ -27,10 +27,10 @@ export default function Map({ center = [50.073658, 14.418540], zoom = 9, markers
                     <Popup>{marker.children}</Popup>
                 </Marker>
             )}
-            <Polyline
+            {/* <Polyline
                 positions={positions}
                 pathOptions={{ color: 'red', weight: 3 }}
-            />
+            /> */}
         </MapContainer>
     );
 };
