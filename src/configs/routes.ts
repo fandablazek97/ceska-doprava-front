@@ -15,11 +15,11 @@ export const mainRoutes = [
     main: true,
   },
 
-  {
+  /* {
     label: "Školní výlety a zájezd na klíč",
     path: "/zajezd-na-klic",
     main: false,
-  },
+  }, */
   {
     label: "Autobusová doprava",
     path: "/doprava-autobus",
