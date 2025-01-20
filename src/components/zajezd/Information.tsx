@@ -1,9 +1,8 @@
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
-import { GoogleMap, InfoWindowF, LoadScript, MarkerF, PolylineF } from "@react-google-maps/api";
+import MapClient from "@components/map/MapClient";
 
 import Image from "next/image";
-import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 type Props = {
@@ -89,9 +88,24 @@ export default function Information({
         </div>
       )}
       {newDeparturePoints ?
-        <NewMap stops={newDeparturePoints?.[0].attributes?.mesta.flatMap((stop: any) =>
-          stop.mesto?.map((m: any) => ({ ...m, cena: stop.cena })))?.sort((a: any, b: any) => a.poradi - b.poradi)
-        } center={newDeparturePoints?.[0].attributes?.stred} />
+        <MapClient markers={departurePoints.flatMap((stop: any) =>
+          stop.mesto.map((m: any) => ({
+            position: m.souradnice.split(","),
+            children:
+              <div className="space-y-1.5">
+                <p className="!m-0">{m.popisek && <><b>Popis:</b> {m.popisek}</>}</p>
+                <p><b>Město:</b> {m.nazev}</p>
+                <p><b>Adresa:</b> {m.adresa}</p>
+                <p><b>Cena:</b> {stop.cena}Kč</p>
+                <p><b>Souřadnice:</b> {m.souradnice}</p>
+              </div>
+          }))
+        )?.sort((a: any, b: any) => a.poradi - b.poradi)}
+          center={newDeparturePoints?.[0].attributes?.stred?.split(",").split(",").map((pos: string) => parseFloat(pos)) as [number, number]}
+          zoom={8}
+          className="h-[600px]"
+        />
+
         : departurePoints?.length !== 0 && (
           <div>
             <Heading level={2} size={"base"}>
@@ -204,61 +218,5 @@ export default function Information({
 
       <p className="mt-10 font-bold">ZMĚNA PROGRAMU VYHRAZENA</p>
     </Wrapper>
-  );
-}
-
-export function NewMap({ center, stops, zoom = 11 }: { center?: string, stops?: any, zoom?: number }) {
-  const [selectedStop, setSelectedStop] = useState<any>();
-  const [busIcon, setBusIcon] = useState<any>();
-  if (!stops || !center) return null
-  const routePath = stops.map((stop: any) => { const [lat, lng] = stop.souradnice.split(","); return { lat: parseFloat(lat), lng: parseFloat(lng) } });
-  const [centerLat, centerLng] = center.split(",");
-
-  return (
-    <div>
-      <LoadScript
-        onLoad={() => setBusIcon({
-          url: "/icons/bus.png",
-          scaledSize: new window.google.maps.Size(36, 36),
-        })}
-        googleMapsApiKey={process.env.GOOGLE_MAPS_KEY ?? ""}>
-        <GoogleMap mapContainerStyle={{ width: '100%', height: '500px' }} zoom={zoom} center={{ lat: parseFloat(centerLat), lng: parseFloat(centerLng) }}>
-          {busIcon && stops.map((stop: any, index: number) => {
-            let [lat, lng] = stop.souradnice.split(",");
-            lat = parseFloat(lat);
-            lng = parseFloat(lng)
-            return <MarkerF
-              icon={busIcon}
-              key={index}
-              position={{ lat: lat, lng: lng }}
-              onClick={() => setSelectedStop({ lat: lat, lng: lng, ...stop })}
-            />
-          })}
-          <PolylineF
-            path={routePath}
-            options={{
-              strokeColor: '#FF0000',
-              strokeOpacity: 0.8,
-              strokeWeight: 2
-            }}
-          />
-          {selectedStop && (
-            <InfoWindowF
-              position={{ lat: selectedStop.lat, lng: selectedStop.lng }}
-              onCloseClick={() => setSelectedStop(undefined)}
-            >
-              <div className="space-y-1.5">
-                <p>{selectedStop.popisek && <>Popis: <b>{selectedStop.popisek}</b></>}</p>
-                <p>Město: <b>{selectedStop.nazev}</b></p>
-                <p>Adresa: <b>{selectedStop.adresa}</b></p>
-                <p>Cena: <b>{selectedStop.cena}Kč</b></p>
-                <p>Odkaz: <b>{selectedStop.souradnice}</b></p>
-              </div>
-            </InfoWindowF>
-          )}
-        </GoogleMap>
-
-      </LoadScript>
-    </div>
   );
 }
