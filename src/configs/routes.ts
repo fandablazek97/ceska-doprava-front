@@ -30,6 +30,11 @@ export const mainRoutes = [
     path: "/doprava-kamion",
     main: false,
   },
+  /* {
+    label: "Kariéra",
+    path: "/kariera",
+    main: false,
+  }, */
   {
     label: "Kontakt",
     path: "/kontakt",
