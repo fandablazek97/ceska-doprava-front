@@ -268,7 +268,7 @@ function FormStater({
       )
       .then(
         () => {
-          return router.push("/zajezd-success");
+          return router.push("/zajezd-uspech");
         },
         () => {
           setFormState("refused");

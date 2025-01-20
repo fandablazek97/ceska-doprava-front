@@ -85,7 +85,7 @@ function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
       )
       .then(
         (result) => {
-          return router.push("/kontakt-success");
+          return router.push("/kontakt-uspech");
         },
         (error) => {
           setFormState("refused");
