@@ -252,7 +252,7 @@ function FormStater({
       )
       .then(
         () => {
-          return router.push("/chorvatsko-success");
+          return router.push("/chorvatsko-uspech");
         },
         () => {
           setFormState("refused");
