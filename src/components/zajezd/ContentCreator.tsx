@@ -70,7 +70,7 @@ export default function ContentCreator({
   );
   return (
     <Wrapper size="sm" as={"section"} className="pt-24">
-      <ContentFilter content={content} setContent={setContent} />
+      <ContentFilter content={content} setContent={setContent} otherImages={otherImages} />
       <div className={`${content !== "informace" && "hidden"}`}>
         <Information
           text={text}
