@@ -142,17 +142,17 @@ function FormStater({
     Object.entries(requiredArray).map((e) => {
       if (typeof e[1] === "string") {
         if (e[1] === "gdpr") {
-          if (allDataObject[e[1]] === false || allDataObject[e[1]] === "") {
+          if (!allDataObject[e[1]]) {
             tempState = "refused";
           }
         }
         if ((e[1] === "phone")) {
-          if (allDataObject[e[1]] === "" || !returnIsPhoneNumber(allDataObject[e[1]])) {
+          if (!allDataObject[e[1]] || !returnIsPhoneNumber(allDataObject[e[1]])) {
             tempState = "refused";
           }
         }
         else {
-          if (e[1] in allDataObject && allDataObject[e[1]] === "") {
+          if (e[1] in allDataObject && !allDataObject[e[1]]) {
             tempState = "refused";
           }
         }
@@ -160,7 +160,7 @@ function FormStater({
         if (Object.keys(e[1]).length !== 0) {
           if (e[0] in allDataObject) {
             Object.entries(allDataObject[e[0]]).map((elem: any) => {
-              if (elem[1] === "") {
+              if (!elem[1]) {
                 tempState = "refused";
               }
             });
@@ -363,7 +363,7 @@ function FormStater({
               {["Vyberte možnost",
                 `Ano (vyberu si místa sám) + ${cenaMistenky} Kč / os`,
                 "Ne (je mi jedno, kde budeme sedět) - zdarma"].map((word: string, key: number) => (
-                  <option value={word} key={key}>
+                  <option value={key === 0 ? "" : word} key={key}>
                     {word}
                   </option>
                 ))}
