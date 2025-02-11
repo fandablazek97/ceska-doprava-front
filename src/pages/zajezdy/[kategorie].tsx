@@ -55,7 +55,7 @@ export async function getStaticProps({ params }: any) {
   const fieldsQuery = "&fields[0]=nazev&fields[1]=obsazeny";
   const sortQuery = "&sort[0]=dulezitost%3Adesc&sort[1]=id";
   const paginationQuery = "&pagination[start]=0&pagination[limit]=1000";
-  const categoryQuery = params.kategorie !== "vse" ? "&filters[kategorie][kategorie][$containsi]=" + params.kategorie : "";
+  const categoryQuery = params.kategorie !== "vse" ? "&filters[kategorie][kategorie][$eqi]=" + params.kategorie : "";
 
   const zajezdRes = await fetch(
     ipToFetch +
