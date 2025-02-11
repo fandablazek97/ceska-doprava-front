@@ -6,7 +6,7 @@ import { returnIsPhoneNumber } from "./Form";
 type Props = {
   passengers: number
   setPassengers: any;
-  formState: "waiting" | "verifying" | "refused" | "accepted";
+  formState: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   allDataObject: any;
   requiredArray: string[] | object[];
 };

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { HiTrash, HiUserAdd } from "react-icons/hi";
 
 type Props = {
-  formState: "waiting" | "verifying" | "refused" | "accepted";
+  formState: "waiting" | "verifying" | "refused" | "accepted" | "refused-email";
   passengers: number;
   setPassengers: any;
   allDataObject: object | any;
@@ -37,7 +37,7 @@ export default function Passengers({
   departurePoints,
 }: Props) {
   const [restate, setRestate] = useState<
-    "waiting" | "verifying" | "refused" | "accepted"
+    "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   >("waiting");
   var allOthers = [];
 
@@ -105,7 +105,7 @@ export default function Passengers({
 }
 
 type AddOthersProps = {
-  formState: "waiting" | "verifying" | "refused" | "accepted";
+  formState: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   id: number;
   allDataObject: object;
   requiredArray: string[] | object[];

@@ -12,7 +12,7 @@ type Props = {
   allDataObject: any;
   requiredArray?: any;
   oneOfMany?: false | string;
-  formState?: "waiting" | "verifying" | "refused" | "accepted";
+  formState?: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   setFunction?: any;
   rare?: string | boolean;
   specialFunction?: any;
@@ -34,7 +34,7 @@ export default function ComboSelect({
   specialFunction,
 }: Props) {
   const [inValidation, setInValidation] = useState<
-    undefined | "waiting" | "verifying" | "refused" | "accepted"
+    undefined | "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   >("waiting");
   const [selected, setSelected] = useState();
   const [query, setQuery] = useState("");

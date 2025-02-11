@@ -13,7 +13,7 @@ import Wrapper from "@components/bricks/Wrapper";
 import Checkbox from "@components/forms/Checkbox";
 import Select from "@components/forms/Select";
 import Textarea from "@components/forms/Textarea";
-import { returnIsPhoneNumber } from "@components/zajezd/Form/Form";
+import { returnIsEmail, returnIsPhoneNumber } from "@components/zajezd/Form/Form";
 import { useRouter } from "next/router";
 import "public/fonts/DejaVuSans.js";
 import { chorvatsko64 } from "public/images/pdfs/chorvatsko64";
@@ -104,7 +104,7 @@ function FormStater({
   months,
 }: FormStaterProps) {
   const [formState, setFormState] = useState<
-    "waiting" | "verifying" | "refused" | "accepted"
+    "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   >("waiting");
   const [passengers, setPassengers] = useState<number>(1);
   const [seats, setSeats] = useState(false);
@@ -125,6 +125,15 @@ function FormStater({
           if (!allDataObject[e[1]] || !returnIsPhoneNumber(allDataObject[e[1]])) {
             tempState = "refused";
           }
+        }
+        else if (e[1] === "email") {
+          if (!allDataObject[e[1]] || !returnIsEmail(allDataObject[e[1]])) {
+            tempState = "refused";
+          }
+        }
+        else if (e[1] === "mistoComment") {
+          if (allDataObject["mistoSelect"].startsWith("Ano") && !allDataObject[e[1]])
+            tempState = "refused";
         }
         else {
           if (e[1] in allDataObject && !allDataObject[e[1]]) {
@@ -255,7 +264,7 @@ function FormStater({
           return router.push("/chorvatsko-uspech");
         },
         () => {
-          setFormState("refused");
+          setFormState("refused-email");
         }
       );
   }
@@ -389,6 +398,13 @@ function FormStater({
           title="Chyba!"
           text="Zapoměli jste vypnit některá pole"
           onClose={() => setFormState("waiting")}
+        />
+      )}
+      {formState === "refused-email" && (
+        <Alert
+          status="error"
+          title="Chyba!"
+          text="Objednávku se nepodařilo odeslat, prosím zkuste znovu později."
         />
       )}
     </Wrapper>

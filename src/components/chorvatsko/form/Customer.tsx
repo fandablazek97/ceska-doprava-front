@@ -4,7 +4,7 @@ import Input from "@components/forms/Input";
 import { returnIsPhoneNumber } from "@components/zajezd/Form/Form";
 
 type Props = {
-  formState: "waiting" | "verifying" | "refused" | "accepted";
+  formState: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   allDataObject: any;
   requiredArray: string[] | object[];
 };

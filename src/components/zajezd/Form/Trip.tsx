@@ -5,7 +5,7 @@ import Select from "@components/forms/Select";
 import { useEffect } from "react";
 
 type Props = {
-  formState: "waiting" | "verifying" | "refused" | "accepted";
+  formState: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   setPrice: any;
   code: string;
   dateAndPrice: {

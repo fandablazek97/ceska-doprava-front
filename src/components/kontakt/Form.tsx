@@ -26,7 +26,7 @@ type FormStaterProps = {
 
 function FormStater({ allDataObject, requiredArray }: FormStaterProps) {
   const [formState, setFormState] = useState<
-    "waiting" | "verifying" | "refused" | "accepted"
+    "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   >("waiting");
   const router = useRouter();
 

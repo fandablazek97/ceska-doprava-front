@@ -14,7 +14,7 @@ type Props = {
     requiredArray?: string[] | object[] | any;
     oneOfMany?: boolean | string;
     position?: number;
-    formState?: "waiting" | "verifying" | "refused" | "accepted";
+    formState?: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
     otherState?: any;
 };
 
@@ -32,7 +32,7 @@ export default function YesOrNo({
     otherState = undefined,
 }: Props) {
     const [inValidation, setInValidation] = useState<
-        undefined | "waiting" | "verifying" | "refused" | "accepted"
+        undefined | "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
     >("waiting");
     const [checkState, setCheckState] = useState<boolean | string>(defaultValue);
 

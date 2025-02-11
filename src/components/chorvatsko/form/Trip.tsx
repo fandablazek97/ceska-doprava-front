@@ -5,7 +5,7 @@ import Select from "@components/forms/Select";
 import { useState } from "react";
 
 type Props = {
-  formState: "waiting" | "verifying" | "refused" | "accepted";
+  formState: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   allDataObject: any;
   requiredArray: string[] | object[];
   prices: Prices[];

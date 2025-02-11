@@ -21,7 +21,7 @@ type DatePickerProps = {
   yearOrder?: "asc" | "desc";
   isRequired?: boolean;
   requiredArray?: any;
-  formState?: "waiting" | "verifying" | "refused" | "accepted";
+  formState?: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   oneOfMany?: false | string;
 };
 
@@ -63,7 +63,7 @@ export default function DatePicker({
   oneOfMany = false,
 }: DatePickerProps) {
   const [inValidation, setInValidation] = useState<
-    "waiting" | "verifying" | "refused" | "accepted"
+    "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   >();
   const [activated, setActivated] = useState<boolean>(false);
 
@@ -93,10 +93,10 @@ export default function DatePicker({
     if (oneOfMany === false) {
       if (allDataObject !== undefined) {
         if (allDataObject[name] === undefined) {
-          if(day && month && year){
+          if (day && month && year) {
             allDataObject[name] = day + "." + month + "." + year;
           }
-          else{
+          else {
             allDataObject[name] = "";
           }
         }
@@ -112,12 +112,12 @@ export default function DatePicker({
           allDataObject[oneOfMany] = {};
         } else {
           if (allDataObject[oneOfMany][name] === undefined)
-          if(day && month && year){
-            allDataObject[oneOfMany][name] = day + "." + month + "." + year;
-          }
-          else{
-            allDataObject[oneOfMany][name] = "";
-          }
+            if (day && month && year) {
+              allDataObject[oneOfMany][name] = day + "." + month + "." + year;
+            }
+            else {
+              allDataObject[oneOfMany][name] = "";
+            }
         }
       }
       if (isRequired && requiredArray !== undefined) {
@@ -131,7 +131,7 @@ export default function DatePicker({
         }
       }
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (activated) {
@@ -140,10 +140,10 @@ export default function DatePicker({
       document.removeEventListener("mousedown", closeDatePicker);
     }
   }, [activated]);
-  
+
   useEffect(() => {
     setInValidation(formState);
-  },[formState])
+  }, [formState])
 
   function closeDatePicker(e: any) {
     if (
@@ -194,7 +194,7 @@ export default function DatePicker({
         );
       } else {
 
-      /* Pokud je vyplněn pouze rok a měsíc */
+        /* Pokud je vyplněn pouze rok a měsíc */
         inputText = (
           <>
             <span /* Měsíc */
@@ -236,7 +236,7 @@ export default function DatePicker({
       );
     } else {
 
-    /* Pokud je vyplněn pouze rok */
+      /* Pokud je vyplněn pouze rok */
       inputText = (
         <span /* Rok */
           className="cursor-pointer"
@@ -299,45 +299,37 @@ export default function DatePicker({
         <div
           className={`
           duration-default flex cursor-pointer items-center p-1.5 transition
-          ${
-            activated &&
+          ${activated &&
             "!border-primary bg-transparent !bg-white !outline-none ring-2 ring-primary"
-          }
-          ${
-            inputText === undefined &&
+            }
+          ${inputText === undefined &&
             defaultTextAlign === "left" &&
             "justify-start"
-          }
-          ${
-            inputText === undefined &&
+            }
+          ${inputText === undefined &&
             defaultTextAlign === "center" &&
             "justify-center"
-          }
-          ${
-            inputText === undefined &&
+            }
+          ${inputText === undefined &&
             defaultTextAlign === "right" &&
             "justify-end"
-          }
-          ${
-            inputText !== undefined &&
+            }
+          ${inputText !== undefined &&
             datePickerValueAlign === "left" &&
             "justify-start"
-          }
-          ${
-            inputText !== undefined &&
+            }
+          ${inputText !== undefined &&
             datePickerValueAlign === "center" &&
             "justify-center"
-          }
-          ${
-            inputText !== undefined &&
+            }
+          ${inputText !== undefined &&
             datePickerValueAlign === "right" &&
             "justify-end"
-          }
-          ${
-            inputClassName === undefined
+            }
+          ${inputClassName === undefined
               ? "h-12 w-full rounded-md bg-body-200"
               : inputClassName
-          }
+            }
           `}
           onClick={() => {
             setActivated(true);
@@ -353,11 +345,10 @@ export default function DatePicker({
           ${!activated && "hidden"}
           ${datePickerAlign === "left" && "left-0"}
           ${datePickerAlign === "right" && "right-0"}
-          ${
-            year === undefined || month === undefined
+          ${year === undefined || month === undefined
               ? "max-h-72 p-3"
               : "px-5 pb-8"
-          }
+            }
         `}
         >
           {content}
@@ -377,7 +368,7 @@ type ShowYearsProps = {
 
 function ShowYears({ year, setYear, yearStart, yearEnd, yearOrder }: ShowYearsProps) {
   let yearValues: any = [];
-  if(yearOrder === "asc"){
+  if (yearOrder === "asc") {
     for (let i = yearStart; i <= yearEnd; i++) {
       yearValues.push(
         <span
@@ -389,20 +380,20 @@ function ShowYears({ year, setYear, yearStart, yearEnd, yearOrder }: ShowYearsPr
         </span>
       );
     }
-} else{
-  for (let i = yearEnd; i >= yearStart; i--) {
-  yearValues.push(
-    <span
-      key={i}
-      className="cursor-pointer rounded-md text-center hover:bg-gray-200"
-      onClick={() => setYear(i)}
-    >
-      {i}
-    </span>
-  );
-}
+  } else {
+    for (let i = yearEnd; i >= yearStart; i--) {
+      yearValues.push(
+        <span
+          key={i}
+          className="cursor-pointer rounded-md text-center hover:bg-gray-200"
+          onClick={() => setYear(i)}
+        >
+          {i}
+        </span>
+      );
+    }
 
-}
+  }
   return <div className="grid grid-cols-3 gap-3">{yearValues}</div>;
 }
 
@@ -495,9 +486,8 @@ function ShowDays({
     dayValues.push(
       <span
         key={i}
-        className={`aspect-square cursor-pointer rounded-full p-1 text-center hover:bg-gray-200 ${
-          day === i && "bg-primary text-white"
-        }`}
+        className={`aspect-square cursor-pointer rounded-full p-1 text-center hover:bg-gray-200 ${day === i && "bg-primary text-white"
+          }`}
         onClick={() => {
           setDay(i);
           setActivated(false);

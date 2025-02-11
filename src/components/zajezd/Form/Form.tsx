@@ -102,7 +102,7 @@ function FormStater({
   cenaMistenky
 }: FormStaterProps) {
   const [formState, setFormState] = useState<
-    "waiting" | "verifying" | "refused" | "accepted"
+    "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   >("waiting");
   const [seats, setSeats] = useState(false);
   const [passengers, setPassengers] = useState<number>(1);
@@ -146,10 +146,19 @@ function FormStater({
             tempState = "refused";
           }
         }
-        if ((e[1] === "phone")) {
+        else if (e[1] === "phone") {
           if (!allDataObject[e[1]] || !returnIsPhoneNumber(allDataObject[e[1]])) {
             tempState = "refused";
           }
+        }
+        else if (e[1] === "email") {
+          if (!allDataObject[e[1]] || !returnIsEmail(allDataObject[e[1]])) {
+            tempState = "refused";
+          }
+        }
+        else if (e[1] === "mistoComment") {
+          if (allDataObject["mistoSelect"].startsWith("Ano") && !allDataObject[e[1]])
+            tempState = "refused";
         }
         else {
           if (e[1] in allDataObject && !allDataObject[e[1]]) {
@@ -271,7 +280,7 @@ function FormStater({
           return router.push("/zajezd-uspech");
         },
         () => {
-          setFormState("refused");
+          setFormState("refused-email");
         }
       );
   }
@@ -443,6 +452,13 @@ function FormStater({
               onClose={() => setFormState("waiting")}
             />
           )}
+          {formState === "refused-email" && (
+            <Alert
+              status="error"
+              title="Chyba!"
+              text="Objednávku se nepodařilo odeslat, prosím zkuste znovu později."
+            />
+          )}
         </>
       }
     </Wrapper>
@@ -451,5 +467,10 @@ function FormStater({
 
 export function returnIsPhoneNumber(value: string) {
   const regex = /^(\+?420\s?)?(\d{3}[\s-]?\d{3}[\s-]?\d{3}|\d{9})$/;
+  return regex.test(value);
+}
+
+export function returnIsEmail(value: string) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(value);
 }

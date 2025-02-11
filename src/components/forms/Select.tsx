@@ -12,7 +12,7 @@ type Props = {
   allDataObject?: any;
   requiredArray?: any;
   oneOfMany?: boolean | string;
-  formState?: "waiting" | "verifying" | "refused" | "accepted";
+  formState?: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   setFunction?: any;
   rare?: string | boolean;
   emptyValue?: string;
@@ -37,7 +37,7 @@ export default function Select({
   defaultValue,
 }: Props) {
   const [inValidation, setInValidation] = useState<
-    undefined | "waiting" | "verifying" | "refused" | "accepted"
+    undefined | "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   >("waiting");
 
   useEffect(() => {

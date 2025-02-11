@@ -14,7 +14,7 @@ type Props = {
   requiredArray?: any;
   oneOfMany?: boolean | string;
   position?: number;
-  formState?: "waiting" | "verifying" | "refused" | "accepted";
+  formState?: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   [x: string]: any;
 };
 
@@ -34,7 +34,7 @@ export default function Textarea({
   ...rest
 }: Props) {
   const [inValidation, setInValidation] = useState<
-    undefined | "waiting" | "verifying" | "refused" | "accepted"
+    undefined | "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   >("waiting");
 
   useEffect(() => {

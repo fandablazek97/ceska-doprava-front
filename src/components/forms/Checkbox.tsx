@@ -12,7 +12,7 @@ type Props = {
   requiredArray?: string[] | object[] | any;
   oneOfMany?: boolean | string;
   position?: number;
-  formState?: "waiting" | "verifying" | "refused" | "accepted";
+  formState?: "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   otherState?: any;
   parentClassName?: string;
   onChange?: (value: boolean) => void;
@@ -37,7 +37,7 @@ export default function Checkbox({
   checked,
 }: Props) {
   const [inValidation, setInValidation] = useState<
-    undefined | "waiting" | "verifying" | "refused" | "accepted"
+    undefined | "waiting" | "verifying" | "refused" | "accepted" | "refused-email"
   >("waiting");
 
   useEffect(() => {
