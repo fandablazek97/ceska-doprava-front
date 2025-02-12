@@ -124,7 +124,7 @@ export default function Pricing({ prices, specialPrices, swimming }: Props) {
           </div>
 
           {/* Nástupní místa */}
-          <div>
+          {/* <div>
             <Heading level={3} size="base">
               Nástupní místa
             </Heading>
@@ -168,7 +168,7 @@ export default function Pricing({ prices, specialPrices, swimming }: Props) {
                 })}
               </tbody>
             </table>
-          </div>
+          </div> */}
         </ScrollReveal>
       </Wrapper>
     </div>

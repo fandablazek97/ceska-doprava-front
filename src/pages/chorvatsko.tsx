@@ -18,8 +18,10 @@ type Props = {
   departurePoints: DeparturePointsProps[];
   specialPrices: SpecialPricesProps[];
   year: string;
-  zoom: number;
-  stred: string;
+  zoomCr: number | null;
+  stredCr: string | null;
+  zoomHr: number | null;
+  stredHr: string | null;
 };
 
 interface SpecialPricesProps {
@@ -47,8 +49,10 @@ export default function chorvatsko({
   departurePoints,
   specialPrices,
   year,
-  zoom,
-  stred,
+  zoomCr,
+  stredCr,
+  zoomHr,
+  stredHr,
 }: Props) {
   return (
     <>
@@ -89,7 +93,7 @@ export default function chorvatsko({
         speed={-25}
         src="/images/home/chorvatsko.jpg"
       />
-      <DeparturePoints departurePoints={departurePoints} zoom={zoom} stred={stred} />
+      <DeparturePoints departurePoints={departurePoints} zoomCr={zoomCr} stredCr={stredCr} zoomHr={zoomHr} stredHr={stredHr} />
       <Pricing
         prices={prices}
         specialPrices={specialPrices}
@@ -135,8 +139,10 @@ export async function getStaticProps() {
       departurePoints: data.odjezdMista,
       specialPrices: data.nastupniMista,
       year: data.rok,
-      stred: data.mapaStred ?? null,
-      zoom: data.mapaZoom ?? null,
+      stredCr: data.mapaCrStred ?? null,
+      zoomCr: data.mapaCrZoom ?? null,
+      stredHr: data.mapaHrStred ?? null,
+      zoomHr: data.mapaHrZoom ?? null,
     },
   };
 }
