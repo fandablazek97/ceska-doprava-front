@@ -4,7 +4,7 @@ import Wrapper from "@components/bricks/Wrapper";
 import Select from "@components/forms/Select";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import { tagAndText } from "./References";
@@ -12,8 +12,24 @@ import TripMinimal from "./TripMinimal";
 
 export default function ContentAndFilter({ category, zajezdData }: { category: string, zajezdData: any }) {
   const router = useRouter();
+  const { pocet } = router.query;
+  const [showedItems, setShowedItems] = useState<number>(Number(pocet) || 12);
   const addItems = 9;
-  const [showedItems, setShowedItems] = useState<number>(12);
+
+  useEffect(() => {
+    if (pocet) setShowedItems(Number(pocet));
+  }, [pocet]);
+
+
+  function showMore() {
+    const newCount = showedItems + addItems;
+    setShowedItems(newCount);
+
+    router.push({
+      pathname: '/zajezdy/' + category,
+      query: { pocet: newCount }
+    }, undefined, { shallow: true })
+  }
 
   return (
     <Wrapper as={"section"} size="lg">
@@ -81,7 +97,7 @@ export default function ContentAndFilter({ category, zajezdData }: { category: s
         {zajezdData.length > showedItems && (
           <Button
             className="mx-auto mt-24 !flex w-fit"
-            onClick={() => setShowedItems(showedItems + addItems)}
+            onClick={showMore}
           >
             Načíst další
           </Button>

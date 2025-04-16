@@ -1,6 +1,7 @@
 import Heading from "@components/bricks/Heading";
 import Wrapper from "@components/bricks/Wrapper";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { HiArrowLeft } from "react-icons/hi";
 import { changeDateType } from "./DatesAll";
 
@@ -35,6 +36,7 @@ export default function Hero({
   imageAlt,
   full,
 }: Props) {
+  const router = useRouter();
   // Change price to number with spaces every thousand
   const priceWithSpaces = price!
     .toString()
@@ -47,7 +49,7 @@ export default function Hero({
       as={"header"}
     >
       <div className="flex flex-col items-start">
-        <button className="group flex flex-row items-center gap-2 font-semibold text-gray-600" onClick={() => { window.history.back(); return false; }}>
+        <button className="group flex flex-row items-center gap-2 font-semibold text-gray-600" onClick={() => router.back()}>
           <HiArrowLeft className="transition-transform duration-150 group-hover:-translate-x-3" />
           <span className="ml-1">Zpět</span>
         </button>
